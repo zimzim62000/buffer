@@ -1,0 +1,15 @@
+#!/bin/bash
+
+php /home/%var%/app/console $@
+
+for param in $@
+do
+    if [ $param = "cache:clear" ] || [ $param = "cache:warmup" ]
+    then
+        chmod -R 0770 /home/%var%/app/cache
+        chown -R %user%:www-data /home/%var%/app/cache
+        chmod -R 0770 /home/%var%/app/logs
+        chown -R %user%:www-data /home/%var%/app/logs
+        break
+    fi
+done

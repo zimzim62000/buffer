@@ -1,0 +1,77 @@
+<nav data-topbar="" class="top-bar">
+    <ul class="title-area">
+        <li class="name">
+            <a href="{{ path('zimzim_bundles_app_home') }}" class="hide-for-small hide-for-medium">
+                {{ 'site.title.long'|trans }}<span class="beta">{{ 'site.title.beta'|trans }}</span>
+            </a>
+            <a href="{{ path('zimzim_bundles_app_home') }}" class="show-for-medium-down title-top-bar">
+                {{ 'site.title.small'|trans }}<span class="beta">{{ 'site.title.beta'|trans }}</span>
+            </a>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="">{{ 'views.navbar.menu'|trans }}</a></li>
+    </ul>
+
+    <section class="top-bar-section">
+        <ul class="right">
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="divider"></li>
+                <li class="has-dropdown not-click">
+                    <a href="#"> {{ 'views.navbar.admin'|trans }}</a>
+                    <ul class="dropdown">
+                        <li class="title back js-generated">
+                            <a href="javascript:void(0);">
+                                {{ 'views.navbar.back'|trans }}
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="">
+                            <a class="" href="{{ path('zimzim_bundles_app_tournament') }}">
+                                {{ 'views.navbar.tournament'|trans }}
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="">
+                            <a class="" href="{{ path('zimzim_bundles_app_usertournament') }}">
+                                {{ 'views.navbar.usertournament'|trans }}
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_USER') %}
+                <li class="divider"></li>
+                <li class="has-dropdown not-click">
+                    <a href="#">{{ app.user.username }}</a>
+                    <ul class="dropdown">
+                        <li class="title back js-generated">
+                            <a href="javascript:void(0);">
+                                {{ 'views.navbar.back'|trans }}
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('fos_user_profile_show') }}">
+                                {{ 'views.navbar.edit'|trans }}
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="">
+                            <a class="" href="{{ path('fos_user_security_logout') }}">
+                                {{ 'views.navbar.logout'|trans }}
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                    </ul>
+                </li>
+                <li class="divider"></li>
+            {% else %}
+                <li class="divider"></li>
+                <li class="has-form">
+                    <a class="button tiny" href="{{ path('hwi_oauth_connect') }}">
+                        {{ 'views.navbar.login'|trans }}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </section>
+</nav>

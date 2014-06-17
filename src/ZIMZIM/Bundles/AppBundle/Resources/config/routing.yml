@@ -1,0 +1,11 @@
+zimzim_bundles_app:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/home.yml"
+    prefix:   /
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_tournament:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/tournament.yml"
+    prefix:   /admin/tournament/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_usertournament:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/usertournament.yml"
+    prefix:   /admin/usertournament/

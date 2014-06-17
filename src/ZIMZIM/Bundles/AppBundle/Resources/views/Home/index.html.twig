@@ -1,0 +1,90 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'site.title.long'|trans }} {{ 'views.worldcup.default.index.catchphrase'|trans }}{% endblock %}
+
+{% block page %}
+
+    {% if is_granted('ROLE_USER') %}
+        <div class="row">
+            <div class="small-12 columns">
+                <h1 class="text-center headerpagehome">
+                    {{ 'views.bundles.app.tournament.index.titlelogued'|trans }}
+                </h1>
+
+                <h2 class="text-center headerpagehome ">
+                    {{ 'views.bundles.app.tournament.index.catchphraselogued'|trans }}
+                </h2>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="small-12 columns">
+                <h1 class="text-center headerpagehome">
+                    {{ 'views.worldcup.default.index.title'|trans }}
+                </h1>
+
+                <h2 class="text-center headerpagehome ">
+                    {{ 'views.worldcup.default.index.catchphrase'|trans }}
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-8 medium-centered columns">
+                <h3 class="text-center">
+                    {{ 'views.worldcup.default.index.soustitle1'|trans }}
+                </h3>
+                <p class="blackcolor p-large text-justify">
+                    {{ 'views.worldcup.default.index.who'|trans|raw }}
+                </p>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="small-12 columns">
+            {% for Tournament in Tournaments %}
+                <h3 class="text-center headerpagehome">
+                    {{ Tournament.name }}
+                </h3>
+                <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+                    {% for UserTournament in Tournament.userTournaments %}
+                        <li class="th">
+                            <div class="box-item">
+                                <div class="row">
+                                    <div class="small-12 columns ">
+                                        <h4 class="text-center">
+                                            {{ UserTournament.name }}
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="small-12 columns text-center">
+                                        <a href="" class="button small round">
+                                            {{ 'button.participate'|trans }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="small-6 columns text-center">
+                                        <h5 class="text-left">
+                                            <small>
+                                                {{ 'views.bundles.app.tournament.index.madein'|trans({'%date%' : UserTournament.dateStart|date('d/m/Y') }) }}
+                                            </small>
+                                        </h5>
+                                    </div>
+                                    <div class="small-6 columns text-center">
+                                        <h5 class="text-right">
+                                            <small>
+                                                {{ 'views.bundles.app.tournament.index.madeby'|trans({'%name%' : UserTournament.user.username}) }}
+                                            </small>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock page %}

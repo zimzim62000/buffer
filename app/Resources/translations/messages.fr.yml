@@ -1,0 +1,58 @@
+button:
+    register: "S'inscrire"
+    update: "Modifier"
+    create: Créer
+    show: Voir
+    delete: supprimer
+    find: "rechercher"
+    close: "Fermer"
+    bet: "Parier"
+    maybego: "Alors, Prêt à tenter votre chance ?"
+    updatescore: "score"
+    plus: "plus ?"
+    submitemail: "Envoyer"
+    participate: "Je participe"
+link:
+    return: "Retour à la liste"
+    hide: "cacher"
+    show: "afficher"
+views:
+    navbar:
+        menu: "Menu"
+        back: "Retour"
+        login: "Connexion"
+        register: "Inscription"
+        logout: "Déconnexion"
+        identity: "S'identifier"
+        edit: "Information"
+        game: "Matchs"
+        score: "Scores"
+        userbet: "Paris"
+        ranking: "Classement"
+        maingame: "MG"
+        clientgame: "Parties"
+        admin: "Admin"
+        tournament: "Tournoi"
+        usertournament: "Tournoi User"
+    HWIOAuthBundle:
+        connect:
+            login:
+                title1: "Connection"
+                title2: "Avec votre compte préféré !"
+                title3: "Ou "
+                login: "connexion"
+                register: "inscription"
+    footer:
+        anytrouble: "Si vous rencontrez un problème, n'hésitez pas à envoyer un message à zimzim62000[at]gmail.com, merci"
+grid:
+    filter:
+        disabled: "Cacher"
+        enabled: "Filtrer"
+    generic:
+        nodata: "Pas encore de donnée"
+        nomessage: "Aucun résultat trouvé"
+flashbag:
+    success:
+        create: "Création réussit"
+        update: "Modification réussit"
+        delete: "Suppréssion réussit"

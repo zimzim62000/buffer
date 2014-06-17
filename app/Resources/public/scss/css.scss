@@ -1,0 +1,159 @@
+@import "settings";
+@import "normalize";
+@import "foundation";
+
+
+html, body {
+    height: 100%;
+}
+
+div.container {
+    hight: auto;
+    min-height: 100%;
+    padding-bottom: 150px;
+}
+
+footer.footer {
+    background: $green;
+    height: 150px;
+    margin-top: -150px;
+    clear: both;
+    max-width: 100%;
+    h5 {
+        small {
+            padding: 0 2rem;
+        }
+    }
+    h4 {
+        color: #FFF;
+        padding: 2rem;
+    }
+}
+
+.top-bar .name {
+    line-height: 45px;
+    a {
+        color: #FFF;
+        padding: 0 1rem;
+    }
+}
+
+table.width-100 {
+    width: 100%;
+}
+
+.full-width {
+    max-width: 100%;
+}
+
+.bgcolor {
+    color: $body-bg !important;
+}
+
+.bgcolor:hover {
+    color: $body-bg !important;
+}
+
+.primarycolor {
+    color: $primary-color !important;
+}
+.whitecolor {
+    color: $white !important;
+}
+.blackcolor {
+    color: $black !important;
+}
+.bluecolor {
+    color: $blue;
+}
+.yellowcolor {
+    color: $yellow !important;
+}
+.secondarycolor{
+    color: $secondary-color !important;
+}
+h1.headerpagehome {
+    font-size: 1.85rem;
+    padding: 2rem 0 1rem 0;
+}
+
+h2.headerpagehome {
+    font-size: 1.65rem;
+    padding: 0 0 2rem 0;
+}
+
+p.p-large {
+    font-size: 1.15rem;
+    padding: 1.5rem 0.25rem;
+}
+
+ul.grid-row-actions li a {
+    font-weight: bold;
+}
+
+ul.grid-row-actions li a:hover {
+    font-weight: bold;
+    color: $secondary-color;
+}
+
+div.score {
+    padding: 0.45rem 0;
+    border-top: 1px SOLID $primary-color;
+    border-right: 1px SOLID $primary-color;
+    border-left: 1px SOLID $primary-color;
+    h6.username {
+        padding: 0;
+        margin: 0;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+    h6.score {
+        padding: 0;
+        margin: 0;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+    h6.team {
+        padding: 1.25rem 0;
+        margin: 0;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+}
+div.panel:hover {
+    background: scale-color( $blue, $lightness: +10% );
+}
+
+div.score.scorelast {
+    border-top: 1px SOLID $primary-color;
+    border-right: 1px SOLID $primary-color;
+    border-left: 1px SOLID $primary-color;
+    border-bottom: 1px SOLID $primary-color;
+}
+
+span.score {
+    font-weight: bold;
+    color: $white;
+}
+span.date {
+    font-weight: bold;
+    color: $primary-color;
+    line-height: 1rem;
+    font-size: 1rem;
+}
+span.versus {
+    font-weight: bold;
+    color: $primary-color;
+    line-height: 1.6875rem;
+}
+.paddingtopbot{
+    padding: 1rem 0;
+}
+.sstitle{
+    font-size: 1.7rem;
+    line-height: 1.7rem;
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: $blue;
+    padding: 2rem 0 1rem 0;
+}

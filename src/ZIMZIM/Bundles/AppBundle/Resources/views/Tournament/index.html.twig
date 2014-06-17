@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ 'views.bundles.app.tournament.index.title'|trans }}
+{% endblock title %}
+
+{% block page %}
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h1 class="text-center headerpagehome">
+                {{ 'views.bundles.app.tournament.index.title'|trans }}
+            </h1>
+        </div>
+    </div>
+            <div class="row">
+            <div class="small-12 large-12 columns">
+                <a class="tiny button round" href="{{ path('zimzim_bundles_app_tournament_new') }}">
+                    {{ 'button.create'|trans }}
+                </a>
+            </div>
+        </div>
+    
+    {{ grid_search(grid) }}
+
+    {{ grid(grid) }}
+
+{% endblock %}

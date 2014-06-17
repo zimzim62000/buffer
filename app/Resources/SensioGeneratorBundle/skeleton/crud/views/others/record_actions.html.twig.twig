@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="small-12 large-4 columns text-center">
+        <a class="tiny button round" href="{{ "{{ path('" ~ route_name_prefix ~ "') }}" }}">
+            {{ "{{ 'link.return'|trans }}" }}
+        </a>
+    </div>
+{% if ('edit' in actions) and (not hide_edit) %}
+    <div class="small-12 large-4 columns text-center">
+        <a class="tiny button round" href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', { 'id': entity.id }) }}" }}">
+            {{ "{{ 'button.update'|trans }}" }}
+        </a>
+    </div>
+{% endif %}
+{% if ('delete' in actions) and (not hide_delete) %}
+    <div class="small-12 large-4 columns text-center">
+        {{ '{{ form(delete_form) }}' }}
+    </div>
+{% endif %}
+</div>

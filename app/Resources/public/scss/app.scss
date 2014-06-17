@@ -1,0 +1,92 @@
+@import "settings";
+@import "compass/css3";
+
+
+span.logo-small-tiers{
+    width: 40px;
+    height: 40px;
+    background-size: 120px 40px;
+    display: inline-block;
+}
+.image-facebook{
+    background-image: url('../../images/logotiers.png');
+    background-position: 0;
+}
+.image-google{
+    background-image: url('../../images/logotiers.png');
+    background-position: 80px;
+}
+.image-twitter{
+    background-image: url('../../images/logotiers.png');
+    background-position: 40px;
+}
+span.beta{
+    @include rotate(315deg);
+    display: inline-block;
+    padding: 0 0 0 0.2rem;
+    font-weight: bold;
+    color: $green;
+    @include single-transition(all, 1.5s);
+    text-decoration: underline;
+    color: $green;
+}
+span.beta:hover{
+    animation: spinzim linear 1.5s infinite;
+}
+span.container-baballe{
+    display:block;
+    width:100%;
+    position: relative;
+}
+span.baballe{
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    display: inline-block;
+    height: 64px;
+    width: 64px;
+    background-image: url('../../images/balle-brazil.png');
+    position: absolute;
+    @include single-transition(all, 1.5s);
+    @include rotate(315deg);
+}
+span.baballe:hover{
+    animation: spinzim linear 1.5s infinite;
+}
+
+/***********************\
+        Animation
+\**********************/
+
+@keyframes spinzim {
+    0% {
+        @include rotate(315deg)
+    }
+    100% {
+        @include rotate(-45deg)
+    }
+}
+@keyframes moveright {
+    0% {
+        @include translateX(0%);
+    }
+    100%{
+        @include translateX(500%);
+    }
+}
+@keyframes moveleft {
+    0% {
+        @include translateX(500%);
+    }
+    100%{
+        @include translateX(0%);
+    }
+}
+
+/***********************\
+        Accordion
+\**********************/
+div.zimzim-accordion{
+    overflow: hidden;
+    @include single-transition(all, 0.7s);
+}

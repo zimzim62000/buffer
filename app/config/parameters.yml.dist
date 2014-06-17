@@ -1,0 +1,27 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  gmail
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    google_id: ThisTokenIsNotSoSecretChangeIt
+    google_secret: ThisTokenIsNotSoSecretChangeIt
+    google_scope: ThisTokenIsNotSoSecretChangeIt
+    facebook_id: ThisTokenIsNotSoSecretChangeIt
+    facebook_secret: ThisTokenIsNotSoSecretChangeIt
+    twitter_id: ThisTokenIsNotSoSecretChangeIt
+    twitter_secret: ThisTokenIsNotSoSecretChangeIt
+
+    debug_toolbar: true
+    debug_redirects: false
+    use_assetic_controller: true

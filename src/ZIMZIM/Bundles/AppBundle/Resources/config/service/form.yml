@@ -1,0 +1,29 @@
+services:
+    zimzim_bundles_app.type.scoretype:
+        class: ZIMZIM\Bundles\AppBundle\Form\Type\ScoreType
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_type_scoretype }
+    zimzim_bundles_app.type.yesnotype:
+        class: ZIMZIM\Bundles\AppBundle\Form\Type\YesNoType
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_type_yesnotype }
+    zimzim_bundles_app.type.datetype:
+        class: ZIMZIM\Bundles\AppBundle\Form\Type\DateType
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_type_datetype }
+    zimzim_bundles_app.type.datetimetype:
+        class: ZIMZIM\Bundles\AppBundle\Form\Type\DateTimeType
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_type_datetimetype }
+    zimzim_bundles_app.type.checkboxaligntype:
+        class: ZIMZIM\Bundles\AppBundle\Form\Type\CheckboxAlignType
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_type_checkboxaligntype }
+    zimzim_bundles_app.userbettype:
+        class: ZIMZIM\Bundles\AppBundle\Form\UserBetType
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_userbettype }
+    zimzim_bundles_app.gamescoretype:
+        class: ZIMZIM\Bundles\AppBundle\Form\GameScoreType
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_gamescoretype }

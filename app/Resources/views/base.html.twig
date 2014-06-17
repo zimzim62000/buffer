@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <META HTTP-EQUIV="Content-Language" content="fr">
+        <META NAME="language" content="French">
+        <META NAME="identifier-url" CONTENT="http://www.parierentreamis.fr">
+        <META NAME="robots" CONTENT="index,follow">
+        <META NAME="keywords" CONTENT="default">
+        <META NAME="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        {% block headshare %}
+        {% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        <META NAME="description" CONTENT="{% block metadescription %}{% endblock metadescription %}">
+        {% block stylesheets %}
+            {% if app.environment == 'prod' %}
+                {% stylesheets 'built/css/min.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+                {% endstylesheets %}
+            {% else %}
+                {% stylesheets 'app/css/css.css' 'app/css/app.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+                {% endstylesheets %}
+            {% endif %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    {% block body %}
+        {% block container %}
+            <div class="container" id="container"">
+                {% block nav %}
+                    {% include '::navbar.html.twig' %}
+                {% endblock nav %}
+                {% block flashMessage %}
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+                        <div class="row full-width">
+                            <div class="large-12 columns text-center alert-box success">
+                                <h4>{{ flashMessage|trans }}</h4>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('errors') %}
+                        <div class="row full-width">
+                            <div class="large-12 columns text-center alert-box alert">
+                                <h4 class="bluecolor">{{ flashMessage|trans }}</h4>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endblock flashMessage %}
+                {% block page %}
+                {% endblock page %}
+            </div>
+        {% endblock container %}
+        {% block footer %}
+            {% include '::footer.html.twig' %}
+        {% endblock footer %}
+    {% endblock body %}
+    {% block javascripts %}
+        {% if app.environment == 'prod' %}
+            {% javascripts 'built/js/min.js'%}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% else %}
+            {% javascripts 'app/js/jquery.min.js' 'app/js/hammer.jquery.js'  'app/js/modernizr.js' 'app/js/app.js' 'app/js/foundation.min.js' 'app/js/foundation.topbar.js'%}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endif %}
+        <script>
+            $(document).foundation();
+        </script>
+    {% endblock %}
+    </body>
+</html>

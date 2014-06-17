@@ -1,0 +1,4 @@
+zimzim_bundles_app_home:
+    pattern:  /
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Home:index" }
+    requirements: { _method: get }
