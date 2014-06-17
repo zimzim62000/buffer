@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Tournament
  *
- * @ORM\Table("parierentreamis_tournament")
+ * @ORM\Table(name="parierentreamis_tournament")
  * @ORM\Entity
  * @UniqueEntity("name")
  */

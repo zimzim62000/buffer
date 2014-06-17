@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+
+{% block title %}
+    {{ 'zimzim_bundles_app_requestuser.index.title'|trans }}
+{% endblock title %}
+
+{% block page %}
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h1 class="text-center title">Entity</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <table class="width-100 panel">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                            <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                            <td>{{ entity.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Createdat</th>
+                            <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Updatedat</th>
+                            <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Enabled</th>
+                            <td>{{ entity.enabled }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+                        <div class="row">
+    <div class="small-12 large-4 columns text-center">
+        <a class="tiny button round" href="{{ path('zimzim_bundles_app_requestuser') }}">
+            {{ 'link.return'|trans }}
+        </a>
+    </div>
+    <div class="small-12 large-4 columns text-center">
+        <a class="tiny button round" href="{{ path('zimzim_bundles_app_requestuser_edit', { 'id': entity.id }) }}">
+            {{ 'button.update'|trans }}
+        </a>
+    </div>
+    <div class="small-12 large-4 columns text-center">
+        {{ form(delete_form) }}
+    </div>
+</div>
+        </div>
+    </div>
+{% endblock %}

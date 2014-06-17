@@ -9,3 +9,7 @@ ZIMZIMBundlesAppBundle_zimzim_bundles_app_tournament:
 ZIMZIMBundlesAppBundle_zimzim_bundles_app_usertournament:
     resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/usertournament.yml"
     prefix:   /admin/usertournament/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_requestuser:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/requestuser.yml"
+    prefix:   /admin/requestuser/

@@ -2,6 +2,7 @@
 
 namespace ZIMZIM\Bundles\AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use APY\DataGridBundle\Grid\Mapping as GRID;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * UserTournament
  *
- * @ORM\Table("parierentreamis_user_tournament")
+ * @ORM\Table(name="parierentreamis_user_tournament")
  * @ORM\Entity(repositoryClass="ZIMZIM\Bundles\AppBundle\Entity\Repository\UserTournamentRepository")
  * @UniqueEntity("name")
  */
@@ -115,6 +116,18 @@ class UserTournament
      */
     private $updatedAt;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\RequestUser", mappedBy="userTournament", cascade={"persist"})
+     */
+    private $requestsUser;
+
+
+    public function __construct(){
+
+        $this->requestsUser = new ArrayCollection();
+    }
 
     public function  __toString(){
         return $this->name;
@@ -336,4 +349,24 @@ class UserTournament
     {
         return $this->enabled;
     }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $requestsUser
+     */
+    public function setRequestsUser($requestsUser)
+    {
+        $this->requestsUser = $requestsUser;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getRequestsUser()
+    {
+        return $this->requestsUser;
+    }
+
+
 }

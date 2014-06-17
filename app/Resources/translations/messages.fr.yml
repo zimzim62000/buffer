@@ -34,6 +34,7 @@ views:
         admin: "Admin"
         tournament: "Tournoi"
         usertournament: "Tournoi User"
+        requestuser: "Requete user"
     HWIOAuthBundle:
         connect:
             login:

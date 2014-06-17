@@ -13,13 +13,12 @@ class HomeController extends Controller
         $Tournaments = $em->getRepository('ZIMZIMBundlesAppBundle:Tournament')->findBy(array('enabled' => 1));
 
         foreach ($Tournaments as $Tournament) {
-            $UserTournaments = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->findBy(
-                array(
-                    'enabled' => 1,
-                    'tournament' => $Tournament
-                )
+            $tmp = $Tournament->getUserTournaments()->filter(
+                function ($userTournament) {
+                    return $userTournament->getEnabled();
+                }
             );
-            $Tournament->setUserTournaments($UserTournaments);
+            $Tournament->setUserTournaments($tmp);
         }
 
         return $this->render(

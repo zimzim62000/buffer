@@ -89,10 +89,18 @@ class User extends BaseUser
      */
     private $userTournaments;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\RequestUser", mappedBy="user", cascade={"persist"})
+     */
+    private $requestsUser;
+
 
     public function __construct(){
         parent::__construct();
         $this->userTournaments = new ArrayCollection();
+        $this->requestsUser = new ArrayCollection();
     }
 
 
@@ -292,6 +300,25 @@ class User extends BaseUser
     {
         return $this->userTournaments;
     }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $requestsUser
+     */
+    public function setRequestsUser($requestsUser)
+    {
+        $this->requestsUser = $requestsUser;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getRequestsUser()
+    {
+        return $this->requestsUser;
+    }
+
 
 
 }
