@@ -23,6 +23,17 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $om->persist($zimzim);
         $this->addReference('zimzim', $zimzim);
 
+        $zimzim = new User();
+        $zimzim->setEmail('zimzimuser@gmail.com');
+        $zimzim->setPlainPassword('170183');
+        $zimzim->addRole('ROLE_USER');
+        $zimzim->setEnabled(true);
+        $zimzim->setUsername('zimzimuser');
+        $zimzim->setFirstname('Fabien');
+        $zimzim->setLastname('Zimmermann');
+        $om->persist($zimzim);
+        $this->addReference('zimzimuser', $zimzim);
+
         $om->flush();
     }
 

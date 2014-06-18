@@ -12,6 +12,10 @@ button:
     plus: "plus ?"
     submitemail: "Envoyer"
     participate: "Je participe"
+    join: "Rejoindre"
+    score: "Score"
+    ranking: "Classement"
+    game: "Matchs"
 link:
     return: "Retour à la liste"
     hide: "cacher"
@@ -35,6 +39,7 @@ views:
         tournament: "Tournoi"
         usertournament: "Tournoi User"
         requestuser: "Requete user"
+        mygames: "Mes parties"
     HWIOAuthBundle:
         connect:
             login:

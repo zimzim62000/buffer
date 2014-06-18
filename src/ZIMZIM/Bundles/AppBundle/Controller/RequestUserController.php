@@ -14,24 +14,47 @@ use ZIMZIM\Bundles\AppBundle\Form\RequestUserType;
  */
 class RequestUserController extends ZimzimController
 {
+    /**
+     * Lists all UserTournament entities.
+     *
+     */
+    public function indexAction()
+    {
+        $em = $this->container->get('doctrine')->getManager();
+
+        $security = $this->container->get('security.context');
+
+        $user = $security->getToken()->getUser();
+
+        $entities = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findBy(array('user' => $user));
+
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:RequestUser:index.html.twig',
+            array(
+                'entities' => $entities
+            )
+        );
+    }
+
 
     /**
      * Lists all RequestUser entities.
      *
      */
-    public function indexAction()
+    public function listAction()
     {
-    $data = array(
-        'entity'     => 'ZIMZIMBundlesAppBundle:RequestUser',
-        'show'       => 'zimzim_bundles_app_requestuser_show',
-        'edit'       => 'zimzim_bundles_app_requestuser_edit'
-    );
+        $data = array(
+            'entity' => 'ZIMZIMBundlesAppBundle:RequestUser',
+            'show' => 'zimzim_bundles_app_adminrequestuser_show',
+            'edit' => 'zimzim_bundles_app_adminrequestuser_edit'
+        );
 
-    $this->gridList($data);
+        $this->gridList($data);
 
 
-   return $this->grid->getGridResponse('ZIMZIMBundlesAppBundle:RequestUser:index.html.twig');
+        return $this->grid->getGridResponse('ZIMZIMBundlesAppBundle:RequestUser:list.html.twig');
     }
+
     /**
      * Creates a new RequestUser entity.
      *
@@ -49,28 +72,37 @@ class RequestUserController extends ZimzimController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('zimzim_bundles_app_requestuser_show', array('id' => $entity->getId())));
+            return $this->redirect(
+                $this->generateUrl('zimzim_bundles_app_adminrequestuser_show', array('id' => $entity->getId()))
+            );
         }
 
-        return $this->render('ZIMZIMBundlesAppBundle:RequestUser:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:RequestUser:new.html.twig',
+            array(
+                'entity' => $entity,
+                'form' => $form->createView(),
+            )
+        );
     }
 
     /**
-    * Creates a form to create a RequestUser entity.
-    *
-    * @param RequestUser $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a RequestUser entity.
+     *
+     * @param RequestUser $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(RequestUser $entity)
     {
-        $form = $this->createForm(new RequestUserType(), $entity, array(
-            'action' => $this->generateUrl('zimzim_bundles_app_requestuser_create'),
-            'method' => 'POST',
-        ));
+        $form = $this->createForm(
+            'zimzim_bundles_appbundle_requestusertype',
+            $entity,
+            array(
+                'action' => $this->generateUrl('zimzim_bundles_app_adminrequestuser_create'),
+                'method' => 'POST',
+            )
+        );
 
         $form->add('submit', 'submit', array('label' => 'button.create'));
 
@@ -84,12 +116,15 @@ class RequestUserController extends ZimzimController
     public function newAction()
     {
         $entity = new RequestUser();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
-        return $this->render('ZIMZIMBundlesAppBundle:RequestUser:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:RequestUser:new.html.twig',
+            array(
+                'entity' => $entity,
+                'form' => $form->createView(),
+            )
+        );
     }
 
     /**
@@ -108,9 +143,13 @@ class RequestUserController extends ZimzimController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ZIMZIMBundlesAppBundle:RequestUser:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:RequestUser:show.html.twig',
+            array(
+                'entity' => $entity,
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
 
     /**
@@ -130,31 +169,42 @@ class RequestUserController extends ZimzimController
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ZIMZIMBundlesAppBundle:RequestUser:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:RequestUser:edit.html.twig',
+            array(
+                'entity' => $entity,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
 
     /**
-    * Creates a form to edit a RequestUser entity.
-    *
-    * @param RequestUser $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a RequestUser entity.
+     *
+     * @param RequestUser $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(RequestUser $entity)
     {
-        $form = $this->createForm(new RequestUserType(), $entity, array(
-            'action' => $this->generateUrl('zimzim_bundles_app_requestuser_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        $form = $this->createForm(
+            'zimzim_bundles_appbundle_requestusertype',
+            $entity,
+            array(
+                'action' => $this->generateUrl(
+                        'zimzim_bundles_app_adminrequestuser_update',
+                        array('id' => $entity->getId())
+                    ),
+                'method' => 'PUT',
+            )
+        );
 
         $form->add('submit', 'submit', array('label' => 'button.update'));
 
         return $form;
     }
+
     /**
      * Edits an existing RequestUser entity.
      *
@@ -174,18 +224,27 @@ class RequestUserController extends ZimzimController
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-			$this->updateSuccess();
+            $this->updateSuccess();
             $em->flush();
 
-            return $this->redirect($this->generateUrl('zimzim_bundles_app_requestuser_edit', array('id' => $id)));
+            $security = $this->container->get('security.context');
+            $link = 'zimzim_bundles_app_requestuser_edit';
+            if($security->isGranted('ROLE_ADMIN')){
+                $link = 'zimzim_bundles_app_adminrequestuser_edit';
+            }
+            return $this->redirect($this->generateUrl($link, array('id' => $id)));
         }
 
-        return $this->render('ZIMZIMBundlesAppBundle:RequestUser:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:RequestUser:edit.html.twig',
+            array(
+                'entity' => $entity,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
+
     /**
      * Deletes a RequestUser entity.
      *
@@ -207,8 +266,12 @@ class RequestUserController extends ZimzimController
             $em->flush();
             $this->deleteSuccess();
         }
-
-        return $this->redirect($this->generateUrl('zimzim_bundles_app_requestuser'));
+        $security = $this->container->get('security.context');
+        $link = 'zimzim_bundles_app_requestuser';
+        if($security->isGranted('ROLE_ADMIN')){
+            $link = 'zimzim_bundles_app_adminrequestuser';
+        }
+        return $this->redirect($this->generateUrl($link));
     }
 
     /**
@@ -224,7 +287,102 @@ class RequestUserController extends ZimzimController
             ->setAction($this->generateUrl('zimzim_bundles_app_requestuser_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'button.delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
+
+    /**
+     * Join UserTournament
+     */
+    public function joinAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $context = $this->container->get('security.context');
+        $user = $context->getToken()->getUser();
+
+        $userTournament = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->find($id);
+
+        if (!$userTournament) {
+            throw $this->createNotFoundException('Unable to find RequestUser entity.');
+        }
+
+        $requestUser = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findOneBy(
+            array(
+                'user' => $user,
+                'userTournament' => $userTournament
+            )
+        );
+
+        if ($requestUser) {
+            $this->displayErorException('views.bundles.app.requestuser.join.errorjoin');
+            return $this->redirect(
+                $this->generateUrl('zimzim_bundles_app_home')
+            );
+        }
+
+        $requestUser = new RequestUser();
+        $requestUser->setUserTournament($userTournament);
+
+        if ($context->isGranted('ROLE_USER')) {
+            $requestUser->setUser($user);
+        }
+
+        $form = $this->createJoinForm($requestUser);
+
+        if ($request->getMethod() === 'POST') {
+
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+
+                $requestUser->setEnabled(true);
+                $requestUser->setValidate(false);
+                $em->persist($requestUser);
+                $em->flush();
+
+                $this->displayMessage('views.bundles.app.requestuser.join.successjoin');
+
+                return $this->redirect(
+                    $this->generateUrl('zimzim_bundles_app_home')
+                );
+
+            }
+        }
+
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:RequestUser:join.html.twig',
+            array(
+                'entity' => $requestUser,
+                'form' => $form->createView(),
+                'userTournament' => $userTournament
+            )
+        );
+    }
+
+    /**
+     * Creates a form to create a RequestUser entity.
+     *
+     * @param RequestUser $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createJoinForm(RequestUser $entity)
+    {
+        $form = $this->createForm(
+            'zimzim_bundles_appbundle_requestusertype',
+            $entity,
+            array(
+                'action' => $this->generateUrl(
+                        'zimzim_bundles_app_requestuser_join',
+                        array('id' => $entity->getUserTournament()->getId())
+                    ),
+                'method' => 'POST',
+            )
+        );
+
+        $form->add('submit', 'submit', array('label' => 'button.join'));
+
+        return $form;
+    }
+
 }

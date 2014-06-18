@@ -10,15 +10,18 @@ class HomeController extends Controller
     {
         $em = $this->container->get('doctrine')->getManager();
 
-        $Tournaments = $em->getRepository('ZIMZIMBundlesAppBundle:Tournament')->findBy(array('enabled' => 1));
+        $Tournaments = $em->getRepository('ZIMZIMBundlesAppBundle:Tournament')->getListTournamentActive(
+            new \DateTime('now')
+        );
 
         foreach ($Tournaments as $Tournament) {
-            $tmp = $Tournament->getUserTournaments()->filter(
-                function ($userTournament) {
-                    return $userTournament->getEnabled();
-                }
+            $Tournament->setUserTournaments(
+                $Tournament->getUserTournaments()->filter(
+                    function ($uT) {
+                        return $uT->getEnabled() === true;
+                    }
+                )
             );
-            $Tournament->setUserTournaments($tmp);
         }
 
         return $this->render(

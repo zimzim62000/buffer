@@ -1,0 +1,34 @@
+zimzim_bundles_app_adminrequestuser:
+    pattern:  /
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUser:list" }
+    requirements: { _method: get|post }
+
+zimzim_bundles_app_adminrequestuser_show:
+    pattern:  /{id}/show/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUser:show" }
+    requirements: { _method: get }
+
+zimzim_bundles_app_adminrequestuser_new:
+    pattern:  /new/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUser:new" }
+    requirements: { _method: get }
+
+zimzim_bundles_app_adminrequestuser_create:
+    pattern:  /create/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUser:create" }
+    requirements: { _method: post }
+
+zimzim_bundles_app_adminrequestuser_edit:
+    pattern:  /{id}/edit/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUser:edit" }
+    requirements: { _method: get }
+
+zimzim_bundles_app_adminrequestuser_update:
+    pattern:  /{id}/update/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUser:update" }
+    requirements: { _method: post|put }
+
+zimzim_bundles_app_adminrequestuser_delete:
+    pattern:  /{id}/delete/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUser:delete" }
+    requirements: { _method: post|delete }

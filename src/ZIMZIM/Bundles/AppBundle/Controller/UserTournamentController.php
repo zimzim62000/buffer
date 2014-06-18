@@ -14,24 +14,25 @@ use ZIMZIM\Bundles\AppBundle\Form\UserTournamentType;
  */
 class UserTournamentController extends ZimzimController
 {
-
     /**
      * Lists all UserTournament entities.
      *
      */
     public function indexAction()
     {
-    $data = array(
-        'entity'     => 'ZIMZIMBundlesAppBundle:UserTournament',
-        'show'       => 'zimzim_bundles_app_usertournament_show',
-        'edit'       => 'zimzim_bundles_app_usertournament_edit'
-    );
+        $data = array(
+            'entity' => 'ZIMZIMBundlesAppBundle:UserTournament',
+            'show' => 'zimzim_bundles_app_usertournament_show',
+            'edit' => 'zimzim_bundles_app_usertournament_edit'
+        );
 
-    $this->gridList($data);
+        $this->gridList($data);
 
 
-   return $this->grid->getGridResponse('ZIMZIMBundlesAppBundle:UserTournament:index.html.twig');
+        return $this->grid->getGridResponse('ZIMZIMBundlesAppBundle:UserTournament:index.html.twig');
     }
+
+
     /**
      * Creates a new UserTournament entity.
      *
@@ -49,28 +50,37 @@ class UserTournamentController extends ZimzimController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('zimzim_bundles_app_usertournament_show', array('id' => $entity->getId())));
+            return $this->redirect(
+                $this->generateUrl('zimzim_bundles_app_usertournament_show', array('id' => $entity->getId()))
+            );
         }
 
-        return $this->render('ZIMZIMBundlesAppBundle:UserTournament:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:UserTournament:new.html.twig',
+            array(
+                'entity' => $entity,
+                'form' => $form->createView(),
+            )
+        );
     }
 
     /**
-    * Creates a form to create a UserTournament entity.
-    *
-    * @param UserTournament $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a UserTournament entity.
+     *
+     * @param UserTournament $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(UserTournament $entity)
     {
-        $form = $this->createForm(new UserTournamentType(), $entity, array(
-            'action' => $this->generateUrl('zimzim_bundles_app_usertournament_create'),
-            'method' => 'POST',
-        ));
+        $form = $this->createForm(
+            new UserTournamentType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('zimzim_bundles_app_usertournament_create'),
+                'method' => 'POST',
+            )
+        );
 
         $form->add('submit', 'submit', array('label' => 'button.create'));
 
@@ -84,12 +94,15 @@ class UserTournamentController extends ZimzimController
     public function newAction()
     {
         $entity = new UserTournament();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
-        return $this->render('ZIMZIMBundlesAppBundle:UserTournament:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:UserTournament:new.html.twig',
+            array(
+                'entity' => $entity,
+                'form' => $form->createView(),
+            )
+        );
     }
 
     /**
@@ -108,9 +121,13 @@ class UserTournamentController extends ZimzimController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ZIMZIMBundlesAppBundle:UserTournament:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:UserTournament:show.html.twig',
+            array(
+                'entity' => $entity,
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
 
     /**
@@ -130,31 +147,42 @@ class UserTournamentController extends ZimzimController
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('ZIMZIMBundlesAppBundle:UserTournament:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:UserTournament:edit.html.twig',
+            array(
+                'entity' => $entity,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
 
     /**
-    * Creates a form to edit a UserTournament entity.
-    *
-    * @param UserTournament $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a UserTournament entity.
+     *
+     * @param UserTournament $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(UserTournament $entity)
     {
-        $form = $this->createForm(new UserTournamentType(), $entity, array(
-            'action' => $this->generateUrl('zimzim_bundles_app_usertournament_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        $form = $this->createForm(
+            new UserTournamentType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl(
+                        'zimzim_bundles_app_usertournament_update',
+                        array('id' => $entity->getId())
+                    ),
+                'method' => 'PUT',
+            )
+        );
 
         $form->add('submit', 'submit', array('label' => 'button.update'));
 
         return $form;
     }
+
     /**
      * Edits an existing UserTournament entity.
      *
@@ -174,18 +202,22 @@ class UserTournamentController extends ZimzimController
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-			$this->updateSuccess();
+            $this->updateSuccess();
             $em->flush();
 
             return $this->redirect($this->generateUrl('zimzim_bundles_app_usertournament_edit', array('id' => $id)));
         }
 
-        return $this->render('ZIMZIMBundlesAppBundle:UserTournament:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:UserTournament:edit.html.twig',
+            array(
+                'entity' => $entity,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
+
     /**
      * Deletes a UserTournament entity.
      *
@@ -224,7 +256,32 @@ class UserTournamentController extends ZimzimController
             ->setAction($this->generateUrl('zimzim_bundles_app_usertournament_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'button.delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
+
+
+    /**
+     * Finds and displays a UserTournament entity.
+     *
+     */
+    public function gameAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find UserTournament entity.');
+        }
+
+
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:UserTournament:show.html.twig',
+            array(
+                'entity' => $entity,
+            )
+        );
+    }
+
+
 }

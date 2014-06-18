@@ -6,6 +6,22 @@ views:
                     title: "Les tournois"
                     madeby: "Proposé par : %name%"
                     madein: "Départ le : %date%"
+            requestuser:
+                join:
+                    title: "Rejoindre une partie"
+                    successjoin: >
+                        Inscription réalisé avec succès, l'administrateur de se tournoi viens d'être alerté de votre demande.
+                        Vous allez recevoir un email de confirmation d'inscription.
+                    errorjoin: "Une demande est déjà en cours!"
+                    nologued: "Vous n'étes pas connecté, vous ne pouvez pas rejoindre ce tournoi."
+                    nbuser: "Il y  actuellement %count% participants à ce tournoi."
+                index:
+                    title: "Mes tournois"
+            home:
+                index:
+                    register:
+                        validate: "Vous étes déjà inscrit à ce tournoi"
+                        novalidate: "Une demande d'inscripton est en cours"
 entity:
     app:
         tournament:

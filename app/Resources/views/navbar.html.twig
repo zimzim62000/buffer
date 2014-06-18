@@ -37,7 +37,7 @@
                         </li>
                         <li class="divider"></li>
                         <li class="">
-                            <a class="" href="{{ path('zimzim_bundles_app_requestuser') }}">
+                            <a class="" href="{{ path('zimzim_bundles_app_adminrequestuser') }}">
                                 {{ 'views.navbar.requestuser'|trans }}
                             </a>
                         </li>
@@ -46,6 +46,14 @@
                 </li>
             {% endif %}
             {% if is_granted('ROLE_USER') %}
+                {% if app.user.requestsUser|length > 0 %}
+                    <li class="divider"></li>
+                    <li class="">
+                        <a href="{{ path('zimzim_bundles_app_requestuser') }}">
+                            {{ 'views.navbar.tournament'|trans }}
+                        </a>
+                    </li>
+                {% endif %}
                 <li class="divider"></li>
                 <li class="has-dropdown not-click">
                     <a href="#">{{ app.user.username }}</a>

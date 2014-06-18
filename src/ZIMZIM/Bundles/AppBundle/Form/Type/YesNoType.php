@@ -19,9 +19,6 @@ class YesNoType extends AbstractType
                     '0' => 'form.app.type.yesnotype.no',
                     '1' => 'form.app.type.yesnotype.yes'
                 ),
-                'attr' => array(
-                    'label-inline' => 'label-inline',
-                ),
                 'required' => false
             )
         );

@@ -18,5 +18,4 @@ class UserTournamentRepository extends EntityRepository
             ->orderBy('ut.createdAt', 'ASC');
         return $query->getQuery()->getResult();
     }
-
 }

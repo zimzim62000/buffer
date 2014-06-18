@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ 'views.bundles.app.requestuser.join.title'|trans }}
+{% endblock title %}
+
+{% block page %}
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h1 class="text-center headerpagehome">
+                {{ 'views.bundles.app.requestuser.join.title'|trans }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h1 class="text-center headerpagehome">
+                {{ userTournament.name }}
+            </h1>
+
+            <h2 class="text-center headerpagehome">
+                {{ 'views.bundles.app.requestuser.join.nbuser'|trans({'%count%': userTournament.requestsUser|length}) }}
+            </h2>
+        </div>
+    </div>
+
+
+    {% if is_granted('ROLE_USER') %}
+        {{ form(form) }}
+    {% else %}
+        <div class="row">
+            <div class="small-12 columns text-center">
+                <div class="alert-box warning">
+                    <h5>
+                        {{ 'views.bundles.app.requestuser.join.nologued'|trans }}
+                    </h5>
+                    <h6>
+                        <a class="button tiny" href="{{ path('hwi_oauth_connect') }}">
+                            {{ 'views.navbar.login'|trans }}
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

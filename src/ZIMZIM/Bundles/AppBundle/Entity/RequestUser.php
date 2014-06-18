@@ -14,9 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table("parierentreamis_request_user")
  * @ORM\Entity
- * @UniqueEntity(
- *      fields={"user","userTournament"},
- *      errorPath="user")
+
  */
 class RequestUser
 {
@@ -42,8 +40,8 @@ class RequestUser
 
     /**
      * @var integer
-     *
-     * @GRID\Column(field="usertournament.name", title="entity.app.requestuser.usertournament", operatorsVisible=false, source=true, filter="select")
+     * @Assert\NotBlank()
+     * @GRID\Column(field="userTournament.name", title="entity.app.requestuser.usertournament", operatorsVisible=false, source=true, filter="select")
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\UserTournament", inversedBy="requestsUser")
      * @ORM\JoinColumn(name="id_user_tournament", referencedColumnName="id", nullable=false)
@@ -54,7 +52,6 @@ class RequestUser
      * @var string
      * @GRID\Column(title="entity.app.requestuser.email",operatorsVisible=false, visible=true)
      *
-     * @Assert\NotBlank()
      * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
@@ -64,6 +61,8 @@ class RequestUser
      * @var \DateTime
      * @GRID\Column(operatorsVisible=false, visible=false)
      *
+     * @Gedmo\Timestampable(on="create")
+     *
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
@@ -72,6 +71,8 @@ class RequestUser
      * @var \DateTime
      * @GRID\Column(title="entity.app.requestuser.enabled",operatorsVisible=false, visible=true)
      *
+     * @Gedmo\Timestampable(on="update")
+     *
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
@@ -79,11 +80,18 @@ class RequestUser
     /**
      * @var integer
      * @GRID\Column(title="entity.app.requestuser.enabled",operatorsVisible=false, visible=true)
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="enabled", type="integer")
      */
     private $enabled;
 
+    /**
+     * @var integer
+     * @GRID\Column(title="entity.app.requestuser.validate",operatorsVisible=false, visible=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="validate", type="integer")
+     */
+    private $validate;
 
     /**
      * Get id
@@ -227,4 +235,24 @@ class RequestUser
     {
         return $this->userTournament;
     }
+
+    /**
+     * @param int $validate
+     */
+    public function setValidate($validate)
+    {
+        $this->validate = $validate;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getValidate()
+    {
+        return $this->validate;
+    }
+
+
 }

@@ -42,6 +42,16 @@ class ZimzimController extends Controller{
         return $source;
     }
 
+    protected function displayMessage($message)
+    {
+        $this->addFlashMessage(
+            array(
+                'type' => 'success',
+                'message' => $message
+            )
+        );
+    }
+
     protected function createSuccess()
     {
         $this->addFlashMessage(

@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Tournament
  *
  * @ORM\Table(name="parierentreamis_tournament")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ZIMZIM\Bundles\AppBundle\Entity\Repository\TournamentRepository")
  * @UniqueEntity("name")
  */
 class Tournament

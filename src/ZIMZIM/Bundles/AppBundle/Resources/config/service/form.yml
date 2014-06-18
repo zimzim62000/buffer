@@ -27,3 +27,8 @@ services:
         class: ZIMZIM\Bundles\AppBundle\Form\GameScoreType
         tags:
             - { name: form.type, alias: zimzim_bundles_appbundle_gamescoretype }
+    zimzim_bundles_app.requestusertype:
+        class: ZIMZIM\Bundles\AppBundle\Form\RequestUserType
+        arguments: [ @security.context ]
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_requestusertype }
