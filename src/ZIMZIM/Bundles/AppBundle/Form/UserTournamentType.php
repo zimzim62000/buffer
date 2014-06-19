@@ -4,10 +4,21 @@ namespace ZIMZIM\Bundles\AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class UserTournamentType extends AbstractType
 {
+
+    private $securityContext;
+
+    public function __construct(SecurityContext $securityContext)
+    {
+        $this->securityContext = $securityContext;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -16,7 +27,6 @@ class UserTournamentType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('tournament')
             ->add('text')
             ->add(
                 'dateStart',
@@ -31,21 +41,39 @@ class UserTournamentType extends AbstractType
                 array(
                     'label' => 'entity.app.usertournament.dateend'
                 )
-            )->add(
-                'enabled',
-                'zimzim_bundles_appbundle_type_yesnotype',
-                array(
-                    'label' => 'entity.app.usertournament.enabled'
-                )
-            )
-            ->add('user');
+            );
+        $security = $this->securityContext;
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($security) {
+
+                $userRequest = $event->getData();
+                $form = $event->getForm();
+
+                if ($security->isGranted('ROLE_ADMIN') === true) {
+
+                    $form->add(
+                        'enabled',
+                        'zimzim_bundles_appbundle_type_yesnotype',
+                        array(
+                            'label' => 'entity.app.usertournament.enabled'
+                        )
+                    )
+                        ->add('tournament')
+                        ->add('user');
+                };
+            }
+        );
     }
 
     /**
      * @param OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
+    public
+    function setDefaultOptions(
+        OptionsResolverInterface $resolver
+    ) {
         $resolver->setDefaults(
             array(
                 'data_class' => 'ZIMZIM\Bundles\AppBundle\Entity\UserTournament',
@@ -58,7 +86,8 @@ class UserTournamentType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public
+    function getName()
     {
         return 'zimzim_bundles_appbundle_usertournamenttype';
     }

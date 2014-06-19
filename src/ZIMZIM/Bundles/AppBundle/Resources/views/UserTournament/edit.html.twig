@@ -17,15 +17,28 @@
         </div>
     </div>
 
+    {% if is_granted('ROLE_ADMIN') %}
         <div class="row">
-    <div class="small-12 large-4 columns text-center">
-        <a class="tiny button round" href="{{ path('zimzim_bundles_app_usertournament') }}">
-            {{ 'link.return'|trans }}
-        </a>
-    </div>
-    <div class="small-12 large-4 columns text-center">
-        {{ form(delete_form) }}
-    </div>
-</div>
+            <div class="small-12 large-4 columns text-center">
+                <a class="tiny button round" href="{{ path('zimzim_bundles_app_adminusertournament') }}">
+                    {{ 'link.return'|trans }}
+                </a>
+            </div>
+            <div class="small-12 large-4 columns text-center">
+                {{ form(delete_form) }}
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="small-12 large-4 columns text-center">
+                <a class="tiny button round" href="{{ path('zimzim_bundles_app_usertournament') }}">
+                    {{ 'link.return'|trans }}
+                </a>
+            </div>
+            <div class="small-12 large-4 columns text-center">
+                {{ form(delete_form) }}
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock %}

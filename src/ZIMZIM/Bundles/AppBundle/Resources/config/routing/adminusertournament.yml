@@ -1,0 +1,30 @@
+zimzim_bundles_app_adminusertournament:
+    pattern:  /
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:list" }
+
+zimzim_bundles_app_adminusertournament_show:
+    pattern:  /{id}/show/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:show" }
+
+zimzim_bundles_app_adminusertournament_new:
+    pattern:  /new/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:new" }
+
+zimzim_bundles_app_adminusertournament_create:
+    pattern:  /create/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:create" }
+    requirements: { _method: post }
+
+zimzim_bundles_app_adminusertournament_edit:
+    pattern:  /{id}/edit/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:edit" }
+
+zimzim_bundles_app_adminusertournament_update:
+    pattern:  /{id}/update/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:update" }
+    requirements: { _method: post|put }
+
+zimzim_bundles_app_adminusertournament_delete:
+    pattern:  /{id}/delete/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:delete" }
+    requirements: { _method: post|delete }

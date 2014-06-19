@@ -2,29 +2,12 @@ zimzim_bundles_app_usertournament:
     pattern:  /
     defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:index" }
 
-zimzim_bundles_app_usertournament_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:show" }
+zimzim_bundles_app_usertournament_newuser:
+    pattern:  /{id}/newuser/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:newuser" }
+    requirements: { _method: get|post }
 
-zimzim_bundles_app_usertournament_new:
-    pattern:  /new
-    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:new" }
-
-zimzim_bundles_app_usertournament_create:
-    pattern:  /create
-    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:create" }
-    requirements: { _method: post }
-
-zimzim_bundles_app_usertournament_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:edit" }
-
-zimzim_bundles_app_usertournament_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:update" }
-    requirements: { _method: post|put }
-
-zimzim_bundles_app_usertournament_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:delete" }
-    requirements: { _method: post|delete }
+zimzim_bundles_app_usertournament_updateuser:
+    pattern:  /{id}/updateuser/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:updateuser" }
+    requirements: { _method: get|post }

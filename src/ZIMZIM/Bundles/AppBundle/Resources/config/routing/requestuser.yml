@@ -17,3 +17,8 @@ zimzim_bundles_app_requestuser_join:
     pattern:  /{id}/join/
     defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUser:join" }
     requirements: { _method: get|post }
+
+zimzimz_bundles_app_requestuser_enabledvalidate:
+    pattern:  /{id}/enabledvalidate/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUser:enabledvalidate" }
+    requirements: { _method: get|post }

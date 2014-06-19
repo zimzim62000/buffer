@@ -20,30 +20,63 @@
                 </div>
             </div>
 
+            {% if entity.enabled and entity.validate %}
+                <div class="row">
+                    <div class="small-6 medium-4 columns">
+                        <h5 class="text-center">
+                            <a href="#" class="tiny button round">
+                                {{ 'button.game'|trans }}
+                            </a>
+                        </h5>
+                    </div>
+                    <div class="small-6 medium-4 columns">
+                        <h5 class="text-center">
+                            <a href="#" class="tiny button round">
+                                {{ 'button.ranking'|trans }}
+                            </a>
+                        </h5>
+                    </div>
+                    <div class="small-12 medium-4 columns">
+                        <h5 class="text-center">
+                            <a href="#" class="tiny button round">
+                                {{ 'button.score'|trans }}
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+                {% if entity.userTournament.user.id == app.user.id %}
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <h5 class="text-center">
+                                <a href="{{ path('zimzim_bundles_app_usertournament') }}" class="tiny button round">
+                                    {{ 'button.admin'|trans }}
+                                </a>
+                            </h5>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                {% if entity.enabled == false %}
+                    <div class="row">
+                        <div class="small-12 medium-12 columns">
+                            <h5 class="text-center alert-box warning">
+                                {{ 'views.bundles.app.requestuser.index.noenabled'|trans }}
+                            </h5>
+                        </div>
+                    </div>
+                {% else %}
+                    {% if entity.validate == false %}
+                        <div class="row">
+                            <div class="small-12 medium-12 columns">
+                                <h5 class="text-center alert-box warning">
+                                    {{ 'views.bundles.app.requestuser.index.noanswer'|trans }}
+                                </h5>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
 
-            <div class="row">
-                <div class="small-6 medium-4 columns">
-                    <h5 class="text-center">
-                        <a href="#" class="tiny button round">
-                            {{'button.game'|trans }}
-                        </a>
-                    </h5>
-                </div>
-                <div class="small-6 medium-4 columns">
-                    <h5 class="text-center">
-                        <a href="#" class="tiny button round">
-                            {{'button.ranking'|trans }}
-                        </a>
-                    </h5>
-                </div>
-                <div class="small-12 medium-4 columns">
-                    <h5 class="text-center">
-                        <a href="#" class="tiny button round">
-                            {{'button.score'|trans }}
-                        </a>
-                    </h5>
-                </div>
-            </div>
 
             <div class="row">
                 <div class="small-6 columns">

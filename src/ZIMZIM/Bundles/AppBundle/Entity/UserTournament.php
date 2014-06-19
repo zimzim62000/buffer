@@ -59,6 +59,7 @@ class UserTournament
     private $name;
 
     /**
+     * @Assert\NotBlank()
      * @var string
      * @GRID\Column(title="entity.app.usertournament.text",operatorsVisible=false, visible=false, filterable=false)
      *

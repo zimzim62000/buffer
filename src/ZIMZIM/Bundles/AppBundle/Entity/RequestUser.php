@@ -83,13 +83,13 @@ class RequestUser
      * @Assert\NotBlank()
      * @ORM\Column(name="enabled", type="integer")
      */
-    private $enabled;
+    private $enabled = 0;
 
     /**
      * @var integer
      * @GRID\Column(title="entity.app.requestuser.validate",operatorsVisible=false, visible=true)
-     * @Assert\NotBlank()
-     * @ORM\Column(name="validate", type="integer")
+     *
+     * @ORM\Column(name="validate", type="integer", nullable=true)
      */
     private $validate;
 

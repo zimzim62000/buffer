@@ -32,3 +32,8 @@ services:
         arguments: [ @security.context ]
         tags:
             - { name: form.type, alias: zimzim_bundles_appbundle_requestusertype }
+    zimzim_bundles_app.usertournamenttype:
+        class: ZIMZIM\Bundles\AppBundle\Form\UserTournamentType
+        arguments: [ @security.context ]
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_usertournamenttype }

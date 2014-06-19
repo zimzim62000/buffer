@@ -1,0 +1,7 @@
+{% macro yesno(value) %}
+    {% if value == 0 %}
+        {{ 'views.macro.yesno.no'|trans }}
+    {% else %}
+        {{ 'views.macro.yesno.yes'|trans }}
+    {% endif %}
+{% endmacro %}

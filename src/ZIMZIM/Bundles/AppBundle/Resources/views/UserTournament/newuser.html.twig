@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+{% if new %}
+    {%  set title = 'views.bundles.app.usertournament.newuser.titlenew' %}
+{% else %}
+    {%  set title = 'views.bundles.app.usertournament.newuser.titleupdate' %}
+{% endif %}
+
+{% block title %}
+    {{ title|trans }}
+{% endblock title %}
+
+
+{% block page %}
+    <div class="row">
+        <div class="small-12 columns">
+            <h1 class="text-center headerpagehome">
+                {{ title|trans }}
+            </h1>
+            <h2 class="text-center headerpagehome">
+                {{ 'views.bundles.app.usertournament.newuser.register'|trans }} : {{ Tournament.name }}
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            {{ form(form) }}
+            <div class="row">
+                <div class="small-12 large-12 columns text-center">
+                    <a class="tiny button round" href="{{ path('zimzim_bundles_app_usertournament') }}">
+                        {{ 'link.return'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

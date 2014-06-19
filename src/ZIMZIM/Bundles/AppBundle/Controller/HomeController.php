@@ -10,6 +10,8 @@ class HomeController extends Controller
     {
         $em = $this->container->get('doctrine')->getManager();
 
+        $context = $this->container->get('security.context');
+
         $Tournaments = $em->getRepository('ZIMZIMBundlesAppBundle:Tournament')->getListTournamentActive(
             new \DateTime('now')
         );
@@ -22,6 +24,18 @@ class HomeController extends Controller
                     }
                 )
             );
+            if ($context->isGranted('ROLE_USER')) {
+                $user = $context->getToken()->getUser();
+                foreach ($Tournament->getUserTournaments() as $UserTournament) {
+                    $UserTournament->setRequestsUser(
+                        $UserTournament->getRequestsUser()->filter(
+                            function ($requestUser) use ($user) {
+                                return $requestUser->getUser() === $user;
+                            }
+                        )
+                    );
+                }
+            }
         }
 
         return $this->render(

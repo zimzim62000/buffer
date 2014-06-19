@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Abhoryo/APYDataGridBundle.git",
-                "reference": "ce4c0c0c81638cef4e66faebb0e91b1eba9cec2e"
+                "reference": "6a66bb2ea0a1ca8b5d75aa3de200bc1fca69a062"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Abhoryo/APYDataGridBundle/zipball/ce4c0c0c81638cef4e66faebb0e91b1eba9cec2e",
-                "reference": "ce4c0c0c81638cef4e66faebb0e91b1eba9cec2e",
+                "url": "https://api.github.com/repos/Abhoryo/APYDataGridBundle/zipball/6a66bb2ea0a1ca8b5d75aa3de200bc1fca69a062",
+                "reference": "6a66bb2ea0a1ca8b5d75aa3de200bc1fca69a062",
                 "shasum": ""
             },
             "require": {
@@ -63,7 +63,7 @@
                 "datagrid",
                 "symfony"
             ],
-            "time": "2014-06-13 16:04:43"
+            "time": "2014-06-18 22:56:52"
         },
         {
             "name": "doctrine/annotations",
@@ -2801,7 +2801,9 @@
             "time": "2013-08-21 18:09:35"
         }
     ],
-    "aliases": [],
+    "aliases": [
+
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
         "doctrine/doctrine-fixtures-bundle": 20,
@@ -2817,5 +2819,7 @@
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": []
+    "platform-dev": [
+
+    ]
 }

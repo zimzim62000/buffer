@@ -1,27 +1,40 @@
 views:
     bundles:
         app:
-            tournament:
-                index:
-                    title: "Les tournois"
-                    madeby: "Proposé par : %name%"
-                    madein: "Départ le : %date%"
             requestuser:
                 join:
                     title: "Rejoindre une partie"
-                    successjoin: >
+                    successjoinwait: >
                         Inscription réalisé avec succès, l'administrateur de se tournoi viens d'être alerté de votre demande.
                         Vous allez recevoir un email de confirmation d'inscription.
+                    successjoin: "Inscription réalisé avec succès !"
                     errorjoin: "Une demande est déjà en cours!"
                     nologued: "Vous n'étes pas connecté, vous ne pouvez pas rejoindre ce tournoi."
                     nbuser: "Il y  actuellement %count% participants à ce tournoi."
                 index:
                     title: "Mes tournois"
+                    noenabled: "Votre inscription est désactivé !"
+                    noanswer: "Votre demande d'inscription est toujours en cours !"
             home:
                 index:
+                    title: "Mes tournois"
+                    madeby: "Proposé par : %name%"
+                    madein: "Départ le : %date%"
+                    madeout: "Fin le : %date%"
                     register:
                         validate: "Vous étes déjà inscrit à ce tournoi"
                         novalidate: "Une demande d'inscripton est en cours"
+            usertournament:
+                index:
+                    title: "Mes tournois"
+                    madeby: "Proposé par : %name%"
+                    madein: "Départ le : %date%"
+                    enabled: "Activer ?"
+                    validate: "Valider ?"
+                newuser:
+                    titlenew:  "Création de mon tournoi"
+                    titleupdate:  "Modification de mon tournoi"
+                    register: "Inscription sur le tournoi"
 entity:
     app:
         tournament:
@@ -38,6 +51,12 @@ entity:
             enabled: "Active"
             user: "User"
             tournament: "Tournoi"
+        requestuser:
+            user: "User"
+            usertournament: "Tournoi"
+            email: "Email"
+            enabled: "Active"
+            validate: "Validé"
 form:
     app:
         type:

@@ -1,4 +1,5 @@
 imports:
     - { resource: service/form.yml }
-
-parameters:
+    - { resource: service/security.yml }
+    - { resource: service/event.yml }
+    - { resource: service/entity.yml }

@@ -1,0 +1,7 @@
+services:
+    zimzim_bundles_app.security.access.owneraction_voter:
+        class: ZIMZIM\Bundles\AppBundle\Security\Authorization\Voter\OwnerActionVoter
+        arguments: [ @doctrine.orm.entity_manager ]
+        public: false
+        tags:
+            - { name: security.voter }

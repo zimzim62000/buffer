@@ -83,14 +83,14 @@
                                     <div class="small-6 columns text-center">
                                         <h5 class="text-left">
                                             <small>
-                                                {{ 'views.bundles.app.tournament.index.madein'|trans({'%date%' : UserTournament.dateStart|date('d/m/Y') }) }}
+                                                {{ 'views.bundles.app.home.index.madein'|trans({'%date%' : UserTournament.dateStart|date('d/m/Y') }) }}
                                             </small>
                                         </h5>
                                     </div>
                                     <div class="small-6 columns text-center">
                                         <h5 class="text-right">
                                             <small>
-                                                {{ 'views.bundles.app.tournament.index.madeby'|trans({'%name%' : UserTournament.user.username}) }}
+                                                {{ 'views.bundles.app.home.index.madeby'|trans({'%name%' : UserTournament.user.username}) }}
                                             </small>
                                         </h5>
                                     </div>
@@ -98,6 +98,38 @@
                             </div>
                         </li>
                     {% endfor %}
+                    <li class="th">
+                        <div class="box-item">
+                            <div class="row">
+                                <div class="small-12 columns  text-center">
+                                    <h4 class="text-center">
+                                        {{ Tournament.name }}
+                                    </h4>
+                                    <h4 class="text-center">
+                                        <a class="tiny button round" href="{{ path('zimzim_bundles_app_usertournament_newuser', {'id': Tournament.id}) }}">
+                                            {{ 'button.createtournament'|trans }}
+                                        </a>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-6 columns text-center">
+                                    <h5 class="text-left">
+                                        <small>
+                                            {{ 'views.bundles.app.home.index.madein'|trans({'%date%' : Tournament.dateStart|date('d/m/Y') }) }}
+                                        </small>
+                                    </h5>
+                                </div>
+                                <div class="small-6 columns text-center">
+                                    <h5 class="text-right">
+                                        <small>
+                                            {{ 'views.bundles.app.home.index.madeout'|trans({'%date%' : Tournament.dateEnd|date('d/m/Y') }) }}
+                                        </small>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             {% endfor %}
         </div>

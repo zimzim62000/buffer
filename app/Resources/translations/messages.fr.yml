@@ -16,6 +16,8 @@ button:
     score: "Score"
     ranking: "Classement"
     game: "Matchs"
+    admin: "Administration"
+    createtournament: "Créer mon tournoi"
 link:
     return: "Retour à la liste"
     hide: "cacher"
@@ -50,6 +52,10 @@ views:
                 register: "inscription"
     footer:
         anytrouble: "Si vous rencontrez un problème, n'hésitez pas à envoyer un message à zimzim62000[at]gmail.com, merci"
+    macro:
+        yesno:
+            yes: OUI
+            no: NON
 grid:
     filter:
         disabled: "Cacher"
@@ -62,3 +68,5 @@ flashbag:
         create: "Création réussit"
         update: "Modification réussit"
         delete: "Suppréssion réussit"
+form:
+    fieldrequired: "Requis"

@@ -58,3 +58,4 @@ security:
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/requestuser/[0-9]*/join/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/requestuser/, role: ROLE_USER }
+        - { path: ^/usertournament/, role: ROLE_USER }

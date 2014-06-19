@@ -22,7 +22,7 @@ class LoadUserTournamentData extends AbstractFixture implements OrderedFixtureIn
         $tournament->setUser($this->getReference('zimzim'));
         $tournament->setTournament($this->getReference('WORLDCUP2014'));
         $om->persist($tournament);
-
+        $this->addReference('USER1WORLDCUP2014', $tournament);
 
         $tournament = new UserTournament();
         $tournament->setName('Iam the boss 44');
@@ -33,6 +33,7 @@ class LoadUserTournamentData extends AbstractFixture implements OrderedFixtureIn
         $tournament->setUser($this->getReference('zimzim'));
         $tournament->setTournament($this->getReference('WORLDCUP2014'));
         $om->persist($tournament);
+        $this->addReference('USER2WORLDCUP2014', $tournament);
 
         $tournament = new UserTournament();
         $tournament->setName('Ca déménage');
@@ -43,6 +44,7 @@ class LoadUserTournamentData extends AbstractFixture implements OrderedFixtureIn
         $tournament->setUser($this->getReference('zimzim'));
         $tournament->setTournament($this->getReference('WORLDCUP2014'));
         $om->persist($tournament);
+        $this->addReference('USER3WORLDCUP2014', $tournament);
 
         $tournament = new UserTournament();
         $tournament->setName('PSA ON s\'en fous on gagne nous');
@@ -53,6 +55,7 @@ class LoadUserTournamentData extends AbstractFixture implements OrderedFixtureIn
         $tournament->setUser($this->getReference('zimzim'));
         $tournament->setTournament($this->getReference('WORLDCUP2014'));
         $om->persist($tournament);
+        $this->addReference('USER4WORLDCUP2014', $tournament);
 
         $om->flush();
     }

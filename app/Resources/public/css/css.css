@@ -6498,7 +6498,7 @@ table.width-100 {
 }
 
 /* line 53, ../scss/css.scss */
-.bgcolor:hover {
+.bgcolor {
   color: white !important;
 }
 
@@ -6591,7 +6591,7 @@ div.score h6.team {
 }
 
 /* line 123, ../scss/css.scss */
-div.panel:hover {
+div.score:hover {
   background: #1a1a1a;
 }
 

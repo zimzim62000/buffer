@@ -50,7 +50,7 @@ table.width-100 {
     color: $body-bg !important;
 }
 
-.bgcolor:hover {
+.bgcolor {
     color: $body-bg !important;
 }
 
@@ -120,7 +120,7 @@ div.score {
         font-size: 1.25rem;
     }
 }
-div.panel:hover {
+div.score:hover {
     background: scale-color( $blue, $lightness: +10% );
 }
 

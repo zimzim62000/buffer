@@ -1,0 +1,9 @@
+services:
+    zimzim_bundles_app.listener.registerclientgamesubscriber:
+        class: ZIMZIM\Bundles\AppBundle\EventListener\UserTournamentSubscriber
+        arguments: [ @doctrine.orm.entity_manager, @zimzim_bundles_app.entity.requestuser ]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    zimzim_bundles_app.event.usertournamentevent:
+        class: ZIMZIM\Bundles\AppBundle\Event\UserTournamentEvent

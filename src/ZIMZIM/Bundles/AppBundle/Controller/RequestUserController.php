@@ -3,6 +3,7 @@
 namespace ZIMZIM\Bundles\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use ZIMZIM\Controller\ZimzimController;
 
 use ZIMZIM\Bundles\AppBundle\Entity\RequestUser;
@@ -26,7 +27,9 @@ class RequestUserController extends ZimzimController
 
         $user = $security->getToken()->getUser();
 
-        $entities = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findBy(array('user' => $user));
+        $entities = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findBy(array(
+                'user' => $user
+        ));
 
         return $this->render(
             'ZIMZIMBundlesAppBundle:RequestUser:index.html.twig',
@@ -320,6 +323,24 @@ class RequestUserController extends ZimzimController
             );
         }
 
+        $requestUser = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findOneBy(
+            array(
+                'email' => $user->getEmail(),
+                'userTournament' => $userTournament
+            )
+        );
+
+        if ($requestUser) {
+
+            $requestUser->setUser($user);
+            $em->flush();
+            $this->displayMessage('views.bundles.app.requestuser.join.successjoin');
+            return $this->redirect(
+                $this->generateUrl('zimzim_bundles_app_home')
+            );
+        }
+
+
         $requestUser = new RequestUser();
         $requestUser->setUserTournament($userTournament);
 
@@ -340,7 +361,7 @@ class RequestUserController extends ZimzimController
                 $em->persist($requestUser);
                 $em->flush();
 
-                $this->displayMessage('views.bundles.app.requestuser.join.successjoin');
+                $this->displayMessage('views.bundles.app.requestuser.join.successjoinwait');
 
                 return $this->redirect(
                     $this->generateUrl('zimzim_bundles_app_home')
@@ -384,5 +405,27 @@ class RequestUserController extends ZimzimController
 
         return $form;
     }
+
+
+
+    public function enabledValidateAction($id){
+
+        $em = $this->getDoctrine()->getManager();
+        $security = $this->container->get('security.context');
+
+        $requestUser = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->find($id);
+
+        if (!$requestUser) {
+            throw $this->createNotFoundException('Unable to find RequestUser entity.');
+        }
+
+        var_dump($requestUser->getUserTournament());
+
+        if (false === $security->isGranted('access', $requestUser->getUserTournament())) {
+            throw new AccessDeniedHttpException('User Tournament is not your\'s');
+        }
+
+    }
+
 
 }
