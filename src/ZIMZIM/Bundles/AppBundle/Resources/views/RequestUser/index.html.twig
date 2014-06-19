@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            {% if entity.enabled and entity.validate %}
+            {% if entity.enabled and entity.validate or entity.userTournament.user.id == app.user.id%}
                 <div class="row">
                     <div class="small-6 medium-4 columns">
                         <h5 class="text-center">

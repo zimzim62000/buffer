@@ -10,11 +10,14 @@ views:
                     successjoin: "Inscription réalisé avec succès !"
                     errorjoin: "Une demande est déjà en cours!"
                     nologued: "Vous n'étes pas connecté, vous ne pouvez pas rejoindre ce tournoi."
-                    nbuser: "Il y  actuellement %count% participants à ce tournoi."
+                    nbuser: "Il y actuellement %count% participants à ce tournoi."
                 index:
                     title: "Mes tournois"
                     noenabled: "Votre inscription est désactivé !"
                     noanswer: "Votre demande d'inscription est toujours en cours !"
+                update:
+                    title: "Modification des demandes d'inscriptions"
+                    who: "Demandes éffectué par %user% le %date%"
             home:
                 index:
                     title: "Mes tournois"
@@ -24,6 +27,7 @@ views:
                     register:
                         validate: "Vous étes déjà inscrit à ce tournoi"
                         novalidate: "Une demande d'inscripton est en cours"
+                        mygame: "Mon tournoi"
             usertournament:
                 index:
                     title: "Mes tournois"
@@ -31,6 +35,8 @@ views:
                     madein: "Départ le : %date%"
                     enabled: "Activer ?"
                     validate: "Valider ?"
+                    tournaments: "Tous les tournois"
+                    requestuser: "Mes utilisateurs"
                 newuser:
                     titlenew:  "Création de mon tournoi"
                     titleupdate:  "Modification de mon tournoi"

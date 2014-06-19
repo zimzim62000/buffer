@@ -27,9 +27,11 @@ class RequestUserController extends ZimzimController
 
         $user = $security->getToken()->getUser();
 
-        $entities = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findBy(array(
+        $entities = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findBy(
+            array(
                 'user' => $user
-        ));
+            )
+        );
 
         return $this->render(
             'ZIMZIMBundlesAppBundle:RequestUser:index.html.twig',
@@ -232,9 +234,10 @@ class RequestUserController extends ZimzimController
 
             $security = $this->container->get('security.context');
             $link = 'zimzim_bundles_app_requestuser_edit';
-            if($security->isGranted('ROLE_ADMIN')){
+            if ($security->isGranted('ROLE_ADMIN')) {
                 $link = 'zimzim_bundles_app_adminrequestuser_edit';
             }
+
             return $this->redirect($this->generateUrl($link, array('id' => $id)));
         }
 
@@ -271,9 +274,10 @@ class RequestUserController extends ZimzimController
         }
         $security = $this->container->get('security.context');
         $link = 'zimzim_bundles_app_requestuser';
-        if($security->isGranted('ROLE_ADMIN')){
+        if ($security->isGranted('ROLE_ADMIN')) {
             $link = 'zimzim_bundles_app_adminrequestuser';
         }
+
         return $this->redirect($this->generateUrl($link));
     }
 
@@ -318,23 +322,27 @@ class RequestUserController extends ZimzimController
 
         if ($requestUser) {
             $this->displayErorException('views.bundles.app.requestuser.join.errorjoin');
+
             return $this->redirect(
                 $this->generateUrl('zimzim_bundles_app_home')
             );
         }
 
-        $requestUser = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findOneBy(
-            array(
-                'email' => $user->getEmail(),
-                'userTournament' => $userTournament
-            )
-        );
+        if ($context->isGranted('ROLE_USER')) {
+            $requestUser = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findOneBy(
+                array(
+                    'email' => $user->getEmail(),
+                    'userTournament' => $userTournament
+                )
+            );
+        }
 
         if ($requestUser) {
 
             $requestUser->setUser($user);
             $em->flush();
             $this->displayMessage('views.bundles.app.requestuser.join.successjoin');
+
             return $this->redirect(
                 $this->generateUrl('zimzim_bundles_app_home')
             );
@@ -407,8 +415,8 @@ class RequestUserController extends ZimzimController
     }
 
 
-
-    public function enabledValidateAction($id){
+    public function enabledValidateAction(Request $request, $id)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $security = $this->container->get('security.context');
@@ -419,13 +427,60 @@ class RequestUserController extends ZimzimController
             throw $this->createNotFoundException('Unable to find RequestUser entity.');
         }
 
-        var_dump($requestUser->getUserTournament());
-
-        if (false === $security->isGranted('access', $requestUser->getUserTournament())) {
+        if (false === $security->isGranted('access',  $requestUser->getUserTournament())){
             throw new AccessDeniedHttpException('User Tournament is not your\'s');
         }
 
+        $form = $this->createUserUpdateForm($requestUser);
+
+        if($request->getMethod() === 'POST'){
+
+            $form->handleRequest($request);
+
+            if($form->isValid()){
+
+
+
+                $this->updateSuccess();
+                $em->flush();
+
+                $this->redirect($this->generateUrl('zimzim_bundles_app_requestuser'));
+            }
+        }
+
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:RequestUser:update.html.twig',
+            array(
+                'entity' => $requestUser,
+                'form' => $form->createView(),
+                'userTournament' => $requestUser->getUserTournament()
+            )
+        );
     }
 
+    /**
+     * Creates a form to create a RequestUser entity.
+     *
+     * @param RequestUser $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createUserUpdateForm(RequestUser $entity)
+    {
+        $form = $this->createForm(
+            'zimzim_bundles_appbundle_requestuserupdateusertype',
+            $entity,
+            array(
+                'action' => $this->generateUrl(
+                        'zimzimz_bundles_app_requestuser_enabledvalidate',
+                        array('id' => $entity->getId())
+                    ),
+                'method' => 'POST',
+            )
+        );
 
+        $form->add('submit', 'submit', array('label' => 'button.update'));
+
+        return $form;
+    }
 }

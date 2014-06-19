@@ -5,6 +5,7 @@
 {% endblock title %}
 
 {% block page %}
+
     <div class="row">
         <div class="small-12 columns">
             <h1 class="text-center headerpagehome">
@@ -31,40 +32,37 @@
             </div>
         </div>
 
-        {% for requestUser in entity.requestsUser %}
-            <div class="row">
-                <div class="small-6  medium-6 columns">
-                    <h4 class="text-center headerpagehome">
-                        <small>{{ requestUser.createdAt|date('d/m/Y H:i') }}</small>
-                        {{ requestUser.user.username }}
-                    </h4>
-                </div>
-                <div class="small-6 medium-2 columns">
-                    <h6 class="text-center headerpagehome">
-                        {{ 'views.bundles.app.usertournament.index.enabled'|trans }} {{ macro.yesno(requestUser.enabled) }}
-                        <br/>
-                        {{ 'views.bundles.app.usertournament.index.validate'|trans }} {{ macro.yesno(requestUser.validate) }}
-                    </h6>
-                </div>
-                <div class="small-12 medium-4 columns">
-                    <h4 class="text-center headerpagehome">
-                        <a class="tiny button round" href="{{ path('zimzimz_bundles_app_requestuser_enabledvalidate', {'id': requestUser.id}) }}">
-                            {{ 'button.update'|trans }}
-                        </a>
-                    </h4>
-                </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <h3 class="text-center headerpagehome">
+                    {{ 'views.bundles.app.usertournament.index.requestuser'|trans }}
+                </h3>
             </div>
+        </div>
+
+        {% for requestUser in entity.requestsUser %}
+            {% include 'ZIMZIMBundlesAppBundle:RequestUser:include/line.html.twig' with{'requestUser': requestUser} %}
         {% endfor %}
+
     {% endfor %}
+
+    <div class="row">
+        <div class="small-12 columns">
+            <h2 class="text-center headerpagehome">
+                {{ 'views.bundles.app.usertournament.index.tournaments'|trans }}
+            </h2>
+        </div>
+    </div>
 
     {% for Tournament in Tournaments %}
 
         <div class="row">
-            <div class="small-12 columns">
+            <div class="small-6 columns">
                 <h2 class="text-center headerpagehome">
                     {{ Tournament.name }}
                 </h2>
-
+            </div>
+            <div class="small-6 columns">
                 <h3 class="text-center">
                     <a class="tiny button round"
                        href="{{ path('zimzim_bundles_app_usertournament_newuser', {'id': Tournament.id}) }}">
