@@ -7,3 +7,12 @@ services:
 
     zimzim_bundles_app.event.usertournamentevent:
         class: ZIMZIM\Bundles\AppBundle\Event\UserTournamentEvent
+
+    zimzim_bundles_app.listener.joinrequestusersubscriber:
+        class: ZIMZIM\Bundles\AppBundle\EventListener\RequestUserSubscriber
+        arguments: [ @doctrine.orm.entity_manager, @security.context, @session, @router ]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    zimzim_bundles_app.event.requestuserevent:
+        class: ZIMZIM\Bundles\AppBundle\Event\RequestUserEvent
