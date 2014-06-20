@@ -38,51 +38,85 @@ class RequestUserSubscriber implements EventSubscriberInterface
 
     public function onDoRequestUser(RequestUserEvent $event)
     {
-        $em = $this->em;
+
         $userTournament = $event->getUserTournament();
         $user = $this->security->getToken()->getUser();
 
         if ($this->security->isGranted('ROLE_USER')) {
 
-            $requestUser = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findOneBy(
-                array(
-                    'user' => $user,
-                    'userTournament' => $userTournament
-                )
-            );
-
-            if ($requestUser) {
-                $this->session->getFlashBag()->add(
-                    'errors',
-                    'views.bundles.app.requestuser.join.errorjoin'
-                );
-                $event->setResponse(new RedirectResponse($this->router->generate('zimzim_bundles_app_home')), 302);
+            if ($this->findIfUserExist($user, $userTournament, $event)) {
+                return;
             }
 
-            $requestUser = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findOneBy(
-                array(
-                    'email' => $user->getEmail(),
-                    'userTournament' => $userTournament
-                )
-            );
-
-            if ($requestUser) {
-
-                $requestUser->setUser($user);
-                $em->flush();
-                $this->session->getFlashBag()->add(
-                    'success',
-                    'views.bundles.app.requestuser.join.successemailjoin'
-                );
-                $event->setResponse(new RedirectResponse($this->router->generate('zimzim_bundles_app_home')), 302);
+            if ($this->findIfEmailExist($user, $userTournament, $event)) {
+                return;
             }
+        }
 
-            $requestUser = new RequestUser();
-            $requestUser->setUserTournament($userTournament);
+        $requestUser = new RequestUser();
+        $requestUser->setUserTournament($userTournament);
+
+        if ($this->security->isGranted('ROLE_USER')) {
             $requestUser->setUser($user);
             $requestUser->setEnabled(true);
             $requestUser->setValidate(false);
-            $event->setRequestUser($requestUser);
         }
+
+        $event->setRequestUser($requestUser);
+    }
+
+    private function findIfEmailExist($user, $userTournament, $event)
+    {
+
+        $em = $this->em;
+        $requestUser = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findOneBy(
+            array(
+                'email' => $user->getEmail(),
+                'userTournament' => $userTournament
+            )
+        );
+
+        if ($requestUser) {
+
+            $requestUser->setUser($user);
+            $em->flush();
+            $this->session->getFlashBag()->add(
+                'success',
+                'views.bundles.app.requestuser.join.successemailjoin'
+            );
+            $event->setResponse(new RedirectResponse($this->router->generate('zimzim_bundles_app_home')), 302);
+            $event->setRequestUser($requestUser);
+
+            return true;
+        }
+
+        return false;
+    }
+
+
+    private function findIfUserExist($user, $userTournament, $event)
+    {
+
+        $em = $this->em;
+
+        $requestUser = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->findOneBy(
+            array(
+                'user' => $user,
+                'userTournament' => $userTournament
+            )
+        );
+
+        if ($requestUser) {
+            $this->session->getFlashBag()->add(
+                'errors',
+                'views.bundles.app.requestuser.join.errorjoin'
+            );
+            $event->setResponse(new RedirectResponse($this->router->generate('zimzim_bundles_app_home')), 302);
+            $event->setRequestUser($requestUser);
+
+            return true;
+        }
+
+        return false;
     }
 }

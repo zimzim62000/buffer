@@ -14,7 +14,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table("parierentreamis_request_user")
  * @ORM\Entity
-
+ * @UniqueEntity(fields={"email", "userTournament"}, groups={"email"},
+ * message="validate.entity.app.requestuser.uniqueentity")
  */
 class RequestUser
 {
@@ -52,7 +53,8 @@ class RequestUser
      * @var string
      * @GRID\Column(title="entity.app.requestuser.email",operatorsVisible=false, visible=true)
      *
-     * @Assert\Email()
+     * @Assert\Email(groups={"email"}, message="testetetettetetet")
+     * @Assert\NotBlank(groups={"email"})
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;

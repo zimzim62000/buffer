@@ -13,7 +13,7 @@ class DateType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $year = intVal(date('Y'));
-        for ($i = $year; $i > ($year - 5); $i--){
+        for ($i = $year; $i < ($year + 5); $i++){
             $tabYears[$i] = $i;
         }
 

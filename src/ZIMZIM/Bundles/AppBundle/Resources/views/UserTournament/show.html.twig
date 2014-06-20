@@ -50,7 +50,6 @@
                 </tbody>
             </table>
 
-            {% if is_granted('ROLE_ADMIN') %}
             <div class="row">
                 <div class="small-12 large-4 columns text-center">
                     <a class="tiny button round" href="{{ path('zimzim_bundles_app_adminusertournament') }}">
@@ -67,24 +66,7 @@
                     {{ form(delete_form) }}
                 </div>
             </div>
-            {% else %}
-                <div class="row">
-                    <div class="small-12 large-4 columns text-center">
-                        <a class="tiny button round" href="{{ path('zimzim_bundles_app_usertournament') }}">
-                            {{ 'link.return'|trans }}
-                        </a>
-                    </div>
-                    <div class="small-12 large-4 columns text-center">
-                        <a class="tiny button round"
-                           href="{{ path('zimzim_bundles_app_usertournament_edit', { 'id': entity.id }) }}">
-                            {{ 'button.update'|trans }}
-                        </a>
-                    </div>
-                    <div class="small-12 large-4 columns text-center">
-                        {{ form(delete_form) }}
-                    </div>
-                </div>
-            {% endif %}
+
         </div>
     </div>
 {% endblock %}

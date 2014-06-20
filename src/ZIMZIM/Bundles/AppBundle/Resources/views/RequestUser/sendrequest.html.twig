@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ 'views.bundles.app.requestuser.sendrequest.title'|trans }}
+{% endblock title %}
+
+{% block page %}
+
+
+    <div class="panel">
+        <div class="row">
+            <div class="small-12 columns">
+                <h1 class="text-center headerpagehome">
+                    {{ entity.userTournament.name }}
+                </h1>
+
+                <h2 class="text-center headerpagehome">
+                    {{ entity.userTournament.Tournament.name }}
+                </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-12 columns">
+                <h3 class="text-center headerpagehome">
+                    {{ 'views.bundles.app.requestuser.sendrequest.title'|trans }}
+                </h3>
+            </div>
+        </div>
+
+        {{ form(form) }}
+
+    </div>
+
+{% endblock page %}

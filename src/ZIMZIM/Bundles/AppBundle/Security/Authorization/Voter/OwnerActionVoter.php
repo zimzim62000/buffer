@@ -27,11 +27,9 @@ class OwnerActionVoter implements VoterInterface
 
     public function supportsClass($class)
     {
-        $supportedClass = array(
-            'ZIMZIM\Bundles\AppBundle\Entity\UserTournament',
-        );
+        $supportedClass = '/UserTournament$/';
 
-        return in_array($class, $supportedClass);
+        return preg_match($supportedClass, $class);
     }
 
     public function vote(TokenInterface $token, $entity, array $attributes)
@@ -55,7 +53,16 @@ class OwnerActionVoter implements VoterInterface
         }
 
         if ($entity->getUser() === $user) {
-            return VoterInterface::ACCESS_GRANTED;
+
+            $requestUser = $entity->getRequestsUser()->filter(
+                function ($requestUser) use ($user) {
+                    return $requestUser->getUser() === $user;
+                }
+            );
+
+            if($requestUser->first()->getEnabled() && $requestUser->first()->getValidate()){
+                return VoterInterface::ACCESS_GRANTED;
+            }
         }
     }
 }

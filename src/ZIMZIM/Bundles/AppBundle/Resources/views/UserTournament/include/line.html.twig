@@ -1,0 +1,45 @@
+<div class="row panel">
+    <div class="small-12 columns">
+        <div class="row">
+            <div class="small-4 columns">
+                <h3 class="text-left">
+                    <a class="tiny button round"
+                       href="{{ path('zimzim_bundles_app_usertournament_updateuser', {'id': entity.id}) }}">
+                        {{ 'button.update'|trans }}
+                    </a>
+                </h3>
+            </div>
+            <div class="small-8 columns">
+                <h2 class="text-left headerpagehome">
+                    {{ entity.name }}
+                </h2>
+            </div>
+            <div class="small-12 columns">
+                <p class="text-justify">
+                    {{ entity.text }}
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-6 columns">
+                <h3 class="text-center headerpagehome">
+                    {{ 'views.bundles.app.usertournament.index.requestuser'|trans }}
+                </h3>
+            </div>
+            <div class="small-6 columns">
+                <h4 class="text-center">
+                    <a href="{{ path('zimzim_bundles_app_requestuser_sendrequest', {'id': entity.id }) }}"
+                       class="button tiny round">
+                        {{ 'button.sendrequest'|trans }}
+                    </a>
+                </h4>
+            </div>
+        </div>
+
+        {% for requestUser in entity.requestsUser %}
+            {% include 'ZIMZIMBundlesAppBundle:RequestUser:include/line.html.twig' with{'requestUser': requestUser} %}
+        {% endfor %}
+
+    </div>
+</div>

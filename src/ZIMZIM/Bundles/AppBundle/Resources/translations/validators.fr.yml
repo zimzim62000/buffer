@@ -1,0 +1,5 @@
+validate:
+    entity:
+        app:
+            requestuser:
+                uniqueentity: "une invitation à déjà été envoyé à cette addresse Email"

@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ 'views.bundles.app.requestuser.update.title'|trans }}
+{% endblock title %}
+
+
+{% block page %}
+
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h1 class="text-center headerpagehome">
+                {{ 'views.bundles.app.requestuser.update.title'|trans }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h2 class="text-center headerpagehome">
+                {% if entity.user.username %}
+                    {% set user =  entity.user.username %}
+                {% else %}
+                    {% set user =  entity.email %}
+                {% endif %}
+                {{ 'views.bundles.app.requestuser.update.who'|trans({'%user%': user, '%date%': entity.updatedAt|date('d/m/Y')}) }}
+            </h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-8 small-centered columns text-center">
+            {{ form(form) }}
+
+            <div class="row">
+                <div class="small-12 columns text-center">
+                    <a class="tiny button round" href="{{ path('zimzim_bundles_app_usertournament_showuser', {'id': entity.userTournament.id}) }}">
+                        {{ 'link.return'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

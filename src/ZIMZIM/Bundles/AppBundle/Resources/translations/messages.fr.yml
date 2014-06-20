@@ -10,11 +10,20 @@ views:
                     successjoin: "Inscription réalisé avec succès !"
                     errorjoin: "Une demande est déjà en cours!"
                     nologued: "Vous n'étes pas connecté, vous ne pouvez pas rejoindre ce tournoi."
-                    nbuser: "Il y  actuellement %count% participants à ce tournoi."
+                    nbuser: "Il y actuellement %count% participants à ce tournoi."
                 index:
                     title: "Mes tournois"
                     noenabled: "Votre inscription est désactivé !"
                     noanswer: "Votre demande d'inscription est toujours en cours !"
+                update:
+                    title: "Modification des demandes d'inscriptions"
+                    who: "Demandes éffectué par %user% le %date%"
+                    nodisabledadmin: "Vous ne pouvez pas modifier les permissions de l'administrateur du tournoi"
+                    nouser: "Cette demande n'a toujours pas d'utilisateur, vous ne pouvez donc la modifier"
+                sendrequest:
+                    title: "Envoyer des demandes d'inscriptions à vos amis"
+                    sendsuccess: "Message envoyé avec succés."
+                    subjectemail: "Un ami ( %username% ) veux jouer avec vous sur parierentreamis.fr"
             home:
                 index:
                     title: "Mes tournois"
@@ -24,17 +33,24 @@ views:
                     register:
                         validate: "Vous étes déjà inscrit à ce tournoi"
                         novalidate: "Une demande d'inscripton est en cours"
+                        mygame: "Mon tournoi"
             usertournament:
                 index:
                     title: "Mes tournois"
                     madeby: "Proposé par : %name%"
                     madein: "Départ le : %date%"
-                    enabled: "Activer ?"
-                    validate: "Valider ?"
+                    request: "Demande d'inscription"
+                    enabled: "Activé"
+                    validate: "Validé"
+                    tournaments: "Tous les tournois"
+                    requestuser: "Mes utilisateurs"
                 newuser:
                     titlenew:  "Création de mon tournoi"
                     titleupdate:  "Modification de mon tournoi"
                     register: "Inscription sur le tournoi"
+                showuser:
+                    title: ""
+                    email: "Email envoyé à :"
 entity:
     app:
         tournament:

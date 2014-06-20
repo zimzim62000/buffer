@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+
+{% block title %}
+    {{ 'views.bundles.app.usertournament.showuser.title'|trans }}
+{% endblock title %}
+
+{% block page %}
+    <div class="row">
+        <div class="small-12 columns">
+            <h1 class="text-center headerpagehome">
+                {{ entity.name }}
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+            {% include 'ZIMZIMBundlesAppBundle:UserTournament:include/line.html.twig' with{'entity': entity} %}
+        </div>
+    </div>
+{% endblock %}

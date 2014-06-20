@@ -16,4 +16,10 @@ final class ZIMZIMAppEvents{
      * when user register on mainGame on ZIMZIM\Bundles\AppBundle\Entity\RequestUser
      */
     const JOIN_REQUESTUSER = 'zimzim_bundles_app.requestuser.join';
+
+    /**
+     * do action for new request requestuser ZIMZIM\Bundles\AppBundle\Entity\RequestUser
+     * when user register on mainGame on ZIMZIM\Bundles\AppBundle\Entity\RequestUser
+     */
+    const EMAIL_REQUESTUSER = 'zimzim_bundles_app.requestuser.sendemail';
 }

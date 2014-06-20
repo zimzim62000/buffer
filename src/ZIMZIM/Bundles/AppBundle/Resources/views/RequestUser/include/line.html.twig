@@ -1,0 +1,30 @@
+<div class="row panel">
+    <div class="small-6 medium-5 columns">
+        <h4 class="text-center headerpagehome">
+            {% if requestUser.user %}
+                {{ requestUser.user.username }}
+            {% else %}
+                <small>{{ 'views.bundles.app.usertournament.showuser.email'|trans }}</small>{{ requestUser.email }}
+            {% endif %}
+        </h4>
+        <h5>
+            <small>{{ requestUser.createdAt|date('d/m/Y H:i') }}</small>
+        </h5>
+    </div>
+    <div class="small-6 medium-5 columns">
+        <h6 class="text-center headerpagehome">
+            {{ 'views.bundles.app.usertournament.index.request'|trans }}
+        </h6>
+        <h6 class="text-center">
+            {{ 'views.bundles.app.usertournament.index.enabled'|trans }} {{ macro.yesno(requestUser.enabled) }}
+            {{ 'views.bundles.app.usertournament.index.validate'|trans }} {{ macro.yesno(requestUser.validate) }}
+        </h6>
+    </div>
+    <div class="small-12 medium-2 columns">
+        <h4 class="text-center headerpagehome">
+            <a class="tiny button round" href="{{ path('zimzim_bundles_app_requestuser_enabledvalidate', {'id': requestUser.id}) }}">
+                {{ 'button.update'|trans }}
+            </a>
+        </h4>
+    </div>
+</div>

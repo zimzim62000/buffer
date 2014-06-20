@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="small-6 columns">
+        <h2 class="text-center headerpagehome">
+            {{ Tournament.name }}
+        </h2>
+    </div>
+    <div class="small-6 columns">
+        <h3 class="text-center">
+            <a class="tiny button round"
+               href="{{ path('zimzim_bundles_app_usertournament_newuser', {'id': Tournament.id}) }}">
+                {{ 'button.createtournament'|trans }}
+            </a>
+        </h3>
+    </div>
+</div>

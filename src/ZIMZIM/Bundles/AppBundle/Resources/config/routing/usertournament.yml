@@ -11,3 +11,8 @@ zimzim_bundles_app_usertournament_updateuser:
     pattern:  /{id}/updateuser/
     defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:updateuser" }
     requirements: { _method: get|post }
+
+zimzim_bundles_app_usertournament_showuser:
+    pattern:  /{id}/showuser/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:UserTournament:showuser" }
+    requirements: { _method: get }

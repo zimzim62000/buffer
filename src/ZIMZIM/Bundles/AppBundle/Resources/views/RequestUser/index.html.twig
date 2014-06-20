@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            {% if entity.enabled and entity.validate %}
+            {% if entity.enabled and entity.validate or entity.userTournament.user.id == app.user.id%}
                 <div class="row">
                     <div class="small-6 medium-4 columns">
                         <h5 class="text-center">
@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="small-12 columns">
                             <h5 class="text-center">
-                                <a href="{{ path('zimzim_bundles_app_usertournament') }}" class="tiny button round">
+                                <a href="{{ path('zimzim_bundles_app_usertournament_showuser', {'id': entity.userTournament.id}) }}" class="tiny button round">
                                     {{ 'button.admin'|trans }}
                                 </a>
                             </h5>

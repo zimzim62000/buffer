@@ -60,7 +60,11 @@
                                             {% if UserTournament.requestsUser.first.user ==  app.user %}
                                                 <h5 class="text-center alert-box success">
                                                     {% if UserTournament.requestsUser.first.validate %}
-                                                        {{ 'views.bundles.app.home.index.register.validate'|trans }}
+                                                        {% if UserTournament.user.id == app.user.id %}
+                                                            {{ 'views.bundles.app.home.index.register.mygame'|trans }}
+                                                        {% else %}
+                                                            {{ 'views.bundles.app.home.index.register.validate'|trans }}
+                                                        {% endif %}
                                                     {% else %}
                                                         {{ 'views.bundles.app.home.index.register.novalidate'|trans }}
                                                     {% endif %}

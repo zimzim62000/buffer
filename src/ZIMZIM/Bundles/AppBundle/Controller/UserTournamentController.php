@@ -353,7 +353,12 @@ class UserTournamentController extends ZimzimController
                 $Event->setUserTournament($userTournament);
                 $dispatcher->dispatch(ZIMZIMAppEvents::CREATE_USERTOURNAMENT, $Event);
 
-                return $this->redirect($this->generateUrl('zimzim_bundles_app_usertournament'));
+                return $this->redirect(
+                    $this->generateUrl(
+                        'zimzim_bundles_app_usertournament_showuser',
+                        array('id' => $userTournament->getId())
+                    )
+                );
             }
         }
 
@@ -401,7 +406,12 @@ class UserTournamentController extends ZimzimController
 
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('zimzim_bundles_app_usertournament'));
+                return $this->redirect(
+                    $this->generateUrl(
+                        'zimzim_bundles_app_usertournament_showuser',
+                        array('id' => $UserTournament->getId())
+                    )
+                );
             }
         }
 
@@ -466,6 +476,34 @@ class UserTournamentController extends ZimzimController
         $form->add('submit', 'submit', array('label' => 'button.update'));
 
         return $form;
+    }
+
+    /**
+     * Finds and displays a UserTournament entity.
+     *
+     */
+    public function showUserAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find UserTournament entity.');
+        }
+
+        $security = $this->container->get('security.context');
+
+        if (false === $security->isGranted('access', $entity)) {
+            throw new AccessDeniedHttpException('User Tournament is not your\'s');
+        }
+
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:UserTournament:showuser.html.twig',
+            array(
+                'entity' => $entity,
+            )
+        );
     }
 
 }

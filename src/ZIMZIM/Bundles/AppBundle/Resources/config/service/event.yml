@@ -14,5 +14,11 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    zimzim_bundles_app.listener.requestuseremailsubscriber:
+        class: ZIMZIM\Bundles\AppBundle\EventListener\RequestUserEmailSubscriber
+        arguments: [ @mailer, @templating, @translator ]
+        tags:
+            - { name: kernel.event_subscriber }
+
     zimzim_bundles_app.event.requestuserevent:
         class: ZIMZIM\Bundles\AppBundle\Event\RequestUserEvent

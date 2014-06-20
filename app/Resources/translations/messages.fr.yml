@@ -18,6 +18,7 @@ button:
     game: "Matchs"
     admin: "Administration"
     createtournament: "Créer mon tournoi"
+    sendrequest: "Inviter des joueurs"
 link:
     return: "Retour à la liste"
     hide: "cacher"
