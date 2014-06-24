@@ -18,16 +18,33 @@ class RequestUserUpdateUserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add(
-            'enabled',
-            'zimzim_bundles_appbundle_type_yesnotype',
-            array('label' => 'entity.app.requestuser.enabled')
-        )
+        $builder
             ->add(
                 'validate',
                 'zimzim_bundles_appbundle_type_yesnotype',
                 array('label' => 'entity.app.requestuser.validate')
             );
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                $requestUser = $event->getData();
+                $form = $event->getForm();
+
+                if ($requestUser !== false) {
+                    if ($requestUser->getId() !== null) {
+                        if ($requestUser->getValidate() !== null) {
+                            $form->add(
+                                'enabled',
+                                'zimzim_bundles_appbundle_type_yesnotype',
+                                array('label' => 'entity.app.requestuser.enabled')
+                            );
+                            $form->remove('validate');
+                        }
+                    }
+                }
+            }
+        );
     }
 
     /**

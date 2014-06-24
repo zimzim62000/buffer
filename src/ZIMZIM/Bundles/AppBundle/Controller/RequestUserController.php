@@ -343,7 +343,6 @@ class RequestUserController extends ZimzimController
                 return $this->redirect(
                     $this->generateUrl('zimzim_bundles_app_home')
                 );
-
             }
         }
 
@@ -504,8 +503,6 @@ class RequestUserController extends ZimzimController
 
     public function sendRequestAction(Request $request, $id)
     {
-        ini_set('display_errors', true);
-
         $em = $this->getDoctrine()->getManager();
         $security = $this->container->get('security.context');
 

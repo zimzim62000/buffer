@@ -11,7 +11,7 @@
             <small>{{ requestUser.createdAt|date('d/m/Y H:i') }}</small>
         </h5>
     </div>
-    <div class="small-6 medium-5 columns">
+    <div class="small-6 medium-5 columns requestuser {% if requestUser.enabled == true %}enabled{% else %}disabled{% endif %}">
         <h6 class="text-center headerpagehome">
             {{ 'views.bundles.app.usertournament.index.request'|trans }}
         </h6>

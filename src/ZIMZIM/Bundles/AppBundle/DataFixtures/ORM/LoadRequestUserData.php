@@ -16,6 +16,7 @@ class LoadRequestUserData extends AbstractFixture implements OrderedFixtureInter
         $requestUser->setEnabled(true);
         $requestUser->setValidate(true);
         $requestUser->setUser($this->getReference('zimzim'));
+        $requestUser->setEmail($requestUser->getUser()->getEmail());
         $requestUser->setUserTournament($this->getReference('USER1WORLDCUP2014'));
         $om->persist($requestUser);
 
@@ -23,6 +24,7 @@ class LoadRequestUserData extends AbstractFixture implements OrderedFixtureInter
         $requestUser->setEnabled(true);
         $requestUser->setValidate(true);
         $requestUser->setUser($this->getReference('zimzim'));
+        $requestUser->setEmail($requestUser->getUser()->getEmail());
         $requestUser->setUserTournament($this->getReference('USER2WORLDCUP2014'));
         $om->persist($requestUser);
 
@@ -30,6 +32,7 @@ class LoadRequestUserData extends AbstractFixture implements OrderedFixtureInter
         $requestUser->setEnabled(true);
         $requestUser->setValidate(true);
         $requestUser->setUser($this->getReference('zimzim'));
+        $requestUser->setEmail($requestUser->getUser()->getEmail());
         $requestUser->setUserTournament($this->getReference('USER3WORLDCUP2014'));
         $om->persist($requestUser);
 

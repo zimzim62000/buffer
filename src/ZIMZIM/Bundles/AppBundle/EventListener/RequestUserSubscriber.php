@@ -58,6 +58,7 @@ class RequestUserSubscriber implements EventSubscriberInterface
 
         if ($this->security->isGranted('ROLE_USER')) {
             $requestUser->setUser($user);
+            $requestUser->setEmail($user->getEmail());
             $requestUser->setEnabled(true);
             $requestUser->setValidate(false);
         }

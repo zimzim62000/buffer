@@ -48,7 +48,7 @@
                     {{ Tournament.name }}
                 </h3>
                 <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-                    {% for UserTournament in Tournament.userTournaments %}
+                    {% for UserTournament in Tournament.userTournaments.slice(0, 5) %}
                         <li class="th">
                             <div class="box-item">
                                 <div class="row">
@@ -71,13 +71,13 @@
                                                 </h5>
                                             {% else %}
                                                 <a href="{{ path('zimzim_bundles_app_requestuser_join', {'id': UserTournament.id}) }}"
-                                                   class="button small round">
+                                                   class="button tiny round">
                                                     {{ 'button.participate'|trans }}
                                                 </a>
                                             {% endif %}
                                         {% else %}
                                             <a href="{{ path('zimzim_bundles_app_requestuser_join', {'id': UserTournament.id}) }}"
-                                               class="button small round">
+                                               class="button tiny round">
                                                 {{ 'button.participate'|trans }}
                                             </a>
                                         {% endif %}
@@ -102,7 +102,7 @@
                             </div>
                         </li>
                     {% endfor %}
-                    <li class="th">
+                    <li class="th created">
                         <div class="box-item">
                             <div class="row">
                                 <div class="small-12 columns  text-center">

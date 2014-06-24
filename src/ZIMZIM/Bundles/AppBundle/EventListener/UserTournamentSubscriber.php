@@ -36,6 +36,7 @@ class UserTournamentSubscriber implements EventSubscriberInterface
         $requestUser = clone $this->requestUser;
 
         $requestUser->setUser($userTournament->getUser());
+        $requestUser->setEmail($userTournament->getUser()->getEmail());
         $requestUser->setUserTournament($userTournament);
         $requestUser->setEnabled(true);
         $requestUser->setValidate(true);
