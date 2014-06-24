@@ -31,7 +31,7 @@ class LoadRequestUserData extends AbstractFixture implements OrderedFixtureInter
         $requestUser = new RequestUser();
         $requestUser->setEnabled(true);
         $requestUser->setValidate(true);
-        $requestUser->setUser($this->getReference('zimzim'));
+        $requestUser->setUser($this->getReference('zimzimuser'));
         $requestUser->setEmail($requestUser->getUser()->getEmail());
         $requestUser->setUserTournament($this->getReference('USER3WORLDCUP2014'));
         $om->persist($requestUser);
@@ -48,6 +48,6 @@ class LoadRequestUserData extends AbstractFixture implements OrderedFixtureInter
 
     public function getOrder()
     {
-        return 4;
+        return 5;
     }
 }

@@ -46,7 +46,7 @@ views:
     HWIOAuthBundle:
         connect:
             login:
-                title1: "Connection"
+                title1: "Connexion"
                 title2: "Avec votre compte préféré !"
                 title3: "Ou "
                 login: "connexion"
@@ -71,3 +71,8 @@ flashbag:
         delete: "Suppréssion réussit"
 form:
     fieldrequired: "Requis"
+site:
+    title:
+        small: www.parierentreamis.fr
+        long: www.parierentreamis.fr, le site de paris entre amis !
+        beta: beta

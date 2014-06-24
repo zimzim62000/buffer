@@ -41,7 +41,7 @@ class LoadUserTournamentData extends AbstractFixture implements OrderedFixtureIn
         $tournament->setDateStart(new \DateTime('2014-06-12'));
         $tournament->setDateEnd(new \DateTime('2014-07-13'));
         $tournament->setEnabled(true);
-        $tournament->setUser($this->getReference('zimzim'));
+        $tournament->setUser($this->getReference('zimzimuser'));
         $tournament->setTournament($this->getReference('WORLDCUP2014'));
         $om->persist($tournament);
         $this->addReference('USER3WORLDCUP2014', $tournament);
@@ -52,7 +52,7 @@ class LoadUserTournamentData extends AbstractFixture implements OrderedFixtureIn
         $tournament->setDateStart(new \DateTime('2014-06-12'));
         $tournament->setDateEnd(new \DateTime('2014-07-13'));
         $tournament->setEnabled(false);
-        $tournament->setUser($this->getReference('zimzim'));
+        $tournament->setUser($this->getReference('zimzimuser'));
         $tournament->setTournament($this->getReference('WORLDCUP2014'));
         $om->persist($tournament);
         $this->addReference('USER4WORLDCUP2014', $tournament);
@@ -62,6 +62,6 @@ class LoadUserTournamentData extends AbstractFixture implements OrderedFixtureIn
 
     public function getOrder()
     {
-        return 3;
+        return 4;
     }
 }

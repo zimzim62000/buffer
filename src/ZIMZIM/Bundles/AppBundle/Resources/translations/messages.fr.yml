@@ -8,6 +8,7 @@ views:
                         Inscription réalisé avec succès, l'administrateur de se tournoi viens d'être alerté de votre demande.
                         Vous allez recevoir un email de confirmation d'inscription.
                     successjoin: "Inscription réalisé avec succès !"
+                    successemailjoin: "Une demande à été envoyer à l'administrateur!"
                     errorjoin: "Une demande est déjà en cours!"
                     nologued: "Vous n'étes pas connecté, vous ne pouvez pas rejoindre ce tournoi."
                     nbuser: "Il y actuellement %count% participants à ce tournoi."
@@ -26,7 +27,6 @@ views:
                     subjectemail: "Un ami ( %username% ) veux jouer avec vous sur parierentreamis.fr"
             home:
                 index:
-                    title: "Mes tournois"
                     madeby: "Proposé par : %name%"
                     madein: "Départ le : %date%"
                     madeout: "Fin le : %date%"
@@ -34,6 +34,20 @@ views:
                         validate: "Vous étes déjà inscrit à ce tournoi"
                         novalidate: "Une demande d'inscripton est en cours"
                         mygame: "Mon tournoi"
+                    title: "Parier entre amis, le site de paris entre amis."
+                    catchphrase: "Gagner la partie et vous deviendrez peut-être riche !"
+                    titlelogued: "Parier entre amis, le site de paris entre amis."
+                    catchphraselogued: "Gagner la partie et vous deviendrez peut-être riche !"
+                    metadesc: >
+                        Parier entre amis, le site de paris entre amis.Gagner la partie et vous deviendrez peut-être riche !
+                    soustitle1: "Qui organise ? Comment on s'organise ?"
+                    who: >
+                        Pas de problème <strong>parierentreamis.fr</strong> est fait pour çà!
+                        Vous désignez un capitaine pour la partie, il crée les régles et définit les <strong>paris</strong>. Vous voilà paré
+                        à vous plonger dans vos statistiques et autres grigris. Mais pour le reste, il n'y a pas de stress, c'est <strong>parier entre amis</strong>
+                        qui s'en occupe!
+                    gameoftheday: "Les matchs du jour"
+                    ranking: "Les 3 premiers du classement"
             usertournament:
                 index:
                     title: "Mes tournois"
@@ -73,6 +87,11 @@ entity:
             email: "Email"
             enabled: "Active"
             validate: "Validé"
+        game:
+            id: id
+            teamhome: "eguipe"
+            teamouter: "eguipe"
+
 form:
     app:
         type:

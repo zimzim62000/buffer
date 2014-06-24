@@ -14,13 +14,19 @@
 
 
 
-$black: #000000;
-$blue: #000000;
-$white: #FFFFFF;
-$green: #000000;
-$sable: #FFFFFF;
-$yellow: #FFFFFF;
+//$black: #000000;
+//$blue: #000000;
+//$white: #FFFFFF;
+//$green: #000000;
+//$sable: #FFFFFF;
+//$yellow: #FFFFFF;
 
+$black: #000000;
+$blue: #596AB4;
+$white: #FFFFFF;
+$green: #3DA964;
+$sable: #F9F5D1;
+$yellow: #F3BD36;
 
 // $experimental: true;
 
@@ -50,10 +56,12 @@ $yellow: #FFFFFF;
 
 // Global
 
+@import url(http://fonts.googleapis.com/css?family=Electrolize);
+
 // We use these to control various global styles
-// $body-bg: #fff;
-// $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-bg: $sable;
+$body-font-color: $green;
+$body-font-family: 'Electrolize', sans-serif;//"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
@@ -66,11 +74,11 @@ $yellow: #FFFFFF;
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-// $success-color: #43AC6A;
-// $warning-color: #f08a24;
+$primary-color: $green;
+$secondary-color: scale-color( $green, $lightness: -20% );
+$alert-color: #ff851b;
+$success-color: #f012be;
+$warning-color: #ff851b;
 // $info-color: #a0d3e8;
 
 // We use these to make sure border radius matches unless we want it different.
@@ -133,7 +141,7 @@ $yellow: #FFFFFF;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: #222;
+$header-font-color: $primary-color;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -156,7 +164,7 @@ $yellow: #FFFFFF;
 
 // A general <small> styling
 // $small-font-size: 60%;
-// $small-font-color: scale-color($header-font-color, $lightness: 35%);
+$small-font-color: scale-color($header-font-color, $lightness: -35%);
 
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
@@ -362,7 +370,7 @@ $yellow: #FFFFFF;
 // $button-font-align: center;
 
 // We use these to control various hover effects.
-// $button-function-factor: -20%;
+$button-function-factor: +20%;
 
 // We use these to control button border styles.
 // $button-border-width: 0px;
@@ -1187,7 +1195,8 @@ $yellow: #FFFFFF;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: #333;
+$topbar-bg-color: $yellow;
+$top-bar-bg-hover: scale-color( $yellow, $lightness: +20% );
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1199,27 +1208,25 @@ $yellow: #FFFFFF;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-// $topbar-dropdown-bg: #333;
-// $topbar-dropdown-link-color: #fff;
-// $topbar-dropdown-link-bg: #333;
+$topbar-dropdown-bg: $topbar-bg-color;
+$topbar-dropdown-link-color: $white;
+$topbar-dropdown-link-bg: $topbar-bg-color;
 // $topbar-dropdown-link-weight: $font-weight-normal;
 // $topbar-dropdown-toggle-size: 5px;
-// $topbar-dropdown-toggle-color: #fff;
+$topbar-dropdown-toggle-color: $white;
 // $topbar-dropdown-toggle-alpha: 0.4;
-
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: #fff;
-// $topbar-link-color-hover: #fff;
-// $topbar-link-color-active: #fff;
-// $topbar-link-color-active-hover: #fff;
-// $topbar-link-weight: $font-weight-normal;
+$topbar-link-color: $white;
+$topbar-link-color-hover: $white;
+$topbar-link-color-active: $topbar-link-color;
+$topbar-link-color-active-hover: $white;
+// $topbar-link-weight: normal;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
-// $topbar-link-bg: $topbar-bg;
-// $topbar-link-bg-color-hover: #272727;
-// $topbar-link-bg-hover: #272727;
-// $topbar-link-bg-active: $primary-color;
-// $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
+$topbar-link-bg: $topbar-bg-color;
+$topbar-link-bg-hover: $top-bar-bg-hover;
+$topbar-link-bg-active: $topbar-bg-color;
+$topbar-link-bg-active-hover: $top-bar-bg-hover;
 // $topbar-link-font-family: $body-font-family;
 // $topbar-link-text-transform: none;
 // $topbar-link-padding: $topbar-height / 3;
@@ -1227,20 +1234,20 @@ $yellow: #FFFFFF;
 // $topbar-button-font-size: 0.75rem;
 // $topbar-button-top: 7px;
 
-// $topbar-dropdown-label-color: #777;
+$topbar-dropdown-label-color: $topbar-link-color;
 // $topbar-dropdown-label-text-transform: uppercase;
-// $topbar-dropdown-label-font-weight: $font-weight-bold;
+// $topbar-dropdown-label-font-weight: bold;
 // $topbar-dropdown-label-font-size: rem-calc(10);
-// $topbar-dropdown-label-bg: #333;
+$topbar-dropdown-label-bg: $topbar-bg-color;
 
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;
 // $topbar-menu-link-font-size: rem-calc(13);
-// $topbar-menu-link-weight: $font-weight-bold;
-// $topbar-menu-link-color: #fff;
-// $topbar-menu-icon-color: #fff;
-// $topbar-menu-link-color-toggled: #888;
-// $topbar-menu-icon-color-toggled: #888;
+// $topbar-menu-link-weight: bold;
+$topbar-menu-link-color: $white;
+$topbar-menu-icon-color: $white;
+$topbar-menu-link-color-toggled: $white;
+$topbar-menu-icon-color-toggled: $white;
 
 // Transitions and breakpoint styles
 // $topbar-transition-speed: 300ms;
@@ -1249,8 +1256,8 @@ $yellow: #FFFFFF;
 // $topbar-media-query: $medium-up;
 
 // Divider Styles
-// $topbar-divider-border-bottom: solid 1px  scale-color($topbar-bg-color, $lightness: 13%);
-// $topbar-divider-border-top: solid 1px scale-color($topbar-bg-color, $lightness: -50%);
+$topbar-divider-border-bottom: solid 1px $white;//scale-color($topbar-bg-color, $lightness: 13%);
+$topbar-divider-border-top: solid 1px $white;//scale-color($topbar-bg-color, $lightness: -50%);
 
 // Sticky Class
 // $topbar-sticky-class: ".sticky";

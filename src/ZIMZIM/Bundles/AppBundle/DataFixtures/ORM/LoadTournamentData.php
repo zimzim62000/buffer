@@ -27,6 +27,6 @@ class LoadTournamentData extends AbstractFixture implements OrderedFixtureInterf
 
     public function getOrder()
     {
-        return 2;
+        return 3;
     }
 }

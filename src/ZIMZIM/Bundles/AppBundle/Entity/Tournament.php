@@ -32,6 +32,7 @@ class Tournament
      * @var string
      *
      * @Assert\NotBlank()
+     *
      * @GRID\Column(title="entity.app.tournament.name",operatorsVisible=false)
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
@@ -96,26 +97,35 @@ class Tournament
      */
     private $updatedAt;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Game", mappedBy="tournament")
+     */
+    private $games;
 
     /**
-    * @var ArrayCollection
-    *
-    * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\UserTournament", mappedBy="tournament", cascade={"persist"})
-    */
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\UserTournament", mappedBy="tournament", cascade={"persist"})
+     */
     private $userTournaments;
 
-    public function  __toString(){
+    public function  __toString()
+    {
         return $this->name;
     }
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->userTournaments = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -138,7 +148,7 @@ class Tournament
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -161,7 +171,7 @@ class Tournament
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
@@ -184,7 +194,7 @@ class Tournament
     /**
      * Get dateStart
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateStart()
     {
@@ -207,7 +217,7 @@ class Tournament
     /**
      * Get dateEnd
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateEnd()
     {
@@ -230,7 +240,7 @@ class Tournament
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled()
     {
@@ -253,7 +263,7 @@ class Tournament
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -276,7 +286,7 @@ class Tournament
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
