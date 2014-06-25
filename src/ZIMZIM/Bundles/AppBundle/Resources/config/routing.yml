@@ -29,3 +29,11 @@ ZIMZIMBundlesAppBundle_zimzim_bundles_app_adminteam:
 ZIMZIMBundlesAppBundle_zimzim_bundles_app_tournamentday:
     resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/tournamentday.yml"
     prefix:   /admin/tournamentday/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_admingame:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/admingame.yml"
+    prefix:   /admin/game/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_game:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/game.yml"
+    prefix:   /game/

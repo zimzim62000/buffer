@@ -24,6 +24,7 @@ class Game
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @GRID\Column(visible=false, sortable=false, filterable=false, title="entity.app.game.id", groups={"admin"})
+     * @GRID\Column(operatorsVisible=false, visible=false, sortable=false, filterable=false, groups={"user"})
      */
     private $id;
 
@@ -32,8 +33,10 @@ class Game
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(field="teamA.name", title="entity.app.game.teamhome",operatorsVisible=false,
-     * source=true, filter="select", groups={"admin", "user"})
+     * @GRID\Column(field="tournament.name", title="entity.app.game.tournament",operatorsVisible=false,
+     * source=true, filter="select", groups={"admin"})
+     *
+     * @GRID\Column(operatorsVisible=false, visible=false, sortable=false, filterable=false, groups={"user"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Tournament", inversedBy="gameHome")
      * @ORM\JoinColumn(name="id_tournament", referencedColumnName="id", nullable=false)
@@ -45,8 +48,11 @@ class Game
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(field="teamA.name", title="entity.app.game.teamhome",operatorsVisible=false,
-     * source=true, filter="select", groups={"admin", "user"})
+     * @GRID\Column(field="teamHome.name", title="entity.app.game.teamhome",operatorsVisible=false,
+     * source=true, filter="select", groups={"admin"})
+     *
+     * @GRID\Column(field="teamHome.name", title="entity.app.game.teamhome",operatorsVisible=false,
+     * source=true, filter="select", groups={"user"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Team", inversedBy="gamesHome")
      * @ORM\JoinColumn(name="id_team_home", referencedColumnName="id", nullable=false)
@@ -58,8 +64,11 @@ class Game
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(field="teamB.name", title="entity.app.game.teamouter", operatorsVisible=false,
-     * source=true, filter="select", groups={"admin", "user"})
+     * @GRID\Column(field="teamOuter.name", title="entity.app.game.teamouter", operatorsVisible=false,
+     * source=true, filter="select", groups={"admin"})
+     *
+     * @GRID\Column(field="teamOuter.name", title="entity.app.game.teamouter", operatorsVisible=false,
+     * source=true, filter="select", groups={"user"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Team", inversedBy="gamesOuter")
      * @ORM\JoinColumn(name="id_team_outer", referencedColumnName="id", nullable=false)
@@ -69,10 +78,11 @@ class Game
     /**
      * @var integer
      *
-     * @Assert\NotBlank(groups={"update"})
+     * @Assert\NotBlank(groups={"score"})
      *
-     * @GRID\Column(operatorsVisible=false, filterable=false, role="ROLE_ADMIN",
+     * @GRID\Column(operatorsVisible=false, filterable=false,
      * title="entity.app.game.scorehome", groups={"admin"})
+     * @GRID\Column(operatorsVisible=false, visible=false, sortable=false, filterable=false, groups={"user"})
      *
      * @ORM\Column(name="id_score_team_home", type="integer", nullable=true)
      */
@@ -81,10 +91,11 @@ class Game
     /**
      * @var integer
      *
-     * @Assert\NotBlank(groups={"update"})
+     * @Assert\NotBlank(groups={"score"})
      *
-     * @GRID\Column(operatorsVisible=false, filterable=false, role="ROLE_ADMIN",
+     * @GRID\Column(operatorsVisible=false, filterable=false,
      * title="entity.app.game.scoreouter", groups={"admin"})
+     * @GRID\Column(operatorsVisible=false, visible=false, sortable=false, filterable=false, groups={"user"})
      *
      * @ORM\Column(name="id_score_team_outer", type="integer", nullable=true)
      */
@@ -95,9 +106,10 @@ class Game
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(format="d/m - H:i", operatorsVisible=false, title="grid.columns.game.date"
-     * , groups={"admin", "user"})
-     *
+     * @GRID\Column(format="d/m - H:i", operatorsVisible=false, title="entity.app.game.date"
+     * , groups={"admin"})
+     * @GRID\Column(format="d/m - H:i", operatorsVisible=false, title="entity.app.game.date"
+     * , groups={"user"})
      *
      * @ORM\Column(name="date", type="datetime")
      */
@@ -108,8 +120,11 @@ class Game
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(operatorsVisible=false, filterable=false, role="ROLE_ADMIN",
+     * @GRID\Column(operatorsVisible=false, field="tournamentDay.name", filterable=false,
      * title="entity.app.game.dayGame", groups={"admin"})
+     *
+     * @GRID\Column(field="tournamentDay.name", title="entity.app.game.dayGame",operatorsVisible=false,
+     * source=true, filter="select", groups={"user"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\TournamentDay", inversedBy="games")
      * @ORM\JoinColumn(name="id_tournament_day", referencedColumnName="id", nullable=false)
@@ -121,7 +136,7 @@ class Game
      *
      * @Gedmo\Timestampable(on="create")
      *
-     * @GRID\Column(operatorsVisible=false, visible=false)
+     * @GRID\Column(operatorsVisible=false, visible=false, filterable=false)
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
@@ -131,7 +146,7 @@ class Game
      *
      * @Gedmo\Timestampable(on="update")
      *
-     * @GRID\Column(operatorsVisible=false, visible=false)
+     * @GRID\Column(operatorsVisible=false, visible=false, filterable=false)
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;

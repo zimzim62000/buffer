@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ 'views.bundles.app.game.index.title'|trans }}
+{% endblock title %}
+
+{% block page %}
+
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h1 class="text-center headerpagehome">
+                {{ 'views.bundles.app.game.index.title'|trans }}
+            </h1>
+        </div>
+    </div>
+
+    {{ grid_search(grid) }}
+
+    {{ grid(grid) }}
+
+{% endblock %}

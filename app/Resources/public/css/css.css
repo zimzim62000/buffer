@@ -6682,3 +6682,14 @@ span.versus {
 div.box-item:hover {
   background-color: #e6e6e6;
 }
+
+@media only screen and (max-width: 40em) {
+  /* line 172, ../scss/css.scss */
+  table tr td, table tr th {
+    font-size: 0.7rem !important;
+  }
+  /* line 175, ../scss/css.scss */
+  table tr td a, table tr th a {
+    font-size: 0.7rem !important;
+  }
+}

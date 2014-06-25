@@ -91,7 +91,11 @@ entity:
             id: id
             teamhome: "eguipe"
             teamouter: "eguipe"
-
+            tournament: "Tournoi"
+            scorehome: "Score"
+            scoreouter: "Score"
+            date: "Date"
+            dayGame: "Journée"
 form:
     app:
         type:

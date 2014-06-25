@@ -1,0 +1,62 @@
+{% extends '::base.html.twig' %}
+
+
+{% block title %}
+    {{ 'zimzim_bundles_app_admingame.index.title'|trans }}
+{% endblock title %}
+
+{% block page %}
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h1 class="text-center title">Entity</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <table class="width-100 panel">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                            <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Scoreteamhome</th>
+                            <td>{{ entity.scoreTeamHome }}</td>
+                    </tr>
+                    <tr>
+                        <th>Scoreteamouter</th>
+                            <td>{{ entity.scoreTeamOuter }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                            <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Createdat</th>
+                            <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Updatedat</th>
+                            <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+                        <div class="row">
+    <div class="small-12 large-4 columns text-center">
+        <a class="tiny button round" href="{{ path('zimzim_bundles_app_admingame') }}">
+            {{ 'link.return'|trans }}
+        </a>
+    </div>
+    <div class="small-12 large-4 columns text-center">
+        <a class="tiny button round" href="{{ path('zimzim_bundles_app_admingame_edit', { 'id': entity.id }) }}">
+            {{ 'button.update'|trans }}
+        </a>
+    </div>
+    <div class="small-12 large-4 columns text-center">
+        {{ form(delete_form) }}
+    </div>
+</div>
+        </div>
+    </div>
+{% endblock %}

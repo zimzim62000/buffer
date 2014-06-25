@@ -168,3 +168,12 @@ span.versus {
 div.box-item:hover{
     background-color: scale-color( $body-bg, $lightness: -10% );
 }
+
+table tr td, table tr th{
+    @media #{$small-only} {
+        font-size: 0.7rem !important;
+        a {
+            font-size: 0.7rem !important;
+        }
+    }
+}

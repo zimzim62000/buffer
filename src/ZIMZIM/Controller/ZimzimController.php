@@ -16,7 +16,13 @@ class ZimzimController extends Controller{
     {
 
         $grid = $this->get('grid');
-        $source = new Entity($data['entity']);
+
+        $type = 'default';
+        if (isset($data['type'])) {
+            $type = $data['type'];
+        }
+
+        $source = new Entity($data['entity'], $type);
 
         if (isset($data['show'])) {
             $rowAction = new RowAction("button.show", $data['show']);
@@ -25,6 +31,11 @@ class ZimzimController extends Controller{
 
         if (isset($data['edit'])) {
             $rowAction = new RowAction("button.update", $data['edit']);
+            $grid->addRowAction($rowAction);
+        }
+
+        if (isset($data['score'])) {
+            $rowAction = new RowAction("button.score", $data['score']);
             $grid->addRowAction($rowAction);
         }
 

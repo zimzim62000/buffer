@@ -1,0 +1,14 @@
+zimzim_bundles_app_game:
+    pattern:  /{id}/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:indexuser" }
+    requirements: { _method: get|post }
+
+zimzim_bundles_app_game_show:
+    pattern:  /{id}/show/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:showuser" }
+    requirements: { _method: get }
+
+zimzim_bundles_app_game_score:
+    pattern:  /{id}/score/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:scoreuser" }
+    requirements: { _method: get|post }

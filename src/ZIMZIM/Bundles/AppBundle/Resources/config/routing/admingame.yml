@@ -1,0 +1,30 @@
+zimzim_bundles_app_admingame:
+    pattern:  /
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:index" }
+
+zimzim_bundles_app_admingame_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:show" }
+
+zimzim_bundles_app_admingame_new:
+    pattern:  /new
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:new" }
+
+zimzim_bundles_app_admingame_create:
+    pattern:  /create
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:create" }
+    requirements: { _method: post }
+
+zimzim_bundles_app_admingame_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:edit" }
+
+zimzim_bundles_app_admingame_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:update" }
+    requirements: { _method: post|put }
+
+zimzim_bundles_app_admingame_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Game:delete" }
+    requirements: { _method: post|delete }

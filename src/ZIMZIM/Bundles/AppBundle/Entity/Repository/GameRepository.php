@@ -3,6 +3,7 @@
 namespace ZIMZIM\Bundles\AppBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Security\Core\SecurityContext;
 
 /**
  * GameRepository
@@ -12,4 +13,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class GameRepository extends EntityRepository
 {
+    public function getList($source, SecurityContext $securityContext, $id_tournament){
+
+        $tableAlias = $source->getTableAlias();
+
+        $source->manipulateQuery(
+            function ($query) use ($tableAlias, $securityContext, $id_tournament) {
+
+                return $query
+                    ->andWhere($tableAlias.'.tournament = :id_tournament')
+                    ->setParameter('id_tournament', $id_tournament);
+            }
+        );
+        return $source;
+    }
 }
