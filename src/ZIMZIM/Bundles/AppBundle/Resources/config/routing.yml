@@ -21,3 +21,11 @@ ZIMZIMBundlesAppBundle_zimzim_bundles_app_adminrequestuser:
 ZIMZIMBundlesAppBundle_zimzim_bundles_app_requestuser:
     resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/requestuser.yml"
     prefix:   /requestuser/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_adminteam:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/adminteam.yml"
+    prefix:   /admin/team/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_tournamentday:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/tournamentday.yml"
+    prefix:   /admin/tournamentday/

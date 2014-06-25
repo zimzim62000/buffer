@@ -4,7 +4,7 @@ namespace ZIMZIM\Bundles\AppBundle\Tests\Controller;
 
 use ZIMZIM\Test\ZimzimWebTestCase;
 
-class UserTournamentControllerTest extends ZimzimWebTestCase
+class TeamControllerTest extends ZimzimWebTestCase
 {
     public $client;
     public $router;
@@ -17,7 +17,7 @@ class UserTournamentControllerTest extends ZimzimWebTestCase
 
     public function testIndex()
     {
-        $route = $this->router->generate('zimzim_bundles_app_adminusertournament');
+        $route = $this->router->generate('zimzim_bundles_app_adminteam');
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -28,7 +28,7 @@ class UserTournamentControllerTest extends ZimzimWebTestCase
 
     public function testShow()
     {
-        $route = $this->router->generate('zimzim_bundles_app_adminusertournament_show', array('id' => 1));
+        $route = $this->router->generate('zimzim_bundles_app_adminteam_show', array('id' => 1));
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -39,7 +39,7 @@ class UserTournamentControllerTest extends ZimzimWebTestCase
 
     public function testNew()
     {
-        $route = $this->router->generate('zimzim_bundles_app_adminusertournament_new');
+        $route = $this->router->generate('zimzim_bundles_app_adminteam_new');
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -50,7 +50,7 @@ class UserTournamentControllerTest extends ZimzimWebTestCase
 
     public function testEdit()
     {
-        $route = $this->router->generate('zimzim_bundles_app_adminusertournament_edit', array('id' => 1));
+        $route = $this->router->generate('zimzim_bundles_app_adminteam_edit', array('id' => 1));
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -58,5 +58,4 @@ class UserTournamentControllerTest extends ZimzimWebTestCase
             "Unexpected HTTP status code for GET " . $route
         );
     }
-
 }

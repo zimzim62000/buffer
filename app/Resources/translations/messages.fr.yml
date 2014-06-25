@@ -43,6 +43,8 @@ views:
         usertournament: "Tournoi User"
         requestuser: "Requete user"
         mygames: "Mes parties"
+        team: "Equipes"
+        tournamentday: "Journée"
     HWIOAuthBundle:
         connect:
             login:

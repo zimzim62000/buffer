@@ -1,0 +1,30 @@
+zimzim_bundles_app_tournamentday:
+    path:     /
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:TournamentDay:index" }
+
+zimzim_bundles_app_tournamentday_show:
+    path:     /{id}/show
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:TournamentDay:show" }
+
+zimzim_bundles_app_tournamentday_new:
+    path:     /new
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:TournamentDay:new" }
+
+zimzim_bundles_app_tournamentday_create:
+    path:     /create
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:TournamentDay:create" }
+    requirements: { _method: post }
+
+zimzim_bundles_app_tournamentday_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:TournamentDay:edit" }
+
+zimzim_bundles_app_tournamentday_update:
+    path:     /{id}/update
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:TournamentDay:update" }
+    requirements: { _method: post|put }
+
+zimzim_bundles_app_tournamentday_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:TournamentDay:delete" }
+    requirements: { _method: post|delete }

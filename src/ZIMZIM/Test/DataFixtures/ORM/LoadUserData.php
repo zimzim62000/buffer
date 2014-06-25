@@ -1,6 +1,6 @@
 <?php
 
-namespace ZIMZIM\Bundles\UserBundle\DataFixtures\ORM;
+namespace ZIMZIM\Test\DataFixtures\ORM;
 
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -25,15 +25,16 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 
 
         $zimzim = new User();
-        $zimzim->setEmail('vw@centaure-systems.fr');
-        $zimzim->setPlainPassword('GT5Z');
+        $zimzim->setEmail('zimzimuser@gmail.com');
+        $zimzim->setPlainPassword('170183');
         $zimzim->addRole('ROLE_USER');
         $zimzim->setEnabled(true);
-        $zimzim->setUsername('Valentin');
-        $zimzim->setFirstname('Valentin');
-        $zimzim->setLastname('Wojtkowiak');
+        $zimzim->setUsername('zimzimuser');
+        $zimzim->setFirstname('Fabien');
+        $zimzim->setLastname('Zimmermann');
         $om->persist($zimzim);
-        $this->addReference('valentin', $zimzim);
+        $this->addReference('zimzimuser', $zimzim);
+
 
         $om->flush();
     }

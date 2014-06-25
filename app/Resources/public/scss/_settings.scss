@@ -14,19 +14,19 @@
 
 
 
-//$black: #000000;
-//$blue: #000000;
-//$white: #FFFFFF;
-//$green: #000000;
-//$sable: #FFFFFF;
-//$yellow: #FFFFFF;
-
 $black: #000000;
-$blue: #596AB4;
+$blue: #000000;
 $white: #FFFFFF;
-$green: #3DA964;
-$sable: #F9F5D1;
-$yellow: #F3BD36;
+$green: #000000;
+$sable: #FFFFFF;
+$yellow: #FFFFFF;
+
+//$black: #000000;
+//$blue: #596AB4;
+//$white: #FFFFFF;
+//$green: #3DA964;
+//$sable: #F9F5D1;
+//$yellow: #F3BD36;
 
 // $experimental: true;
 
@@ -1195,8 +1195,8 @@ $button-function-factor: +20%;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: $yellow;
-$top-bar-bg-hover: scale-color( $yellow, $lightness: +20% );
+$topbar-bg-color: scale-color( $yellow, $lightness: -20% );//$yellow;
+$top-bar-bg-hover: scale-color( $yellow, $lightness: -40% );
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin

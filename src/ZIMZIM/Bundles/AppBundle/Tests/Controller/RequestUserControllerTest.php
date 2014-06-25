@@ -6,7 +6,6 @@ use ZIMZIM\Test\ZimzimWebTestCase;
 
 class RequestUserControllerTest extends ZimzimWebTestCase
 {
-    /*
     public $client;
     public $router;
 
@@ -18,7 +17,7 @@ class RequestUserControllerTest extends ZimzimWebTestCase
 
     public function testIndex()
     {
-        $route = $this->router->generate('centaure_%bundle%_%controller%');
+        $route = $this->router->generate('zimzim_bundles_app_adminrequestuser');
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -29,7 +28,7 @@ class RequestUserControllerTest extends ZimzimWebTestCase
 
     public function testShow()
     {
-        $route = $this->router->generate('centaure_%bundle%_%controller%_show', array('id' => 1));
+        $route = $this->router->generate('zimzim_bundles_app_adminrequestuser_show', array('id' => 1));
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -40,7 +39,7 @@ class RequestUserControllerTest extends ZimzimWebTestCase
 
     public function testNew()
     {
-        $route = $this->router->generate('centaure_%bundle%_%controller%_new');
+        $route = $this->router->generate('zimzim_bundles_app_adminrequestuser_new');
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -51,13 +50,13 @@ class RequestUserControllerTest extends ZimzimWebTestCase
 
     public function testEdit()
     {
-        $route = $this->router->generate('centaure_%bundle%_%controller%_edit', array('id' => 1));
+        $route = $this->router->generate('zimzim_bundles_app_adminrequestuser_edit', array('id' => 1));
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
             $this->client->getResponse()->getStatusCode(),
             "Unexpected HTTP status code for GET " . $route
         );
-}
-    */
+    }
+
 }

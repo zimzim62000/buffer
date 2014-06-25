@@ -1,0 +1,30 @@
+zimzim_bundles_app_adminteam:
+    path:     /
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Team:index" }
+
+zimzim_bundles_app_adminteam_show:
+    path:     /{id}/show
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Team:show" }
+
+zimzim_bundles_app_adminteam_new:
+    path:     /new
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Team:new" }
+
+zimzim_bundles_app_adminteam_create:
+    path:     /create
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Team:create" }
+    requirements: { _method: post }
+
+zimzim_bundles_app_adminteam_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Team:edit" }
+
+zimzim_bundles_app_adminteam_update:
+    path:     /{id}/update
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Team:update" }
+    requirements: { _method: post|put }
+
+zimzim_bundles_app_adminteam_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Team:delete" }
+    requirements: { _method: post|delete }

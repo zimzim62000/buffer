@@ -4,8 +4,8 @@ security:
 
     role_hierarchy:
         ROLE_USER: ROLE_USER
-        ROLE_ADMIN: [ ROLE_USER, ROLE_ADMIN ]
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SCORE: [ ROLE_USER, ROLE_SCORE ]
+        ROLE_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_SCORE ]
 
     providers:
         fos_userbundle:
