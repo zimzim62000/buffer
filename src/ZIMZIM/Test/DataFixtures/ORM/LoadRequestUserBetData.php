@@ -11,6 +11,7 @@ class LoadRequestUserBetData extends AbstractFixture implements OrderedFixtureIn
 {
     public function load(ObjectManager $om)
     {
+        /*
         $requestUserBet = new RequestUserBet();
         $requestUserBet->setGame($this->getReference('game1'));
         $requestUserBet->setRequestUser($this->getReference('zimzimrequestuser1'));
@@ -20,25 +21,25 @@ class LoadRequestUserBetData extends AbstractFixture implements OrderedFixtureIn
 
         $requestUserBet = new RequestUserBet();
         $requestUserBet->setGame($this->getReference('game1'));
-        $requestUserBet->setRequestUser($this->getReference('zimzimrequestuser2'));
+        $requestUserBet->setRequestUser($this->getReference('zimzimuserrequestuser1'));
         $requestUserBet->setScoreTeamHome(0);
         $requestUserBet->setScoreTeamOuter(1);
         $om->persist($requestUserBet);
 
         $requestUserBet = new RequestUserBet();
         $requestUserBet->setGame($this->getReference('game2'));
-        $requestUserBet->setRequestUser($this->getReference('zimzimrequestuser1'));
+        $requestUserBet->setRequestUser($this->getReference('zimzimrequestuser2'));
         $requestUserBet->setScoreTeamHome(3);
         $requestUserBet->setScoreTeamOuter(1);
         $om->persist($requestUserBet);
 
         $requestUserBet = new RequestUserBet();
         $requestUserBet->setGame($this->getReference('game2'));
-        $requestUserBet->setRequestUser($this->getReference('zimzimrequestuser2'));
+        $requestUserBet->setRequestUser($this->getReference('zimzimuserrequestuser2'));
         $requestUserBet->setScoreTeamHome(0);
         $requestUserBet->setScoreTeamOuter(1);
         $om->persist($requestUserBet);
-
+*/
         $om->flush();
     }
 

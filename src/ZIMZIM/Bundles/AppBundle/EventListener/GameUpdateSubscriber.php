@@ -10,16 +10,21 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\SecurityContext;
+use ZIMZIM\Bundles\AppBundle\Calculate\Calculatescore;
+use ZIMZIM\Bundles\AppBundle\Entity\Score;
 use ZIMZIM\Bundles\AppBundle\Event\GameEvent;
 use ZIMZIM\Bundles\AppBundle\ZIMZIMAppEvents;
 
 class GameUpdateSubscriber implements EventSubscriberInterface
 {
     private $em;
+    private $calculatescore;
+    private $score;
 
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, Calculatescore $calculatescore)
     {
         $this->em = $em;
+        $this->calculatescore = $calculatescore;
     }
 
     public static function getSubscribedEvents()
@@ -31,6 +36,10 @@ class GameUpdateSubscriber implements EventSubscriberInterface
 
     public function onDoUpdateScoreGame(GameEvent $event)
     {
+
+        $game = $event->getGame();
+
+        $this->calculatescore->calcul($game);
 
     }
 }

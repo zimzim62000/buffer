@@ -1,3 +1,6 @@
 services:
     zimzim_bundles_app.calculate.gamepoint:
         class: ZIMZIM\Bundles\AppBundle\Calculate\CalculateGamePoint
+    zimzim_bundles_app.calculate.score:
+        class: ZIMZIM\Bundles\AppBundle\Calculate\CalculateScore
+        arguments: [ @doctrine.orm.entity_manager, @zimzim_bundles_app.calculate.gamepoint, @zimzim_bundles_app.entity.score ]

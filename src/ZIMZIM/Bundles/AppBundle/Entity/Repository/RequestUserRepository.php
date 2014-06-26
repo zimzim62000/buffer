@@ -4,6 +4,7 @@ namespace ZIMZIM\Bundles\AppBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\SecurityContext;
+use ZIMZIM\Bundles\AppBundle\Entity\Game;
 
 /**
  * GameRepository
@@ -28,4 +29,24 @@ class RequestUserRepository extends EntityRepository
         return $query->getQuery()->getResult();
 
     }
+
+
+    public function getEnabledByGame(Game $game){
+
+        $query = $this->createQueryBuilder('ru');
+        $query->join('ru.user', 'u')
+            ->join('ru.userTournament', 'ut')
+            ->join('ut.tournament', 't')
+            ->join('t.games', 'g')
+            ->where('g = :game')
+            ->andWhere('ut.enabled = 1')
+            ->andWhere('ru.enabled = 1')
+            ->andWhere('t.enabled = 1')
+            ->andWhere('u.enabled = 1')
+            ->setParameter('game', $game);
+        
+        return $query->getQuery()->getResult();
+    }
+
+
 }

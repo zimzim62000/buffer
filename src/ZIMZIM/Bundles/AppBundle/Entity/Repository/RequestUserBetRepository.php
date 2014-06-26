@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\SecurityContext;
 use ZIMZIM\Bundles\AppBundle\Entity\Game;
+use ZIMZIM\Bundles\AppBundle\Entity\RequestUser;
 use ZIMZIM\Bundles\UserBundle\Entity\User;
 
 /**
@@ -26,6 +27,19 @@ class RequestUserBetRepository extends EntityRepository
             ->where('u.id = :id_user')
             ->andWhere('g.id = :id_game')
             ->setParameter('id_user', $user->getId())
+            ->setParameter('id_game', $game->getId());
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function findByGameAndRequestUser(Game $game, RequestUser $requestUser){
+
+        $query = $this->createQueryBuilder('rub');
+        $query->join('rub.game', 'g')
+            ->join('rub.requestUser', 'ru')
+            ->where('ru.id = :id_ru')
+            ->andWhere('g.id = :id_game')
+            ->setParameter('id_ru', $requestUser->getId())
             ->setParameter('id_game', $game->getId());
 
         return $query->getQuery()->getResult();

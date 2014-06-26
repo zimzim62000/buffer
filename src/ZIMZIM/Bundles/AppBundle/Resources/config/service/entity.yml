@@ -1,3 +1,5 @@
 services:
     zimzim_bundles_app.entity.requestuser:
         class: ZIMZIM\Bundles\AppBundle\Entity\RequestUser
+    zimzim_bundles_app.entity.score:
+        class: ZIMZIM\Bundles\AppBundle\Entity\Score

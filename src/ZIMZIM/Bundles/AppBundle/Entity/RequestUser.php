@@ -102,23 +102,34 @@ class RequestUser
      */
     private $requestsUserBet;
 
-    public function __construct(){
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Score", mappedBy="requestUser")
+     */
+    private $scores;
+
+
+    public function __construct()
+    {
 
         $this->requestsUserBet = new ArrayCollection();
-
+        $this->scores = new ArrayCollection();
     }
 
-    public function __toString(){
-        if($this->user instanceof \ZIMZIM\Bundles\UserBundle\Entity\User){
-            return $this->user->getUsername().' '.$this->userTournament->getName();
+    public function __toString()
+    {
+        if ($this->user instanceof \ZIMZIM\Bundles\UserBundle\Entity\User) {
+            return $this->user->getUsername() . ' ' . $this->userTournament->getName();
         }
-        return $this->email.' '.$this->userTournament->getName();
+
+        return $this->email . ' ' . $this->userTournament->getName();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -141,7 +152,7 @@ class RequestUser
     /**
      * Get user
      *
-     * @return integer 
+     * @return integer
      */
     public function getUser()
     {
@@ -164,7 +175,7 @@ class RequestUser
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -187,7 +198,7 @@ class RequestUser
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -210,7 +221,7 @@ class RequestUser
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -233,7 +244,7 @@ class RequestUser
     /**
      * Get enabled
      *
-     * @return integer 
+     * @return integer
      */
     public function getEnabled()
     {
@@ -292,6 +303,24 @@ class RequestUser
     public function getRequestsUserBet()
     {
         return $this->requestsUserBet;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $scores
+     */
+    public function setScores($scores)
+    {
+        $this->scores = $scores;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getScores()
+    {
+        return $this->scores;
     }
 
 }

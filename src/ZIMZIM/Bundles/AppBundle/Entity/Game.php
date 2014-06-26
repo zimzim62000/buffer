@@ -84,7 +84,7 @@ class Game
      * title="entity.app.game.scorehome", groups={"admin"})
      * @GRID\Column(operatorsVisible=false, visible=false, sortable=false, filterable=false, groups={"user"})
      *
-     * @ORM\Column(name="id_score_team_home", type="integer", nullable=true)
+     * @ORM\Column(name="score_team_home", type="integer", nullable=true)
      */
     private $scoreTeamHome;
 
@@ -97,7 +97,7 @@ class Game
      * title="entity.app.game.scoreouter", groups={"admin"})
      * @GRID\Column(operatorsVisible=false, visible=false, sortable=false, filterable=false, groups={"user"})
      *
-     * @ORM\Column(name="id_score_team_outer", type="integer", nullable=true)
+     * @ORM\Column(name="score_team_outer", type="integer", nullable=true)
      */
     private $scoreTeamOuter;
 
@@ -158,15 +158,27 @@ class Game
      */
     private $requestsUserBet;
 
-    public function __construct(){
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Score", mappedBy="game")
+     */
+    private $scores;
+
+
+    public function __construct()
+    {
 
         $this->requestsUserBet = new ArrayCollection();
+        $this->scores = new ArrayCollection();
 
     }
 
 
-    public function __toString(){
-        return $this->getTournamentDay().' : '.$this->getTeamHome().' - '.$this->getTeamOuter();
+    public function __toString()
+    {
+        return $this->getTournamentDay() . ' : ' . $this->getTeamHome() . ' - ' . $this->getTeamOuter();
     }
 
     /**
@@ -404,5 +416,22 @@ class Game
         return $this->requestsUserBet;
     }
 
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $scores
+     */
+    public function setScores($scores)
+    {
+        $this->scores = $scores;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getScores()
+    {
+        return $this->scores;
+    }
 
 }

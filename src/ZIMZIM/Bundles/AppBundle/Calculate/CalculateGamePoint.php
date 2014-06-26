@@ -11,19 +11,19 @@ class CalculateGamePoint
     const NULL = 0;
 
     /**
-     * @var ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet
+     * @var \ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet
      */
     private $requestUserBet;
 
     /**
-     * @var ZIMZIM\Bundles\AppBundle\Entity\Game
+     * @var \ZIMZIM\Bundles\AppBundle\Entity\Game
      */
     private $game;
 
     /**
-     * @param \ZIMZIM\Bundles\AppBundle\Calculate\ZIMZIM\Bundles\AppBundle\Entity\Game $game
+     * @param \ZIMZIM\Bundles\AppBundle\Entity\Game $game
      */
-    public function setGame(ZIMZIM\Bundles\AppBundle\Entity\Game $game)
+    public function setGame(\ZIMZIM\Bundles\AppBundle\Entity\Game $game)
     {
         $this->game = $game;
 
@@ -31,7 +31,7 @@ class CalculateGamePoint
     }
 
     /**
-     * @return \ZIMZIM\Bundles\AppBundle\Calculate\ZIMZIM\Bundles\AppBundle\Entity\Game
+     * @return \ZIMZIM\Bundles\AppBundle\Entity\Game
      */
     public function getGame()
     {
@@ -39,9 +39,9 @@ class CalculateGamePoint
     }
 
     /**
-     * @param \ZIMZIM\Bundles\AppBundle\Calculate\ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet $requestUserBet
+     * @param \ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet $requestUserBet
      */
-    public function setRequestUserBet(ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet $requestUserBet)
+    public function setRequestUserBet(\ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet $requestUserBet)
     {
         $this->requestUserBet = $requestUserBet;
 
@@ -49,7 +49,7 @@ class CalculateGamePoint
     }
 
     /**
-     * @return \ZIMZIM\Bundles\AppBundle\Calculate\ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet
+     * @return \ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet
      */
     public function getRequestUserBet()
     {
@@ -59,7 +59,6 @@ class CalculateGamePoint
 
     public function calcul()
     {
-
         if (null === $this->game->getScoreTeamHome() || null === $this->game->getScoreTeamOuter()) {
             return self::NULL;
         }

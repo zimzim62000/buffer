@@ -34,8 +34,8 @@ class RequestUserBet
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(field="game.name", title="entity.app.requestuserbet.game",operatorsVisible=false,
-     * source=true, filter="select", groups={"admin"})
+     * @GRID\Column(field="game.teamHome.name", title="entity.app.requestuserbet.game",operatorsVisible=false,
+     * source=true, filter="select", groups={"admin", "default"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Game", inversedBy="requestsUserBet")
      * @ORM\JoinColumn(name="id_game", referencedColumnName="id", nullable=false)
@@ -47,8 +47,8 @@ class RequestUserBet
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(field="requestUser.user.username", title="entity.app.requestuserbet.requestuser",operatorsVisible=false,
-     * source=true, filter="select", groups={"admin"})
+     * @GRID\Column(field="requestUser.userTournament.name", title="entity.app.requestuserbet.requestuser",operatorsVisible=false,
+     * source=true, filter="select", groups={"admin", "default"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\RequestUser", inversedBy="requestsUserBet")
      * @ORM\JoinColumn(name="id_request_user", referencedColumnName="id", nullable=false)
@@ -60,7 +60,7 @@ class RequestUserBet
      *
      * @Assert\NotBlank(groups={"score"})
      *
-     * @ORM\Column(name="scoreTeamHome", type="integer")
+     * @ORM\Column(name="score_team_home", type="integer")
      */
     private $scoreTeamHome;
 
@@ -69,7 +69,7 @@ class RequestUserBet
      *
      * @Assert\NotBlank(groups={"score"})
      *
-     * @ORM\Column(name="scoreTeamOuter", type="integer")
+     * @ORM\Column(name="score_team_outer", type="integer")
      */
     private $scoreTeamOuter;
 
@@ -93,6 +93,23 @@ class RequestUserBet
      */
     private $updatedAt;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Score", mappedBy="requestUserBet")
+     */
+    private $scores;
+
+
+    public function __construct()
+    {
+        $this->scores = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+       return $this->requestUser.' '. $this->game;
+    }
 
     /**
      * Get id
@@ -241,4 +258,24 @@ class RequestUserBet
     {
         return $this->requestUser;
     }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $scores
+     */
+    public function setScores($scores)
+    {
+        $this->scores = $scores;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getScores()
+    {
+        return $this->scores;
+    }
+
+
 }
