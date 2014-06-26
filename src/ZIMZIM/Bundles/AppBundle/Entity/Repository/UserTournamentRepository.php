@@ -5,6 +5,7 @@ namespace ZIMZIM\Bundles\AppBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\SecurityContext;
+use ZIMZIM\Bundles\AppBundle\Entity\Tournament;
 
 class UserTournamentRepository extends EntityRepository
 {
@@ -18,4 +19,19 @@ class UserTournamentRepository extends EntityRepository
             ->orderBy('ut.createdAt', 'ASC');
         return $query->getQuery()->getResult();
     }
+
+    public function findByUserAndTournament(SecurityContext $securityContext, Tournament $tournament)
+    {
+        $query = $this->createQueryBuilder('ut');
+        $query->join('ut.tournament', 't')
+            ->join('ut.requestsUser', 'ru')
+            ->where('ru.user = :user')
+            ->andWhere('t.id = :id_tournament')
+            ->setParameter('user', $securityContext->getToken()->getUser())
+            ->setParameter('id_tournament', $tournament->getId());
+
+        return $query->getQuery()->getResult();
+
+    }
+
 }

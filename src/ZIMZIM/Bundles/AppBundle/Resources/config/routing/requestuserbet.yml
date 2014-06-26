@@ -1,0 +1,4 @@
+zimzim_bundles_app_requestuserbet_bet:
+    path:     /{id}/bet/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserBet:bet" }
+    requirements: { _method: post|get }

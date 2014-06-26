@@ -10,7 +10,6 @@ final class ZIMZIMAppEvents{
      */
     const CREATE_USERTOURNAMENT = 'zimzim_bundles_app.usertournament.create';
 
-
     /**
      * do action for new request requestuser ZIMZIM\Bundles\AppBundle\Entity\RequestUser
      * when user register on mainGame on ZIMZIM\Bundles\AppBundle\Entity\RequestUser
@@ -22,4 +21,10 @@ final class ZIMZIMAppEvents{
      * when user register on mainGame on ZIMZIM\Bundles\AppBundle\Entity\RequestUser
      */
     const EMAIL_REQUESTUSER = 'zimzim_bundles_app.requestuser.sendemail';
+
+
+    const BET_ALL_GAME = 'zimzim_bundles_app.requestuserbet.bet';
+
+
+    const UPDATE_SCORE_GAME = 'zimzim_bundles_app.game.score';
 }

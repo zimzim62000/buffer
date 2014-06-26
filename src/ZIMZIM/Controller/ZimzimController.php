@@ -111,4 +111,14 @@ class ZimzimController extends Controller{
             )
         );
     }
+
+    protected function displaySuccess($message)
+    {
+        $this->addFlashMessage(
+            array(
+                'type' => 'success',
+                'message' => $message
+            )
+        );
+    }
 }

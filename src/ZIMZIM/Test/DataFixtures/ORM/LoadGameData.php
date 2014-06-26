@@ -20,6 +20,7 @@ class LoadGameData extends AbstractFixture implements OrderedFixtureInterface
         $game->setTeamOuter($this->getReference('CROATIE'));
         $game->setDate(new \DateTime('2014-06-27 22:00:00'));
         $om->persist($game);
+        $this->addReference('game1', $game);
 
         $game = new Game();
         $game->setTournament($this->getReference('WORLDCUP2014'));
@@ -28,6 +29,7 @@ class LoadGameData extends AbstractFixture implements OrderedFixtureInterface
         $game->setTeamOuter($this->getReference('FRANCE'));
         $game->setDate(new \DateTime('2014-06-28 22:00:00'));
         $om->persist($game);
+        $this->addReference('game2', $game);
 
         $game = new Game();
         $game->setTournament($this->getReference('WORLDCUP2014'));

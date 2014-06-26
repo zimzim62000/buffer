@@ -7,10 +7,23 @@
 {% block page %}
 
     <div class="row">
-        <div class="small-12 large-12 columns">
+        <div class="small-12 columns">
             <h1 class="text-center headerpagehome">
-                {{ 'views.bundles.app.game.index.title'|trans }}
+                {{ 'views.bundles.app.game.index.title'|trans }} {{ tournament.name }}
             </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-6 columns">
+            <h3 class="text-left headerpagehome">
+                {{ tournament.dateStart|date('d/m/Y') }}
+            </h3>
+        </div>
+        <div class="small-6 columns">
+            <h3 class="text-right headerpagehome">
+                {{ tournament.dateEnd|date('d/m/Y') }}
+            </h3>
         </div>
     </div>
 

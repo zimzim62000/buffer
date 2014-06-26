@@ -1,0 +1,30 @@
+zimzim_bundles_app_adminrequestuserbet:
+    path:     /
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserBet:index" }
+
+zimzim_bundles_app_adminrequestuserbet_show:
+    path:     /{id}/show
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserBet:show" }
+
+zimzim_bundles_app_adminrequestuserbet_new:
+    path:     /new
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserBet:new" }
+
+zimzim_bundles_app_adminrequestuserbet_create:
+    path:     /create
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserBet:create" }
+    requirements: { _method: post }
+
+zimzim_bundles_app_adminrequestuserbet_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserBet:edit" }
+
+zimzim_bundles_app_adminrequestuserbet_update:
+    path:     /{id}/update
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserBet:update" }
+    requirements: { _method: post|put }
+
+zimzim_bundles_app_adminrequestuserbet_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserBet:delete" }
+    requirements: { _method: post|delete }

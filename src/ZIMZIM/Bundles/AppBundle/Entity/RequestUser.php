@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * RequestUser
  *
  * @ORM\Table("parierentreamis_request_user")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ZIMZIM\Bundles\AppBundle\Entity\Repository\RequestUserRepository")
  * @UniqueEntity(fields={"email", "userTournament"}, groups={"email"},
  * message="validate.entity.app.requestuser.uniqueentity")
  */
@@ -94,6 +94,26 @@ class RequestUser
      * @ORM\Column(name="validate", type="integer", nullable=true)
      */
     private $validate;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet", mappedBy="requestUser")
+     */
+    private $requestsUserBet;
+
+    public function __construct(){
+
+        $this->requestsUserBet = new ArrayCollection();
+
+    }
+
+    public function __toString(){
+        if($this->user instanceof \ZIMZIM\Bundles\UserBundle\Entity\User){
+            return $this->user->getUsername().' '.$this->userTournament->getName();
+        }
+        return $this->email.' '.$this->userTournament->getName();
+    }
 
     /**
      * Get id
@@ -256,5 +276,22 @@ class RequestUser
         return $this->validate;
     }
 
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $requestsUserBet
+     */
+    public function setRequestsUserBet($requestsUserBet)
+    {
+        $this->requestsUserBet = $requestsUserBet;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getRequestsUserBet()
+    {
+        return $this->requestsUserBet;
+    }
 
 }

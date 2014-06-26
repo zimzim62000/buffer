@@ -4,7 +4,7 @@ namespace ZIMZIM\Bundles\AppBundle\Tests\Controller;
 
 use ZIMZIM\Test\ZimzimWebTestCase;
 
-class GameControllerTest extends ZimzimWebTestCase
+class RequestUserBetControllerTest extends ZimzimWebTestCase
 {
     public $client;
     public $router;
@@ -17,7 +17,7 @@ class GameControllerTest extends ZimzimWebTestCase
 
     public function testIndex()
     {
-        $route = $this->router->generate('zimzim_bundles_app_admingame');
+        $route = $this->router->generate('zimzim_bundles_app_adminrequestuserbet');
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -28,7 +28,7 @@ class GameControllerTest extends ZimzimWebTestCase
 
     public function testShow()
     {
-        $route = $this->router->generate('zimzim_bundles_app_admingame_show', array('id' => 1));
+        $route = $this->router->generate('zimzim_bundles_app_adminrequestuserbet_show', array('id' => 1));
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -39,7 +39,7 @@ class GameControllerTest extends ZimzimWebTestCase
 
     public function testNew()
     {
-        $route = $this->router->generate('zimzim_bundles_app_admingame_new');
+        $route = $this->router->generate('zimzim_bundles_app_adminrequestuserbet_new');
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -50,7 +50,7 @@ class GameControllerTest extends ZimzimWebTestCase
 
     public function testEdit()
     {
-        $route = $this->router->generate('zimzim_bundles_app_admingame_edit', array('id' => 1));
+        $route = $this->router->generate('zimzim_bundles_app_adminrequestuserbet_edit', array('id' => 1));
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,
@@ -59,20 +59,9 @@ class GameControllerTest extends ZimzimWebTestCase
         );
     }
 
-    public function testIndexUser()
+    public function testBet()
     {
-        $route = $this->router->generate('zimzim_bundles_app_game', array('id' => 1));
-        $crawler = $this->client->request('GET', $route);
-        $this->assertEquals(
-            200,
-            $this->client->getResponse()->getStatusCode(),
-            "Unexpected HTTP status code for GET " . $route
-        );
-    }
-
-    public function testShowUser()
-    {
-        $route = $this->router->generate('zimzim_bundles_app_game_show', array('id' => 1));
+        $route = $this->router->generate('zimzim_bundles_app_requestuserbet_bet', array('id' => 1));
         $crawler = $this->client->request('GET', $route);
         $this->assertEquals(
             200,

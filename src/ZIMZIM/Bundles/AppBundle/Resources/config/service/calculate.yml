@@ -1,0 +1,3 @@
+services:
+    zimzim_bundles_app.calculate.gamepoint:
+        class: ZIMZIM\Bundles\AppBundle\Calculate\CalculateGamePoint

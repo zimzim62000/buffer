@@ -47,3 +47,13 @@ services:
         arguments: [ @security.context ]
         tags:
             - { name: form.type, alias: zimzim_bundles_appbundle_usertournamenttype }
+    zimzim_bundles_app.requestuserbet_bettype:
+        class: ZIMZIM\Bundles\AppBundle\Form\BetType
+        arguments: [ @security.context, @translator ]
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_requestuserbet_bettype }
+    zimzim_bundles_app.requestuserbet_gamescoretype:
+        class: ZIMZIM\Bundles\AppBundle\Form\GameScoreType
+        arguments: [ @security.context, @translator ]
+        tags:
+            - { name: form.type, alias: zimzim_bundles_appbundle_gamescoretype }

@@ -38,7 +38,7 @@ class Game
      *
      * @GRID\Column(operatorsVisible=false, visible=false, sortable=false, filterable=false, groups={"user"})
      *
-     * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Tournament", inversedBy="gameHome")
+     * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Tournament", inversedBy="games")
      * @ORM\JoinColumn(name="id_tournament", referencedColumnName="id", nullable=false)
      */
     private $tournament;
@@ -120,13 +120,13 @@ class Game
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(operatorsVisible=false, field="tournamentDay.name", filterable=false,
-     * title="entity.app.game.dayGame", groups={"admin"})
+     * @GRID\Column(operatorsVisible=false, field="tournamentDay.name", filterable=true,
+     * title="entity.app.game.dayGame", source=true, filter="select", groups={"admin"})
      *
      * @GRID\Column(field="tournamentDay.name", title="entity.app.game.dayGame",operatorsVisible=false,
      * source=true, filter="select", groups={"user"})
      *
-     * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\TournamentDay", inversedBy="games")
+     * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\TournamentDay")
      * @ORM\JoinColumn(name="id_tournament_day", referencedColumnName="id", nullable=false)
      */
     private $tournamentDay;
@@ -150,6 +150,24 @@ class Game
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet", mappedBy="game")
+     */
+    private $requestsUserBet;
+
+    public function __construct(){
+
+        $this->requestsUserBet = new ArrayCollection();
+
+    }
+
+
+    public function __toString(){
+        return $this->getTournamentDay().' : '.$this->getTeamHome().' - '.$this->getTeamOuter();
+    }
 
     /**
      * Get id
@@ -367,4 +385,24 @@ class Game
     {
         return $this->tournamentDay;
     }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $requestsUserBet
+     */
+    public function setRequestsUserBet($requestsUserBet)
+    {
+        $this->requestsUserBet = $requestsUserBet;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getRequestsUserBet()
+    {
+        return $this->requestsUserBet;
+    }
+
+
 }

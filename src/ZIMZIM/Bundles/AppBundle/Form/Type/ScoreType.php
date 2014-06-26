@@ -23,7 +23,6 @@ class ScoreType extends AbstractType
                 'widget' => 'choice',
                 'choices' => $data,
                 'attr' => array(
-                    'label-inline' => 'label-inline',
                 ),
                 'empty_value' => '',
                 'required' => false

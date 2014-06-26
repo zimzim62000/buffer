@@ -37,3 +37,11 @@ ZIMZIMBundlesAppBundle_zimzim_bundles_app_admingame:
 ZIMZIMBundlesAppBundle_zimzim_bundles_app_game:
     resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/game.yml"
     prefix:   /game/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_adminrequestuserbet:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/adminrequestuserbet.yml"
+    prefix:   /admin/requestuserbet/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_requestuserbet:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/requestuserbet.yml"
+    prefix:   /requestuserbet/

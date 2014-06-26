@@ -4,6 +4,7 @@ namespace ZIMZIM\Bundles\AppBundle\Controller;
 
 use APY\DataGridBundle\Grid\Source\Entity;
 use Symfony\Component\HttpFoundation\Request;
+use ZIMZIM\Bundles\AppBundle\ZIMZIMAppEvents;
 use ZIMZIM\Controller\ZimzimController;
 
 use ZIMZIM\Bundles\AppBundle\Entity\Game;
@@ -296,6 +297,8 @@ class GameController extends ZimzimController
 
         $em = $this->container->get('doctrine')->getManager();
 
+        $tournament = $em->getRepository('ZIMZIMBundlesAppBundle:Tournament')->find($id);
+
         $em->getRepository('ZIMZIMBundlesAppBundle:Game')->getList(
             $source,
             $this->container->get('security.context'),
@@ -314,32 +317,117 @@ class GameController extends ZimzimController
             )
         );
 
-        return $this->grid->getGridResponse('ZIMZIMBundlesAppBundle:Game:indexuser.html.twig');
+        return $this->grid->getGridResponse(
+            'ZIMZIMBundlesAppBundle:Game:indexuser.html.twig',
+            array('tournament' => $tournament)
+        );
     }
 
 
     public function showUserAction($id)
     {
-
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ZIMZIMBundlesAppBundle:Game')->find($id);
+        $security = $this->container->get('security.context');
 
-        if (!$entity) {
+        $game = $em->getRepository('ZIMZIMBundlesAppBundle:Game')->find($id);
+
+        if (!$game) {
             throw $this->createNotFoundException('Unable to find Game entity.');
+        }
+
+        $userTournaments = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->findByUserAndTournament(
+            $security,
+            $game->getTournament()
+        );
+
+        foreach ($userTournaments as $userTournament) {
+
+            foreach ($userTournament->getRequestsUser() as $requestUser) {
+
+                $requestUser->setRequestsUserBet(
+                    $requestUser->getRequestsUserBet()->filter(
+                        function ($object) use ($game) {
+                            return $object->getGame()->getId() === $game->getId();
+                        }
+                    )
+                );
+            }
         }
 
         return $this->render(
             'ZIMZIMBundlesAppBundle:Game:showuser.html.twig',
             array(
-                'entity' => $entity,
+                'entity' => $game,
+                'userTournaments' => $userTournaments
             )
         );
     }
 
-    public function scoreUserAction($id)
+    public function scoreUserAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
 
+        $security = $this->container->get('security.context');
+
+        $game = $em->getRepository('ZIMZIMBundlesAppBundle:Game')->find($id);
+
+        if (!$game) {
+            throw $this->createNotFoundException('Unable to find Game entity.');
+        }
+
+        $form = $this->createScoreForm($game);
+
+        if ($request->getMethod() === 'POST') {
+
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+
+                $this->updateSuccess();
+                $em->flush();
+
+                /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+                $dispatcher = $this->container->get('event_dispatcher');
+                $Event = $this->container->get('zimzim_bundles_app.event.gameevent');
+                $Event->setGame($game);
+                $dispatcher->dispatch(ZIMZIMAppEvents::UPDATE_SCORE_GAME, $Event);
+
+                return $this->redirect($this->generateUrl('zimzim_bundles_app_game', array('id' => $id)));
+            }
+        }
+
+        return $this->render(
+            'ZIMZIMBundlesAppBundle:Game:score.html.twig',
+            array(
+                'game' => $game,
+                'form' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * Creates a form to edit a Game entity.
+     *
+     * @param Game $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createScoreForm(Game $entity)
+    {
+        $form = $this->createForm(
+            'zimzim_bundles_appbundle_gamescoretype',
+            $entity,
+            array(
+                'action' => $this->generateUrl('zimzim_bundles_app_game_score', array('id' => $entity->getId())),
+                'method' => 'POST',
+                'validation_groups' => array('score')
+            )
+        );
+
+        $form->add('submit', 'submit', array('label' => 'button.update'));
+
+        return $form;
     }
 
 }

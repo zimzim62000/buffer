@@ -1,19 +1,141 @@
 {% extends '::base.html.twig' %}
 
+{% set name = entity.teamHome~' - '~entity.teamOuter %}
 
 {% block title %}
-    {{ 'views.bundles.app.game.showuser.title'|trans }}
+    {{ 'views.bundles.app.game.showuser.titletournament'|trans({'%game%': name}) }}
 {% endblock title %}
 
 {% block page %}
+
     <div class="row">
-        <div class="small-12 large-12 columns">
+        <div class="small-12 columns">
             <h1 class="text-center headerpagehome">
-                {{ 'views.bundles.app.game.showuser.title'|trans }}
+                {{ entity.tournament.name }}
             </h1>
+        </div>
+        <div class="small-12 medium-8 columns">
+            <h2 class="text-center headerpagehome">
+                {{ 'views.bundles.app.game.showuser.titletournament'|trans({'%game%': name}) }}
+            </h2>
+        </div>
+        <div class="small-12 medium-4 columns text-right">
+            <h2 class="text-center headerpagehome">
+                {{ entity.date|date('d/m/Y H:i') }}
+            </h2>
         </div>
     </div>
 
+    <div class="row">
+        {% if entity.scoreTeamHome > -1 and entity.scoreTeamOuter > -1 %}
+            <div class="small-8 medium-4 columns">
+                <h3 class="text-center">
+                    {{ entity.teamHome.name }}
+                </h3>
+            </div>
+            <div class="small-4 medium-2 columns">
+                <h3 class="text-center">
+                    {{ entity.scoreTeamHome }}
+                </h3>
+            </div>
+            <div class="hide-for-small medium-2 columns">
+                <h3 class="text-center">
+                    {{ entity.scoreTeamOuter }}
+                </h3>
+            </div>
+            <div class="small-8 medium-4 columns">
+                <h3 class="text-center">
+                    {{ entity.teamOuter.name }}
+                </h3>
+            </div>
+            <div class="small-4 show-for-small columns">
+                <h3 class="text-center">
+                    {{ entity.scoreTeamOuter }}
+                </h3>
+            </div>
+        {% endif %}
 
+        {% if is_granted('ROLE_SCORE') %}
+            <div class="small-6 columns ">
+                <h4 class="text-center">
+                    <a href="{{ path('zimzim_bundles_app_requestuserbet_bet', {'id': entity.id}) }}"
+                       class="tiny button round">
+                        {{ 'button.bet'|trans }}
+                    </a>
+                </h4>
+            </div>
+            <div class="small-6 columns ">
+                <h4 class="text-center">
+                    <a href="{{ path('zimzim_bundles_app_game_score', {'id': entity.id}) }}"
+                       class="tiny button round">
+                        {{ 'button.update'|trans }} {{ 'button.score'|trans }}
+                    </a>
+                </h4>
+            </div>
+        {% else %}
+            <div class="small-12 columns ">
+                <h4 class="text-center">
+                    <a href="{{ path('zimzim_bundles_app_requestuserbet_bet', {'id': entity.id}) }}"
+                       class="tiny button round">
+                        {{ 'button.bet'|trans }}
+                    </a>
+                </h4>
+            </div>
+        {% endif %}
+
+
+    </div>
+
+    {% for userTournament in userTournaments %}
+
+        <div class="panel">
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <h3 class="text-center headerpagehome">
+                        {{ userTournament.name }}
+                    </h3>
+                </div>
+                <div class="small-6 columns">
+                    <h4 class="text-center">
+                        <small>{{ userTournament.dateStart|date('d/m/Y') }}</small>
+                    </h4>
+                </div>
+                <div class="small-6 columns">
+                    <h4 class="text-center">
+                        <small>{{ userTournament.dateEnd|date('d/m/Y') }}</small>
+                    </h4>
+                </div>
+            </div>
+
+            {% for requestUser in userTournament.requestsUser if requestUser.user != null %}
+                <div class="row">
+                    <div class="small-6 medium-6 columns">
+                        <h4 class="text-center headerpagehome">
+                            {{ requestUser.user.username }}
+                        </h4>
+                    </div>
+                    <div class="small-6 medium-6 columns">
+                        <h5 class="text-center headerpagehome">
+                            {% if requestUser.requestsUserBet.first != '' and requestUser.requestsUserBet.first.scoreTeamOuter != '' %}
+                                {{ requestUser.requestsUserBet.first.scoreTeamHome }} - {{ requestUser.requestsUserBet.first.scoreTeamOuter }}
+                            {% else %}
+                                {{ 'views.bundles.app.game.showuser.noscore'|trans }}
+                            {% endif %}
+                        </h5>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="small-12 columns text-center">
+            <a class="button round tiny" href="{{ path('zimzim_bundles_app_game', {'id': entity.tournament.id}) }}">
+                {{ 'button.back'|trans }}
+            </a>
+        </div>
+    </div>
 
 {% endblock %}

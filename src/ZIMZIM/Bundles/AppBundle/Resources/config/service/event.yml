@@ -20,5 +20,15 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    zimzim_bundles_app.listener.requestuserbetsubscriber:
+        class: ZIMZIM\Bundles\AppBundle\EventListener\RequestUserBetSubscriber
+        arguments: [ @doctrine.orm.entity_manager ]
+        tags:
+            - { name: kernel.event_subscriber }
+
     zimzim_bundles_app.event.requestuserevent:
         class: ZIMZIM\Bundles\AppBundle\Event\RequestUserEvent
+    zimzim_bundles_app.event.requestuserbetevent:
+        class: ZIMZIM\Bundles\AppBundle\Event\RequestUserBetEvent
+    zimzim_bundles_app.event.gameevent:
+        class: ZIMZIM\Bundles\AppBundle\Event\GameEvent

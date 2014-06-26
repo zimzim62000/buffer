@@ -19,6 +19,7 @@ button:
     admin: "Administration"
     createtournament: "Créer mon tournoi"
     sendrequest: "Inviter des joueurs"
+    back: "Retour"
 link:
     return: "Retour à la liste"
     hide: "cacher"
@@ -34,7 +35,7 @@ views:
         edit: "Information"
         game: "Matchs"
         score: "Scores"
-        userbet: "Paris"
+        requestuserbet: "Paris"
         ranking: "Classement"
         maingame: "MG"
         clientgame: "Parties"

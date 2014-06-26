@@ -3,3 +3,4 @@ imports:
     - { resource: service/security.yml }
     - { resource: service/event.yml }
     - { resource: service/entity.yml }
+    - { resource: service/calculate.yml }

@@ -3,3 +3,5 @@ validate:
         app:
             requestuser:
                 uniqueentity: "une invitation à déjà été envoyé à cette addresse Email"
+            requestuserbet:
+                uniqueentity: "Un pari à déjà été efféctué entre le tournoi et le match"

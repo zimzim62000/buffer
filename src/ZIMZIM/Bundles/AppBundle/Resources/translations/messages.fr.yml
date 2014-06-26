@@ -63,8 +63,15 @@ views:
                     titleupdate:  "Modification de mon tournoi"
                     register: "Inscription sur le tournoi"
                 showuser:
-                    title: ""
+                    title: "Match %game%"
                     email: "Email envoyé à :"
+            game:
+                index:
+                    title: "Les matchs "
+                showuser:
+                    title: "Tous les matchs"
+                    titletournament: "Le match %game%"
+                    noscore: "NR"
 entity:
     app:
         tournament:
@@ -96,6 +103,9 @@ entity:
             scoreouter: "Score"
             date: "Date"
             dayGame: "Journée"
+            score: "score"
+        requestuserbet:
+            score: "Score"
 form:
     app:
         type:
@@ -106,3 +116,9 @@ form:
                 year: "Année"
                 month: "Mois"
                 day: "Jour"
+flashbag:
+    bundles:
+        app:
+            requestuserbet:
+                notime: "Vous ne pouvez parié sur un match en cours ou déjà joué!"
+                betsuccess: "Pari validé !"
