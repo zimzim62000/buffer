@@ -40,3 +40,5 @@ web/app/css/*
 
 web/js/
 web/css/
+
+app/bootstrap.test.php
