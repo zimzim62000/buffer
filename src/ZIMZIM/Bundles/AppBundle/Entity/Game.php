@@ -51,7 +51,7 @@ class Game
      * @GRID\Column(field="teamHome.name", title="entity.app.game.teamhome",operatorsVisible=false,
      * source=true, filter="select", groups={"admin"})
      *
-     * @GRID\Column(field="teamHome.name", title="entity.app.game.teamhome",operatorsVisible=false,
+     * @GRID\Column(field="teamHome.name", filterable=false, sortable=false, title="entity.app.game.teamhome",operatorsVisible=false,
      * source=true, filter="select", groups={"user"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Team", inversedBy="gamesHome")
@@ -67,7 +67,7 @@ class Game
      * @GRID\Column(field="teamOuter.name", title="entity.app.game.teamouter", operatorsVisible=false,
      * source=true, filter="select", groups={"admin"})
      *
-     * @GRID\Column(field="teamOuter.name", title="entity.app.game.teamouter", operatorsVisible=false,
+     * @GRID\Column(field="teamOuter.name", filterable=false, sortable=false, title="entity.app.game.teamouter", operatorsVisible=false,
      * source=true, filter="select", groups={"user"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Team", inversedBy="gamesOuter")

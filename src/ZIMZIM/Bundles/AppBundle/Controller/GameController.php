@@ -4,6 +4,7 @@ namespace ZIMZIM\Bundles\AppBundle\Controller;
 
 use APY\DataGridBundle\Grid\Column\TextColumn;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use ZIMZIM\Bundles\AppBundle\ZIMZIMAppEvents;
 use ZIMZIM\Controller\ZimzimController;
 
@@ -286,8 +287,6 @@ class GameController extends ZimzimController
      */
     public function indexUserAction($id)
     {
-        ini_set('displays_errors', true);
-
         $data = array(
             'entity' => 'ZIMZIMBundlesAppBundle:Game',
             'show' => 'zimzim_bundles_app_game_show',
@@ -305,6 +304,10 @@ class GameController extends ZimzimController
         $em = $this->container->get('doctrine')->getManager();
 
         $tournament = $em->getRepository('ZIMZIMBundlesAppBundle:Tournament')->find($id);
+
+        if(!$tournament){
+            throw new NotFoundHttpException('No tournament find, try again');
+        }
 
         $userTournaments = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->findByUserAndTournament(
             $security,

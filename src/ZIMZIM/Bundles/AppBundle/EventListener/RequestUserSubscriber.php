@@ -80,6 +80,8 @@ class RequestUserSubscriber implements EventSubscriberInterface
         if ($requestUser) {
 
             $requestUser->setUser($user);
+            $requestUser->setValidate(true);
+            $requestUser->setEnabled(true);
             $em->flush();
             $this->session->getFlashBag()->add(
                 'success',

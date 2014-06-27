@@ -8,7 +8,7 @@ views:
                         Inscription réalisé avec succès, l'administrateur de se tournoi viens d'être alerté de votre demande.
                         Vous allez recevoir un email de confirmation d'inscription.
                     successjoin: "Inscription réalisé avec succès !"
-                    successemailjoin: "Une demande à été envoyer à l'administrateur!"
+                    successemailjoin: "Ok, vous étes à présent inscris au tournoi !"
                     errorjoin: "Une demande est déjà en cours!"
                     nologued: "Vous n'étes pas connecté, vous ne pouvez pas rejoindre ce tournoi."
                     nbuser: "Il y actuellement %count% participants à ce tournoi."
@@ -71,8 +71,8 @@ views:
                 showuser:
                     title: "Tous les matchs"
                     titletournament: "Le match %game%"
-                    noscore: "Pas de pari"
-                    noresult: "Pas de résultat"
+                    noscore: "--"
+                    noresult: "--"
 entity:
     app:
         tournament:
