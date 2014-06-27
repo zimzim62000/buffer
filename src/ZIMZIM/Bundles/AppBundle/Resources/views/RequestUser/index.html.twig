@@ -22,7 +22,7 @@
 
             {% if entity.enabled and entity.validate or entity.userTournament.user.id == app.user.id %}
                 <div class="row">
-                    <div class="small-6 medium-4 columns">
+                    <div class="small-6 columns">
                         <h5 class="text-center">
                             <a href="{{ path('zimzim_bundles_app_game', {'id': entity.userTournament.tournament.id }) }}"
                                class="tiny button round">
@@ -30,17 +30,10 @@
                             </a>
                         </h5>
                     </div>
-                    <div class="small-6 medium-4 columns">
+                    <div class="small-6 columns">
                         <h5 class="text-center">
                             <a href="#" class="tiny button round">
                                 {{ 'button.ranking'|trans }}
-                            </a>
-                        </h5>
-                    </div>
-                    <div class="small-12 medium-4 columns">
-                        <h5 class="text-center">
-                            <a href="#" class="tiny button round">
-                                {{ 'button.score'|trans }}
                             </a>
                         </h5>
                     </div>

@@ -13,7 +13,7 @@ class LoadTournamentDayData extends AbstractFixture implements OrderedFixtureInt
     public function load(ObjectManager $om)
     {
         $tournamentDay = new TournamentDay();
-        $tournamentDay->setName('huitième de finale');
+        $tournamentDay->setName('8éme de finale');
         $om->persist($tournamentDay);
         $this->addReference('8finale', $tournamentDay);
 
@@ -23,7 +23,7 @@ class LoadTournamentDayData extends AbstractFixture implements OrderedFixtureInt
         $this->addReference('4finale', $tournamentDay);
 
         $tournamentDay = new TournamentDay();
-        $tournamentDay->setName('demi de finale');
+        $tournamentDay->setName('demi finale');
         $om->persist($tournamentDay);
         $this->addReference('2finale', $tournamentDay);
 

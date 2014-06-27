@@ -2,7 +2,7 @@
 
 namespace ZIMZIM\Bundles\AppBundle\Controller;
 
-use APY\DataGridBundle\Grid\Source\Entity;
+use APY\DataGridBundle\Grid\Column\TextColumn;
 use Symfony\Component\HttpFoundation\Request;
 use ZIMZIM\Bundles\AppBundle\ZIMZIMAppEvents;
 use ZIMZIM\Controller\ZimzimController;
@@ -41,8 +41,7 @@ class GameController extends ZimzimController
                 'tournament.name',
                 'tournamentDay.name',
                 'teamHome.name',
-                'scoreTeamHome',
-                'scoreTeamOuter',
+                'score',
                 'teamOuter.name',
                 'date'
             )
@@ -220,6 +219,13 @@ class GameController extends ZimzimController
             $this->updateSuccess();
             $em->flush();
 
+            /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+            $dispatcher = $this->container->get('event_dispatcher');
+            $Event = $this->container->get('zimzim_bundles_app.event.gameevent');
+            $Event->setGame($entity);
+            $dispatcher->dispatch(ZIMZIMAppEvents::UPDATE_SCORE_GAME, $Event);
+
+
             return $this->redirect($this->generateUrl('zimzim_bundles_app_admingame_edit', array('id' => $id)));
         }
 
@@ -280,6 +286,7 @@ class GameController extends ZimzimController
      */
     public function indexUserAction($id)
     {
+        ini_set('displays_errors', true);
 
         $data = array(
             'entity' => 'ZIMZIMBundlesAppBundle:Game',
@@ -293,11 +300,33 @@ class GameController extends ZimzimController
             $data['score'] = 'zimzim_bundles_app_game_score';
         }
 
-        $source = $this->gridList($data, true);
+        $source = $this->gridList($data, false);
 
         $em = $this->container->get('doctrine')->getManager();
 
         $tournament = $em->getRepository('ZIMZIMBundlesAppBundle:Tournament')->find($id);
+
+        $userTournaments = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->findByUserAndTournament(
+            $security,
+            $tournament
+        );
+
+        $error = false;
+
+        if (!count($userTournaments)) {
+            $this->displayErorException('flashbag.errors.noaccess');
+            $error = true;
+        }
+        foreach ($userTournaments as $userTournament) {
+            if (false === $security->isGranted('access', $userTournament)) {
+                $this->displayErorException('flashbag.errors.noaccess');
+                $error = true;
+            }
+        }
+
+        if ($error) {
+            return $this->redirect($this->generateUrl('zimzim_bundles_app_home'));
+        }
 
         $em->getRepository('ZIMZIMBundlesAppBundle:Game')->getList(
             $source,
@@ -305,14 +334,49 @@ class GameController extends ZimzimController
             $id
         );
 
+        $MyTypedColumn = new TextColumn(array(
+            'id' => 'myscore',
+            'title' => 'entity.app.game.myscore',
+            'source' => false,
+            'filterable' => false,
+            'sortable' => false
+        ));
+        $this->grid->addColumn($MyTypedColumn);
+
+        $user = $security->getToken()->getUser();
+        $source->manipulateRow(
+            function ($row) use ($em, $user) {
+                $requestsUserBet = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUserBet')->findByGameAndUser(
+                    $em->getRepository('ZIMZIMBundlesAppBundle:Game')->find($row->getField('id')),
+                    $user
+                );
+
+                $tmpString = '';
+                foreach ($requestsUserBet as $key => $requestUserBet) {
+
+                    if ($key !== 0) {
+                        $tmpString .= ' / ';
+                    }
+                    $tmpString .= $requestUserBet->getScoreTeamHome() . ' - ' . $requestUserBet->getScoreTeamOuter();
+                }
+
+                $row->setField('myscore', $tmpString);
+
+                return $row;
+            }
+        );
+
+        $this->grid->setSource($source);
+
         /** @var $this ->grid \APY\DataGridBundle\Grid\Grid */
         $columns = $this->grid->getColumns();
 
         $columns->setColumnsOrder(
             array(
-                'tournamentDay.name',
                 'teamHome.name',
+                'score',
                 'teamOuter.name',
+                'myscore',
                 'date'
             )
         );
@@ -341,18 +405,34 @@ class GameController extends ZimzimController
             $game->getTournament()
         );
 
+        $error = false;
+
+        if (!count($userTournaments)) {
+            $this->displayErorException('flashbag.errors.noaccess');
+            $error = true;
+        }
+
         foreach ($userTournaments as $userTournament) {
+
+            if (false === $security->isGranted('access', $userTournament)) {
+                $this->displayErorException('flashbag.errors.noaccess');
+                $error = true;
+            }
 
             foreach ($userTournament->getRequestsUser() as $requestUser) {
 
                 $requestUser->setRequestsUserBet(
                     $requestUser->getRequestsUserBet()->filter(
-                        function ($object) use ($game) {
+                        function ($object) use ($game, $security) {
                             return $object->getGame()->getId() === $game->getId();
                         }
                     )
                 );
             }
+        }
+
+        if ($error) {
+            return $this->redirect($this->generateUrl('zimzim_bundles_app_home'));
         }
 
         return $this->render(
@@ -393,7 +473,9 @@ class GameController extends ZimzimController
                 $Event->setGame($game);
                 $dispatcher->dispatch(ZIMZIMAppEvents::UPDATE_SCORE_GAME, $Event);
 
-                return $this->redirect($this->generateUrl('zimzim_bundles_app_game', array('id' => $id)));
+                return $this->redirect(
+                    $this->generateUrl('zimzim_bundles_app_game', array('id' => $game->getTournament()->getId()))
+                );
             }
         }
 

@@ -26,8 +26,8 @@ class UserTournamentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('text')
+            ->add('name', null, array('label' => 'entity.app.usertournament.name'))
+            ->add('text', null, array('label' => 'entity.app.usertournament.text'))
             ->add(
                 'dateStart',
                 'zimzim_bundles_appbundle_type_datetype',

@@ -390,7 +390,7 @@ class UserTournamentController extends ZimzimController
 
         $security = $this->container->get('security.context');
 
-        if (false === $security->isGranted('access', $UserTournament)) {
+        if (false === $security->isGranted('accessadmin', $UserTournament)) {
             throw new AccessDeniedHttpException('User Tournament is not your\'s');
         }
 
@@ -494,7 +494,7 @@ class UserTournamentController extends ZimzimController
 
         $security = $this->container->get('security.context');
 
-        if (false === $security->isGranted('access', $entity)) {
+        if (false === $security->isGranted('accessadmin', $entity)) {
             throw new AccessDeniedHttpException('User Tournament is not your\'s');
         }
 

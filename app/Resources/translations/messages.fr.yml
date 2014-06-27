@@ -20,6 +20,7 @@ button:
     createtournament: "Créer mon tournoi"
     sendrequest: "Inviter des joueurs"
     back: "Retour"
+    moreinfo: "+ d'infos"
 link:
     return: "Retour à la liste"
     hide: "cacher"
@@ -72,6 +73,8 @@ flashbag:
         create: "Création réussit"
         update: "Modification réussit"
         delete: "Suppréssion réussit"
+    errors:
+        noaccess: "Désolé, mais vous n'avez pas accés à cette section !"
 form:
     fieldrequired: "Requis"
 site:

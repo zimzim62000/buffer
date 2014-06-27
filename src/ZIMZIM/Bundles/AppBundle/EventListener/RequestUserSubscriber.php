@@ -60,7 +60,7 @@ class RequestUserSubscriber implements EventSubscriberInterface
             $requestUser->setUser($user);
             $requestUser->setEmail($user->getEmail());
             $requestUser->setEnabled(true);
-            $requestUser->setValidate(false);
+            $requestUser->setValidate(null);
         }
 
         $event->setRequestUser($requestUser);

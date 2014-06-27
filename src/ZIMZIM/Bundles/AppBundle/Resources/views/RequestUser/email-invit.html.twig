@@ -1,0 +1,17 @@
+{% block body %}
+<h3>Bonjour {{ requestUser.email }},</h3>
+
+<h3>{{ requestUser.getUserTournament().getUser().getUsername() }} viens de vous inviter pour un pari sur parierentreamis.fr.</h3>
+
+<p>
+Pari organisé sur le tournoi global : <strong>{{ requestUser.getUserTournament().getTournament() }}</strong><br /><br />
+
+Hé, j'ai créé le tournoi <strong>{{ requestUser.getUserTournament().getName() }}</strong> vient me rejoindre si tu l'oses ... :)
+</p>
+<br />
+<h4>Accéder à <a href="htttp://www.parierentreamis.fr">parierentreamis.fr</a> le site de pari entre amis !</h4>
+<br />
+<p>
+Toute l'équipe de parierentreamis.fr
+</p>
+{% endblock body %}

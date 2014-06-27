@@ -18,7 +18,7 @@ use ZIMZIM\Bundles\UserBundle\Entity\User;
 class RequestUserBetRepository extends EntityRepository
 {
 
-    public function findByGameandUser(Game $game, User $user){
+    public function findByGameAndUser(Game $game, User $user){
 
         $query = $this->createQueryBuilder('rub');
         $query->join('rub.game', 'g')

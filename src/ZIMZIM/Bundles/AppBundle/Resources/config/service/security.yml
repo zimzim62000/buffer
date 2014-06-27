@@ -5,3 +5,10 @@ services:
         public: false
         tags:
             - { name: security.voter }
+
+    zimzim_bundles_app.security.access.ownerusertournamentadmin_voter:
+        class: ZIMZIM\Bundles\AppBundle\Security\Authorization\Voter\OwnerUserTournamentAdminVoter
+        arguments: [ @doctrine.orm.entity_manager ]
+        public: false
+        tags:
+            - { name: security.voter }

@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class OwnerActionVoter implements VoterInterface
+class OwnerUserTournamentAdminVoter implements VoterInterface
 {
     private $em;
 
@@ -16,7 +16,7 @@ class OwnerActionVoter implements VoterInterface
         $this->em = $em;
     }
 
-    const ALL = 'access';
+    const ALL = 'accessadmin';
 
     public function supportsAttribute($attribute)
     {
@@ -52,15 +52,19 @@ class OwnerActionVoter implements VoterInterface
             return VoterInterface::ACCESS_DENIED;
         }
 
-        $requestUser = $entity->getRequestsUser()->filter(
-            function ($requestUser) use ($user) {
-                return $requestUser->getUser() === $user;
+
+
+        if ($entity->getUser() === $user) {
+
+            $requestUser = $entity->getRequestsUser()->filter(
+                function ($requestUser) use ($user) {
+                    return $requestUser->getUser() === $user;
+                }
+            );
+
+            if($requestUser->first()->getEnabled() && $requestUser->first()->getValidate()){
+                return VoterInterface::ACCESS_GRANTED;
             }
-        );
-
-        if ($requestUser->first()->getEnabled() && $requestUser->first()->getValidate()) {
-            return VoterInterface::ACCESS_GRANTED;
         }
-
     }
 }

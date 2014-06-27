@@ -11,13 +11,13 @@ class LoadRequestUserBetData extends AbstractFixture implements OrderedFixtureIn
 {
     public function load(ObjectManager $om)
     {
-        /*
         $requestUserBet = new RequestUserBet();
         $requestUserBet->setGame($this->getReference('game1'));
         $requestUserBet->setRequestUser($this->getReference('zimzimrequestuser1'));
         $requestUserBet->setScoreTeamHome(3);
         $requestUserBet->setScoreTeamOuter(1);
         $om->persist($requestUserBet);
+        $this->addReference('zimzimrequestuserbet1', $requestUserBet);
 
         $requestUserBet = new RequestUserBet();
         $requestUserBet->setGame($this->getReference('game1'));
@@ -39,7 +39,7 @@ class LoadRequestUserBetData extends AbstractFixture implements OrderedFixtureIn
         $requestUserBet->setScoreTeamHome(0);
         $requestUserBet->setScoreTeamOuter(1);
         $om->persist($requestUserBet);
-*/
+
         $om->flush();
     }
 

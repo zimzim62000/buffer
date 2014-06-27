@@ -11,11 +11,10 @@ class TournamentRepository extends EntityRepository
     public function getListTournamentActive(\DateTime $now){
 
         $query = $this->createQueryBuilder('t');
-        $query->where('t.dateStart <= :dateDay')
-            ->andWhere('t.dateEnd >= :dateDay')
+        $query->where('t.dateEnd >= :dateDay')
             ->andWhere('t.enabled = 1')
             ->setParameter('dateDay', $now)
-            ->orderBy('t.createdAt', 'ASC');
+            ->orderBy('t.dateStart', 'ASC');
         return $query->getQuery()->getResult();
     }
 }

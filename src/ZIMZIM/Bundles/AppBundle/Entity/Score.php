@@ -21,6 +21,7 @@ class Score
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @GRID\Column(visible=false, sortable=false, filterable=false, title="entity.app.score.id", groups={"admin"})
      */
     private $id;
 
@@ -29,7 +30,7 @@ class Score
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(field="game.__toString", title="entity.app.score.game",operatorsVisible=false,
+     * @GRID\Column(field="game.teamHome.name", title="entity.app.score.game",operatorsVisible=false,
      * source=true, filter="select", groups={"admin"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Game", inversedBy="scores")
@@ -42,7 +43,7 @@ class Score
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(field="requestUser.__toString", title="entity.app.score.requestuser",operatorsVisible=false,
+     * @GRID\Column(field="requestUser.user.username", title="entity.app.score.requestuser",operatorsVisible=false,
      * source=true, filter="select", groups={"admin"})
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\RequestUser", inversedBy="scores")
@@ -55,10 +56,10 @@ class Score
      *
      * @Assert\NotBlank()
      *
-     * @GRID\Column(field="requestUserbet.__toString", title="entity.app.score.requestuserbet",operatorsVisible=false,
+     * @GRID\Column(field="requestUserBet.game.teamHome.name", title="entity.app.score.requestuserbet",operatorsVisible=false,
      * source=true, filter="select", groups={"admin"})
      *
-     * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet", inversedBy="scores")
+     * @ORM\OneToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\RequestUserBet", inversedBy="score")
      * @ORM\JoinColumn(name="id_request_user_bet", referencedColumnName="id", nullable=true)
      */
     private $requestUserBet;
@@ -68,7 +69,7 @@ class Score
      *
      * @Gedmo\Timestampable(on="create")
      *
-     * @GRID\Column(operatorsVisible=false, visible=false, filterable=false)
+     * @GRID\Column(operatorsVisible=false, visible=false, filterable=false, groups={"admin"})
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
@@ -78,13 +79,16 @@ class Score
      *
      * @Gedmo\Timestampable(on="update")
      *
-     * @GRID\Column(operatorsVisible=false, visible=false, filterable=false)
+     * @GRID\Column(operatorsVisible=false, visible=false, filterable=false, groups={"admin"})
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
 
     /**
      * @var integer
+     *
+     * @GRID\Column(field="score", title="entity.app.score.score",operatorsVisible=false,
+     * groups={"admin"})
      *
      * @ORM\Column(name="score", type="integer")
      */

@@ -6686,10 +6686,10 @@ div.box-item:hover {
 @media only screen and (max-width: 40em) {
   /* line 172, ../scss/css.scss */
   table tr td, table tr th {
-    font-size: 0.7rem !important;
+    font-size: 0.6rem !important;
   }
   /* line 175, ../scss/css.scss */
   table tr td a, table tr th a {
-    font-size: 0.7rem !important;
+    font-size: 0.6rem !important;
   }
 }

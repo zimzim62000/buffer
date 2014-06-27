@@ -13,7 +13,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="parierentreamis_game")
  * @ORM\Entity(repositoryClass="ZIMZIM\Bundles\AppBundle\Entity\Repository\GameRepository")
- *
+ * @ORM\HasLifecycleCallbacks
  */
 class Game
 {
@@ -124,7 +124,7 @@ class Game
      * title="entity.app.game.dayGame", source=true, filter="select", groups={"admin"})
      *
      * @GRID\Column(field="tournamentDay.name", title="entity.app.game.dayGame",operatorsVisible=false,
-     * source=true, filter="select", groups={"user"})
+     * source=true, filter="select", groups={"user"}, visible=false)
      *
      * @ORM\ManyToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\TournamentDay")
      * @ORM\JoinColumn(name="id_tournament_day", referencedColumnName="id", nullable=false)
@@ -158,6 +158,15 @@ class Game
      */
     private $requestsUserBet;
 
+    /**
+     * @var string score
+     *
+     * @GRID\Column(operatorsVisible=false, title="entity.app.game.score", filterable=false
+     * , groups={"user"})
+     *
+     * @ORM\Column(name="score", type="string", length=255, nullable=true)
+     */
+    private $score;
 
     /**
      * @var ArrayCollection
@@ -179,6 +188,11 @@ class Game
     public function __toString()
     {
         return $this->getTournamentDay() . ' : ' . $this->getTeamHome() . ' - ' . $this->getTeamOuter();
+    }
+
+    /** @ORM\PreUpdate */
+    public function updateScore(){
+        $this->score = $this->scoreTeamHome.' - '.$this->scoreTeamOuter;
     }
 
     /**
@@ -432,6 +446,24 @@ class Game
     public function getScores()
     {
         return $this->scores;
+    }
+
+    /**
+     * @param mixed $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getScore()
+    {
+        return $this->score;
     }
 
 }

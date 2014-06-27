@@ -47,7 +47,12 @@ class RequestUserEmailSubscriber implements EventSubscriberInterface
             )
             ->setFrom($requestUser->getUserTournament()->getUser()->getEmail())
             ->setTo($requestUser->getEmail())
-            ->setBody($this->templating->render('ZIMZIMBundlesAppBundle:RequestUser:email-invit.txt.twig'));
+            ->setBody(
+                $this->templating->render(
+                    'ZIMZIMBundlesAppBundle:RequestUser:email-invit.html.twig',
+                    array('requestUser' => $requestUser)
+                ), 'text/html'
+            );
         $this->mailer->send($message);
 
         $event->setRequestUser($requestUser);

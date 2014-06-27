@@ -45,3 +45,7 @@ ZIMZIMBundlesAppBundle_zimzim_bundles_app_adminrequestuserbet:
 ZIMZIMBundlesAppBundle_zimzim_bundles_app_requestuserbet:
     resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/requestuserbet.yml"
     prefix:   /requestuserbet/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_adminscore:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/score.yml"
+    prefix:   /admin/score/

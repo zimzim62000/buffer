@@ -107,6 +107,11 @@
 
 
 {% block grid %}
+    <div class="grid_footer large-12">
+        {% if grid.isPagerSectionVisible %}
+            {{ grid_pager(grid) }}
+        {% endif %}
+    </div>
     <div class="grid row">
         {% if grid.totalCount > 0 or grid.isFiltered or grid.noDataMessage is sameas(false) %}
             <form id="{{ grid.hash }}" action="{{ grid.routeUrl }}" method="post">

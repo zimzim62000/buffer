@@ -63,7 +63,7 @@ views:
                     titleupdate:  "Modification de mon tournoi"
                     register: "Inscription sur le tournoi"
                 showuser:
-                    title: "Match %game%"
+                    title: "Administration de la partie %name%"
                     email: "Email envoyé à :"
             game:
                 index:
@@ -71,7 +71,8 @@ views:
                 showuser:
                     title: "Tous les matchs"
                     titletournament: "Le match %game%"
-                    noscore: "NR"
+                    noscore: "Pas de pari"
+                    noresult: "Pas de résultat"
 entity:
     app:
         tournament:
@@ -82,12 +83,13 @@ entity:
             enabled: "Active"
         usertournament:
             id: "ID"
-            name: "Name"
+            name: "Nom du tournoi"
             datestart: "Debut"
             dateend: "Fin"
             enabled: "Active"
             user: "User"
             tournament: "Tournoi"
+            text: "Régle du tournoi et du pari"
         requestuser:
             user: "User"
             usertournament: "Tournoi"
@@ -104,6 +106,7 @@ entity:
             date: "Date"
             dayGame: "Journée"
             score: "score"
+            myscore: "Mon score"
         requestuserbet:
             score: "Score"
 form:

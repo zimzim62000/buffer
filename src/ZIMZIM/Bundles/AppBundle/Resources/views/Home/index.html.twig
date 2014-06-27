@@ -100,6 +100,20 @@
                                             </h5>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="small-12 columns text-center">
+                                            <h5 class="text-center">
+                                                <a href="#" class="button tiny round" onClick="$('#more_info_{{ UserTournament.id }}').fadeToggle();">
+                                                    {{ 'button.moreinfo'|trans }}
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div class="small-12 columns  " id="more_info_{{ UserTournament.id }}" style="display: none;">
+                                            <p class="text-justify">
+                                               {{ UserTournament.text }}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         {% endfor %}

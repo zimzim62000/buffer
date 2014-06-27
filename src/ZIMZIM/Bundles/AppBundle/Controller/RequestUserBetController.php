@@ -281,6 +281,31 @@ class RequestUserBetController extends ZimzimController
             return $this->redirect($this->generateUrl('zimzim_bundles_app_game_show', array('id' => $id)));
         }
 
+        $userTournaments = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->findByUserAndTournament(
+            $security,
+            $game->getTournament()
+        );
+
+        $error = false;
+
+        if (!count($userTournaments)) {
+            $this->displayErorException('flashbag.errors.noaccess');
+            $error = true;
+        }
+
+        foreach ($userTournaments as $userTournament) {
+
+            if (false === $security->isGranted('access', $userTournament)) {
+                $this->displayErorException('flashbag.errors.noaccess');
+                $error = true;
+            }
+        }
+
+        if ($error) {
+            return $this->redirect($this->generateUrl('zimzim_bundles_app_home'));
+        }
+
+
         $requestsUserBet = $em->getRepository('ZIMZIMBundlesAppBundle:RequestUserBet')->findByGameandUser(
             $game,
             $security->getToken()->getUser()
@@ -296,8 +321,8 @@ class RequestUserBetController extends ZimzimController
                 array('user' => $security->getToken()->getUser())
             );
 
-            foreach($requestsUser as $requestUser){
-                if($requestUser->getUserTournament()->getTournament()->getId() === $game->getTournament()->getId()){
+            foreach ($requestsUser as $requestUser) {
+                if ($requestUser->getUserTournament()->getTournament()->getId() === $game->getTournament()->getId()) {
                     $requestUserBet->setRequestUser($requestUser);
                     break;
                 }

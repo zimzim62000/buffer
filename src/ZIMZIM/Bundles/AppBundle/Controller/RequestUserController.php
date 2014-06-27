@@ -394,7 +394,7 @@ class RequestUserController extends ZimzimController
             throw $this->createNotFoundException('Unable to find RequestUser entity.');
         }
 
-        if (false === $security->isGranted('access', $requestUser->getUserTournament())) {
+        if (false === $security->isGranted('accessadmin', $requestUser->getUserTournament())) {
             throw new AccessDeniedHttpException('User Tournament is not your\'s');
         }
 
@@ -512,7 +512,7 @@ class RequestUserController extends ZimzimController
             throw $this->createNotFoundException('Unable to find RequestUser entity.');
         }
 
-        if (false === $security->isGranted('access', $userTournament)) {
+        if (false === $security->isGranted('accessadmin', $userTournament)) {
             throw new AccessDeniedHttpException('User Tournament is not your\'s');
         }
 

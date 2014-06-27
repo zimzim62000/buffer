@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% set name = entity.teamHome~' - '~entity.teamOuter %}
+{% set name = entity.tournamentDay.name~' : '~entity.teamHome~' - '~entity.teamOuter %}
 
 {% block title %}
     {{ 'views.bundles.app.game.showuser.titletournament'|trans({'%game%': name}) }}
@@ -108,24 +108,67 @@
                 </div>
             </div>
 
+
             {% for requestUser in userTournament.requestsUser if requestUser.user != null %}
-                <div class="row">
-                    <div class="small-6 medium-6 columns">
-                        <h4 class="text-center headerpagehome">
-                            {{ requestUser.user.username }}
-                        </h4>
+                {% if entity.date|date("Y-m-d H:i:s") < "now"|date("Y-m-d H:i:s") %}
+                    <div class="row">
+                        <div class="small-7 medium-6 columns">
+                            <h4 class="text-center headerpagehome">
+                                {{ requestUser.user.username }}
+                            </h4>
+                        </div>
+                        <div class="small-3 medium-4 columns">
+                            <h5 class="text-center headerpagehome">
+                                {% if requestUser.requestsUserBet.first != false and requestUser.requestsUserBet.first != false %}
+                                    {{ requestUser.requestsUserBet.first.scoreTeamHome }} - {{ requestUser.requestsUserBet.first.scoreTeamOuter }}
+                                {% else %}
+                                    {{ 'views.bundles.app.game.showuser.noscore'|trans }}
+                                {% endif %}
+                            </h5>
+                        </div>
+                        <div class="small-2 medium-2 columns">
+                            <h5 class="text-center headerpagehome">
+                                {% if requestUser.requestsUserBet.first != false and requestUser.requestsUserBet.first != false
+                                and requestUser.requestsUserBet.first.score != false and requestUser.requestsUserBet.first.score != false %}
+                                    {{ requestUser.requestsUserBet.first.score.score }}
+                                {% else %}
+                                    {{ 'views.bundles.app.game.showuser.noresult'|trans }}
+                                {% endif %}
+                            </h5>
+                        </div>
                     </div>
-                    <div class="small-6 medium-6 columns">
-                        <h5 class="text-center headerpagehome">
-                            {% if requestUser.requestsUserBet.first != '' and requestUser.requestsUserBet.first.scoreTeamOuter != '' %}
-                                {{ requestUser.requestsUserBet.first.scoreTeamHome }} - {{ requestUser.requestsUserBet.first.scoreTeamOuter }}
-                            {% else %}
-                                {{ 'views.bundles.app.game.showuser.noscore'|trans }}
-                            {% endif %}
-                        </h5>
-                    </div>
-                </div>
+                {% else %}
+                    {% if  requestUser.user == app.user %}
+                        <div class="row">
+                            <div class="small-7 medium-6 columns">
+                                <h4 class="text-center headerpagehome">
+                                    {{ requestUser.user.username }}
+                                </h4>
+                            </div>
+                            <div class="small-3 medium-4 columns">
+                                <h5 class="text-center headerpagehome">
+                                    {% if requestUser.requestsUserBet.first != false and requestUser.requestsUserBet.first != false %}
+                                        {{ requestUser.requestsUserBet.first.scoreTeamHome }} - {{ requestUser.requestsUserBet.first.scoreTeamOuter }}
+                                    {% else %}
+                                        {{ 'views.bundles.app.game.showuser.noscore'|trans }}
+                                    {% endif %}
+                                </h5>
+                            </div>
+                            <div class="small-2 medium-2 columns">
+                                <h5 class="text-center headerpagehome">
+                                    {% if requestUser.requestsUserBet.first != false and requestUser.requestsUserBet.first != false
+                                    and requestUser.requestsUserBet.first.score != false and requestUser.requestsUserBet.first.score != false %}
+                                        {{ requestUser.requestsUserBet.first.score.score }}
+                                    {% else %}
+                                        {{ 'views.bundles.app.game.showuser.noresult'|trans }}
+                                    {% endif %}
+                                </h5>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
             {% endfor %}
+
 
         </div>
     {% endfor %}

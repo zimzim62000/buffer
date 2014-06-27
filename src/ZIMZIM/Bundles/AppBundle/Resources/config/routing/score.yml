@@ -1,0 +1,30 @@
+zimzim_bundles_app_adminscore:
+    path:     /
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Score:index" }
+
+zimzim_bundles_app_adminscore_show:
+    path:     /{id}/show
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Score:show" }
+
+zimzim_bundles_app_adminscore_new:
+    path:     /new
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Score:new" }
+
+zimzim_bundles_app_adminscore_create:
+    path:     /create
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Score:create" }
+    requirements: { _method: post }
+
+zimzim_bundles_app_adminscore_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Score:edit" }
+
+zimzim_bundles_app_adminscore_update:
+    path:     /{id}/update
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Score:update" }
+    requirements: { _method: post|put }
+
+zimzim_bundles_app_adminscore_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:Score:delete" }
+    requirements: { _method: post|delete }

@@ -33,7 +33,7 @@ class RequestUserUpdateUserType extends AbstractType
 
                 if ($requestUser !== false) {
                     if ($requestUser->getId() !== null) {
-                        if ($requestUser->getValidate() !== null) {
+                        if ($requestUser->getValidate() === true ) {
                             $form->add(
                                 'enabled',
                                 'zimzim_bundles_appbundle_type_yesnotype',

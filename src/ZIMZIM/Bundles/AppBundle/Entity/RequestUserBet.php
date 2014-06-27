@@ -96,15 +96,10 @@ class RequestUserBet
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Score", mappedBy="requestUserBet")
+     * @ORM\OneToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\Score", mappedBy="requestUserBet")
      */
-    private $scores;
+    private $score;
 
-
-    public function __construct()
-    {
-        $this->scores = new ArrayCollection();
-    }
 
     public function __toString()
     {
@@ -260,22 +255,21 @@ class RequestUserBet
     }
 
     /**
-     * @param \Doctrine\Common\Collections\ArrayCollection $scores
+     * @param  Score $score
      */
-    public function setScores($scores)
+    public function setScore(Score $score = null)
     {
-        $this->scores = $scores;
-
-        return $this;
+        $this->score = $score;
     }
 
     /**
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return  Score
      */
-    public function getScores()
+    public function getScore()
     {
-        return $this->scores;
+        return $this->score;
     }
+
 
 
 }
