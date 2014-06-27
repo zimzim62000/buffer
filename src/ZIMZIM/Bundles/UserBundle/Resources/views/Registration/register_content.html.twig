@@ -3,7 +3,7 @@
         <h1 class="text-center title headerpagehome">{{ 'views.user.registration.register.title'|trans }}</h1>
     </div>
 </div>
-<div class="row">
+<div class="row zimzim-panel">
     <div class="small-12 large-12 columns">
         <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
             {{ form_widget(form) }}

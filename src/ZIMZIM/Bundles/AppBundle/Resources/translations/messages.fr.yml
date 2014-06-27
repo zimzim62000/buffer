@@ -73,6 +73,9 @@ views:
                     titletournament: "Le match %game%"
                     noscore: "--"
                     noresult: "--"
+            requestuserbet:
+                bet:
+                    title: "Je parie !"
 entity:
     app:
         tournament:

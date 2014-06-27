@@ -21,6 +21,7 @@ button:
     sendrequest: "Inviter des joueurs"
     back: "Retour"
     moreinfo: "+ d'infos"
+    commingsoon: "Bientôt disponible"
 link:
     return: "Retour à la liste"
     hide: "cacher"

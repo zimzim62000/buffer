@@ -3,8 +3,15 @@
 @import "foundation";
 
 
+/**@todo stop hack foundation button*/
+/*
+_top-bar.sccs -> foundation
+$primary-color: #FFC800;
+*/
+
 html, body {
     height: 100%;
+    background-image: url("../../images/pelouse.png");
 }
 
 div.container {
@@ -13,8 +20,16 @@ div.container {
     padding-bottom: 150px;
 }
 
+div.homepage{
+    background: url("../../images/stade.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 footer.footer {
-    background: $green;
+    background: $yellow;
     height: 150px;
     margin-top: -150px;
     clear: both;
@@ -22,11 +37,15 @@ footer.footer {
     h5 {
         small {
             padding: 0 2rem;
+            color: $white;
         }
     }
-    h4 {
-        color: #FFF;
+    h4{
+        color: $white;
         padding: 2rem;
+        a{
+            color: $white;
+        }
     }
 }
 
@@ -164,16 +183,25 @@ span.versus {
 .zimzim-panel {
     @include panel(
     );
+    margin-top:2rem;
+    margin-bottom:2rem;
 }
-div.box-item:hover{
-    background-color: scale-color( $body-bg, $lightness: -10% );
-}
-
 table tr td, table tr th{
     @media #{$small-only} {
         font-size: 0.6rem !important;
         a {
             font-size: 0.6rem !important;
         }
+    }
+}
+
+.alert-box{
+    h1,h2,h3,h4,h5,h6{
+        color: $white;
+    }
+}
+.zimzim-panel{
+    h1,h2,h3,h4,h5,h6,small,p{
+        color: $white;
     }
 }

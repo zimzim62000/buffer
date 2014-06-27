@@ -13,6 +13,10 @@ views:
         security:
             login:
                 title: "Connectez-vous"
+                forget: "Mot de passe oublié ?"
+        resetting:
+            checkemail:
+                title: "Changement de mot de passe en cours"
 form:
     user:
         form:

@@ -25,26 +25,28 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="small-12 large-12 columns">
+    <div class="row zimzim-panel">
+        <div class="small-12 large-12 columns ">
 
             {{ form(form) }}
 
-            <div class="row">
-                <div class="small-12 large-12 columns text-center">
-                    {% if entity.id %}
-                        <a class="tiny button round"
-                           href="{{ path('zimzim_bundles_app_usertournament_showuser', {'id': entity.id }) }}">
-                            {{ 'link.return'|trans }}
-                        </a>
-                    {% else %}
-                        <a class="tiny button round"
-                           href="{{ path('zimzim_bundles_app_home') }}">
-                            {{ 'link.return'|trans }}
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 large-12 columns text-center">
+            {% if entity.id %}
+                <a class="tiny button round"
+                   href="{{ path('zimzim_bundles_app_usertournament_showuser', {'id': entity.id }) }}">
+                    {{ 'button.back'|trans }}
+                </a>
+            {% else %}
+                <a class="tiny button round"
+                   href="{{ path('zimzim_bundles_app_home') }}">
+                    {{ 'button.back'|trans }}
+                </a>
+            {% endif %}
         </div>
     </div>
 

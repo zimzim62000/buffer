@@ -4,155 +4,165 @@
 
 {% block page %}
 
-    {% if is_granted('ROLE_USER') %}
+    <div class="homepage">
+        {% if is_granted('ROLE_USER') %}
+            <div class="row">
+                <div class="small-12 columns">
+                    <h1 class="text-center headerpagehome whitecolor">
+                        {{ 'views.bundles.app.home.index.titlelogued'|trans }}
+                    </h1>
+
+                    <h2 class="text-center headerpagehome whitecolor">
+                        {{ 'views.bundles.app.home.index.catchphraselogued'|trans }}
+                    </h2>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="small-12 columns">
+                    <h1 class="text-center headerpagehome whitecolor">
+                        {{ 'views.bundles.app.home.index.title'|trans }}
+                    </h1>
+
+                    <h2 class="text-center headerpagehome whitecolor">
+                        {{ 'views.bundles.app.home.index.catchphrase'|trans }}
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 medium-centered columns ">
+                    <h3 class="text-center whitecolor">
+                        {{ 'views.bundles.app.home.index.soustitle1'|trans }}
+                    </h3>
+
+                    <p class="whitecolor p-large text-justify">
+                        {{ 'views.bundles.app.home.index.who'|trans|raw }}
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="small-12 columns">
-                <h1 class="text-center headerpagehome">
-                    {{ 'views.bundles.app.home.index.titlelogued'|trans }}
-                </h1>
+                {% for Tournament in Tournaments %}
+                    <h3 class="text-center headertitle whitecolor">
+                        {{ Tournament.name }}
+                    </h3>
+                    <div class="">
+                        <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+                            {% for UserTournament in Tournament.userTournaments.slice(0, 5) %}
+                                <li class="th">
+                                    <div class="zimzim-panel">
+                                        <div class="row">
+                                            <div class="small-12 columns  text-center">
+                                                <h4 class="text-center">
+                                                    {{ UserTournament.name }}
+                                                </h4>
+                                                {% if is_granted('ROLE_USER') and UserTournament.requestsUser.first.user is defined %}
+                                                    {% if UserTournament.requestsUser.first.user ==  app.user %}
+                                                        <h5 class="text-center">
 
-                <h2 class="text-center headerpagehome ">
-                    {{ 'views.bundles.app.home.index.catchphraselogued'|trans }}
-                </h2>
-            </div>
-        </div>
-    {% else %}
-        <div class="row">
-            <div class="small-12 columns">
-                <h1 class="text-center headerpagehome">
-                    {{ 'views.bundles.app.home.index.title'|trans }}
-                </h1>
-
-                <h2 class="text-center headerpagehome ">
-                    {{ 'views.bundles.app.home.index.catchphrase'|trans }}
-                </h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="medium-8 medium-centered columns">
-                <h3 class="text-center">
-                    {{ 'views.bundles.app.home.index.soustitle1'|trans }}
-                </h3>
-
-                <p class="blackcolor p-large text-justify">
-                    {{ 'views.bundles.app.home.index.who'|trans|raw }}
-                </p>
-            </div>
-        </div>
-    {% endif %}
-
-    <div class="row">
-        <div class="small-12 columns">
-            {% for Tournament in Tournaments %}
-                <h3 class="text-center headertitle">
-                    {{ Tournament.name }}
-                </h3>
-                <div class="zimzim-panel">
-                    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-                        {% for UserTournament in Tournament.userTournaments.slice(0, 5) %}
-                            <li class="th">
-                                <div class="box-item">
-                                    <div class="row">
-                                        <div class="small-12 columns  text-center">
-                                            <h4 class="text-center">
-                                                {{ UserTournament.name }}
-                                            </h4>
-                                            {% if is_granted('ROLE_USER') and UserTournament.requestsUser.first.user is defined %}
-                                                {% if UserTournament.requestsUser.first.user ==  app.user %}
-                                                    <h5 class="text-center alert-box success">
-                                                        {% if UserTournament.requestsUser.first.validate %}
-                                                            {% if UserTournament.user.id == app.user.id %}
-                                                                {{ 'views.bundles.app.home.index.register.mygame'|trans }}
+                                                            {% if UserTournament.requestsUser.first.validate %}
+                                                                {% if UserTournament.user.id == app.user.id %}
+                                                                    <a class="tiny button round"
+                                                                       href="{{ path('zimzim_bundles_app_requestuser') }}">
+                                                                        {{ 'views.bundles.app.home.index.register.mygame'|trans }}
+                                                                    </a>
+                                                                {% else %}
+                                                                    {{ 'views.bundles.app.home.index.register.validate'|trans }}
+                                                                {% endif %}
                                                             {% else %}
-                                                                {{ 'views.bundles.app.home.index.register.validate'|trans }}
+                                                                {{ 'views.bundles.app.home.index.register.novalidate'|trans }}
                                                             {% endif %}
-                                                        {% else %}
-                                                            {{ 'views.bundles.app.home.index.register.novalidate'|trans }}
-                                                        {% endif %}
-                                                    </h5>
+                                                            </a>
+                                                        </h5>
+                                                    {% else %}
+                                                        <a href="{{ path('zimzim_bundles_app_requestuser_join', {'id': UserTournament.id}) }}"
+                                                           class="button tiny round">
+                                                            {{ 'button.participate'|trans }}
+                                                        </a>
+                                                    {% endif %}
                                                 {% else %}
                                                     <a href="{{ path('zimzim_bundles_app_requestuser_join', {'id': UserTournament.id}) }}"
                                                        class="button tiny round">
                                                         {{ 'button.participate'|trans }}
                                                     </a>
                                                 {% endif %}
-                                            {% else %}
-                                                <a href="{{ path('zimzim_bundles_app_requestuser_join', {'id': UserTournament.id}) }}"
-                                                   class="button tiny round">
-                                                    {{ 'button.participate'|trans }}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="small-6 columns text-center">
+                                                <h5 class="text-left">
+                                                    <small>
+                                                        {{ 'views.bundles.app.home.index.madein'|trans({'%date%' : UserTournament.dateStart|date('d/m/Y') }) }}
+                                                    </small>
+                                                </h5>
+                                            </div>
+                                            <div class="small-6 columns text-center">
+                                                <h5 class="text-right">
+                                                    <small>
+                                                        {{ 'views.bundles.app.home.index.madeby'|trans({'%name%' : UserTournament.user.username}) }}
+                                                    </small>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="small-12 columns text-center">
+                                                <h5 class="text-center">
+                                                    <a href="#" class="button tiny round"
+                                                       onClick="$('#more_info_{{ UserTournament.id }}').fadeToggle();">
+                                                        {{ 'button.moreinfo'|trans }}
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div class="small-12 columns  " id="more_info_{{ UserTournament.id }}"
+                                                 style="display: none;">
+                                                <p class="text-justify">
+                                                    {{ UserTournament.text }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            <li class="th created">
+                                <div class="zimzim-panel">
+                                    <div class="row">
+                                        <div class="small-12 columns  text-center">
+                                            <h4 class="text-center">
+                                                {{ Tournament.name }}
+                                            </h4>
+                                            <h4 class="text-center">
+                                                <a class="tiny button round"
+                                                   href="{{ path('zimzim_bundles_app_usertournament_newuser', {'id': Tournament.id}) }}">
+                                                    {{ 'button.createtournament'|trans }}
                                                 </a>
-                                            {% endif %}
+                                            </h4>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="small-6 columns text-center">
                                             <h5 class="text-left">
                                                 <small>
-                                                    {{ 'views.bundles.app.home.index.madein'|trans({'%date%' : UserTournament.dateStart|date('d/m/Y') }) }}
+                                                    {{ 'views.bundles.app.home.index.madein'|trans({'%date%' : Tournament.dateStart|date('d/m/Y') }) }}
                                                 </small>
                                             </h5>
                                         </div>
                                         <div class="small-6 columns text-center">
                                             <h5 class="text-right">
                                                 <small>
-                                                    {{ 'views.bundles.app.home.index.madeby'|trans({'%name%' : UserTournament.user.username}) }}
+                                                    {{ 'views.bundles.app.home.index.madeout'|trans({'%date%' : Tournament.dateEnd|date('d/m/Y') }) }}
                                                 </small>
                                             </h5>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="small-12 columns text-center">
-                                            <h5 class="text-center">
-                                                <a href="#" class="button tiny round" onClick="$('#more_info_{{ UserTournament.id }}').fadeToggle();">
-                                                    {{ 'button.moreinfo'|trans }}
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div class="small-12 columns  " id="more_info_{{ UserTournament.id }}" style="display: none;">
-                                            <p class="text-justify">
-                                               {{ UserTournament.text }}
-                                            </p>
-                                        </div>
-                                    </div>
                                 </div>
                             </li>
-                        {% endfor %}
-                        <li class="th created">
-                            <div class="box-item">
-                                <div class="row">
-                                    <div class="small-12 columns  text-center">
-                                        <h4 class="text-center">
-                                            {{ Tournament.name }}
-                                        </h4>
-                                        <h4 class="text-center">
-                                            <a class="tiny button round"
-                                               href="{{ path('zimzim_bundles_app_usertournament_newuser', {'id': Tournament.id}) }}">
-                                                {{ 'button.createtournament'|trans }}
-                                            </a>
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="small-6 columns text-center">
-                                        <h5 class="text-left">
-                                            <small>
-                                                {{ 'views.bundles.app.home.index.madein'|trans({'%date%' : Tournament.dateStart|date('d/m/Y') }) }}
-                                            </small>
-                                        </h5>
-                                    </div>
-                                    <div class="small-6 columns text-center">
-                                        <h5 class="text-right">
-                                            <small>
-                                                {{ 'views.bundles.app.home.index.madeout'|trans({'%date%' : Tournament.dateEnd|date('d/m/Y') }) }}
-                                            </small>
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
+
     </div>
 {% endblock page %}

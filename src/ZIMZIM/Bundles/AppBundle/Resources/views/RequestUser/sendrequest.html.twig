@@ -7,7 +7,7 @@
 {% block page %}
 
 
-    <div class="panel">
+    <div class="">
         <div class="row">
             <div class="small-12 columns">
                 <h1 class="text-center headerpagehome">
@@ -27,9 +27,11 @@
                 </h3>
             </div>
         </div>
-
-        {{ form(form) }}
-
+        <div class="row zimzim-panel">
+            <div class="small-12 columns">
+                {{ form(form) }}
+            </div>
+        </div>
     </div>
 
 {% endblock page %}
