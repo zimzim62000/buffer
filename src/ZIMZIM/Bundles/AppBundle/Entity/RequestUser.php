@@ -119,6 +119,13 @@ class RequestUser
     private $scores;
 
 
+    /**
+     * @var \ZIMZIM\Bundles\AppBundle\Entity\RequestUserRanking
+     *
+     * @ORM\OneToOne(targetEntity="ZIMZIM\Bundles\AppBundle\Entity\RequestUserRanking", mappedBy="requestUser")
+     */
+    private $requestUserRanking;
+
     public function __construct()
     {
 
@@ -350,6 +357,22 @@ class RequestUser
         return $this->text;
     }
 
+    /**
+     * @param \ZIMZIM\Bundles\AppBundle\Entity\RequestUserRanking $requestUserRanking
+     */
+    public function setRequestUserRanking($requestUserRanking)
+    {
+        $this->requestUserRanking = $requestUserRanking;
 
+        return $this;
+    }
+
+    /**
+     * @return \ZIMZIM\Bundles\AppBundle\Entity\RequestUserRanking
+     */
+    public function getRequestUserRanking()
+    {
+        return $this->requestUserRanking;
+    }
 
 }

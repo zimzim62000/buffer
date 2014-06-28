@@ -1,0 +1,79 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ 'views.bundles.app.requestuserranking.indexuser.title'|trans }}
+{% endblock title %}
+
+{% block page %}
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h1 class="text-center headerpagehome">
+                {{ 'views.bundles.app.requestuserranking.indexuser.title'|trans }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 columns">
+            <h2 class="text-center headerpagehome">
+                {{ entity.name }}
+            </h2>
+        </div>
+        <div class="small-6 columns">
+            <h3 class="text-left headerpagehome">
+                <small>
+                    {{ entity.dateStart|date('d/m/Y') }}
+                </small>
+            </h3>
+        </div>
+        <div class="small-6 columns">
+            <h3 class="text-right headerpagehome">
+                <small>
+                    {{ entity.dateEnd|date('d/m/Y') }}
+                </small>
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 columns zimzim-panel">
+            <div class="row">
+                <div class="small-1 columns">
+                    <h3 class="text-center headerpagehome ">
+                        {{ 'views.bundles.app.requestuserranking.indexuser.rank'|trans }}
+                    </h3>
+                </div>
+                <div class="small-8 columns">
+                    <h3 class="text-center headerpagehome ">
+                        {{ 'views.bundles.app.requestuserranking.indexuser.username'|trans }}
+                    </h3>
+                </div>
+                <div class="small-3 columns">
+                    <h3 class="text-center headerpagehome ">
+                        {{ 'views.bundles.app.requestuserranking.indexuser.score'|trans }}
+                    </h3>
+                </div>
+            </div>
+            {% for key, ranking in entities %}
+                <div class="row">
+                    <div class="small-1 columns">
+                        <h3 class="text-center headerpagehome ">{{ key+1 }}</h3>
+                    </div>
+                    <div class="small-8 columns">
+                        <h3 class="text-center headerpagehome ">
+                            {{ ranking.requestUser.user.username }}
+                        </h3>
+                    </div>
+                    <div class="small-3 columns">
+                        <h3 class="text-center headerpagehome ">
+                            {{ ranking.score }} ({{ ranking.nbMaxScore }})
+                        </h3>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+{% endblock %}

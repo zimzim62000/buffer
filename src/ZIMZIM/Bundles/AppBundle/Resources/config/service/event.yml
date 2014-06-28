@@ -20,13 +20,13 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
-    zimzim_bundles_app.listener.requestuserbetsubscriber:
+    zimzim_bundles_app.listener.gameupdatesubscriber:
         class: ZIMZIM\Bundles\AppBundle\EventListener\GameUpdateSubscriber
-        arguments: [ @doctrine.orm.entity_manager, @zimzim_bundles_app.calculate.score ]
+        arguments: [ @doctrine.orm.entity_manager, @zimzim_bundles_app.calculate.score, @zimzim_bundles_app.calculate.ranking ]
         tags:
             - { name: kernel.event_subscriber }
 
-    zimzim_bundles_app.listener.gameupdatesubscriber:
+    zimzim_bundles_app.listener.requestuserbetsubscriber:
         class: ZIMZIM\Bundles\AppBundle\EventListener\RequestUserBetSubscriber
         arguments: [ @doctrine.orm.entity_manager ]
         tags:

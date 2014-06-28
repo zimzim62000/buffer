@@ -69,12 +69,15 @@
                                                                         {{ 'views.bundles.app.home.index.register.mygame'|trans }}
                                                                     </a>
                                                                 {% else %}
-                                                                    {{ 'views.bundles.app.home.index.register.validate'|trans }}
+                                                                    {{ 'views.bundles.app.home.index.register.validate'|trans }}<br />
+                                                                    <a href="{{ path('zimzim_bundles_app_requestuser') }}"
+                                                                       class="tiny button round">
+                                                                        {{ 'button.show'|trans }}
+                                                                    </a>
                                                                 {% endif %}
                                                             {% else %}
                                                                 {{ 'views.bundles.app.home.index.register.novalidate'|trans }}
                                                             {% endif %}
-                                                            </a>
                                                         </h5>
                                                     {% else %}
                                                         <a href="{{ path('zimzim_bundles_app_requestuser_join', {'id': UserTournament.id}) }}"

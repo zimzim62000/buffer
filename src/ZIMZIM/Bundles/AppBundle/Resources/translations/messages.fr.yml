@@ -78,6 +78,13 @@ views:
             requestuserbet:
                 bet:
                     title: "Je parie !"
+            requestuserranking:
+                indexuser:
+                    title: "Classement du tournoi"
+                    username: "Utilisateur"
+                    score: Points
+                    bonus: Bonus
+                    rank: "-"
 entity:
     app:
         tournament:

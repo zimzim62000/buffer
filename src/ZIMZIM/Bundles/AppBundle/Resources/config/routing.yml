@@ -49,3 +49,11 @@ ZIMZIMBundlesAppBundle_zimzim_bundles_app_requestuserbet:
 ZIMZIMBundlesAppBundle_zimzim_bundles_app_adminscore:
     resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/score.yml"
     prefix:   /admin/score/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_adminrequestuserranking:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/adminrequestuserranking.yml"
+    prefix:   /admin/requestuserranking/
+
+ZIMZIMBundlesAppBundle_zimzim_bundles_app_requestuserranking:
+    resource: "@ZIMZIMBundlesAppBundle/Resources/config/routing/requestuserranking.yml"
+    prefix:   /ranking/

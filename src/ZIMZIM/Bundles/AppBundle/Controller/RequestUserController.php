@@ -346,12 +346,17 @@ class RequestUserController extends ZimzimController
             }
         }
 
+        $count = count($userTournament->getRequestsUser()->filter(function($object){
+                return $object->getEnabled() && $object->getValidate();
+            }));
+
         return $this->render(
             'ZIMZIMBundlesAppBundle:RequestUser:join.html.twig',
             array(
                 'entity' => $requestUser,
                 'form' => $form->createView(),
-                'userTournament' => $userTournament
+                'userTournament' => $userTournament,
+                'count' => $count
             )
         );
     }

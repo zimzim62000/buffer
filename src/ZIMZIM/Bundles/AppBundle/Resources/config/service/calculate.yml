@@ -4,3 +4,6 @@ services:
     zimzim_bundles_app.calculate.score:
         class: ZIMZIM\Bundles\AppBundle\Calculate\CalculateScore
         arguments: [ @doctrine.orm.entity_manager, @zimzim_bundles_app.calculate.gamepoint, @zimzim_bundles_app.entity.score ]
+    zimzim_bundles_app.calculate.ranking:
+        class: ZIMZIM\Bundles\AppBundle\Calculate\CalculateRanking
+        arguments: [ @doctrine.orm.entity_manager, @zimzim_bundles_app.entity.requestuserranking ]

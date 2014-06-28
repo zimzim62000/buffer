@@ -305,7 +305,7 @@ class GameController extends ZimzimController
 
         $tournament = $em->getRepository('ZIMZIMBundlesAppBundle:Tournament')->find($id);
 
-        if(!$tournament){
+        if (!$tournament) {
             throw new NotFoundHttpException('No tournament find, try again');
         }
 
@@ -314,17 +314,22 @@ class GameController extends ZimzimController
             $tournament
         );
 
+
         $error = false;
 
         if (!count($userTournaments)) {
             $this->displayErorException('flashbag.errors.noaccess');
             $error = true;
         }
+        $access = false;
         foreach ($userTournaments as $userTournament) {
-            if (false === $security->isGranted('access', $userTournament)) {
-                $this->displayErorException('flashbag.errors.noaccess');
-                $error = true;
+            if (true === $security->isGranted('access', $userTournament)) {
+                $access = true;
             }
+        }
+        if ($access === false) {
+            $this->displayErorException('flashbag.errors.noaccess');
+            $error = true;
         }
 
         if ($error) {
@@ -405,7 +410,8 @@ class GameController extends ZimzimController
 
         $userTournaments = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->findByUserAndTournament(
             $security,
-            $game->getTournament()
+            $game->getTournament(),
+            true
         );
 
         $error = false;
@@ -414,24 +420,35 @@ class GameController extends ZimzimController
             $this->displayErorException('flashbag.errors.noaccess');
             $error = true;
         }
-
+        $access = false;
         foreach ($userTournaments as $userTournament) {
 
-            if (false === $security->isGranted('access', $userTournament)) {
-                $this->displayErorException('flashbag.errors.noaccess');
-                $error = true;
-            }
-
-            foreach ($userTournament->getRequestsUser() as $requestUser) {
-
-                $requestUser->setRequestsUserBet(
-                    $requestUser->getRequestsUserBet()->filter(
-                        function ($object) use ($game, $security) {
-                            return $object->getGame()->getId() === $game->getId();
+            if (true === $security->isGranted('access', $userTournament)) {
+                $access = true;
+                $userTournament->setRequestsUser(
+                    $userTournament->getRequestsUser()->filter(
+                        function ($object) {
+                            return $object->getEnabled() && $object->getValidate();
                         }
                     )
                 );
+
+                foreach ($userTournament->getRequestsUser() as $requestUser) {
+
+                    $requestUser->setRequestsUserBet(
+                        $requestUser->getRequestsUserBet()->filter(
+                            function ($object) use ($game, $security) {
+                                return $object->getGame()->getId() === $game->getId();
+                            }
+                        )
+                    );
+                }
             }
+
+        }
+        if ($access === false) {
+            $this->displayErorException('flashbag.errors.noaccess');
+            $error = true;
         }
 
         if ($error) {

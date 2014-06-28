@@ -1,0 +1,30 @@
+zimzim_bundles_app_adminrequestuserranking:
+    path:     /
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserRanking:index" }
+
+zimzim_bundles_app_adminrequestuserranking_show:
+    path:     /{id}/show
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserRanking:show" }
+
+zimzim_bundles_app_adminrequestuserranking_new:
+    path:     /new
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserRanking:new" }
+
+zimzim_bundles_app_adminrequestuserranking_create:
+    path:     /create
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserRanking:create" }
+    requirements: { _method: post }
+
+zimzim_bundles_app_adminrequestuserranking_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserRanking:edit" }
+
+zimzim_bundles_app_adminrequestuserranking_update:
+    path:     /{id}/update
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserRanking:update" }
+    requirements: { _method: post|put }
+
+zimzim_bundles_app_adminrequestuserranking_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserRanking:delete" }
+    requirements: { _method: post|delete }

@@ -283,7 +283,8 @@ class RequestUserBetController extends ZimzimController
 
         $userTournaments = $em->getRepository('ZIMZIMBundlesAppBundle:UserTournament')->findByUserAndTournament(
             $security,
-            $game->getTournament()
+            $game->getTournament(),
+            true
         );
 
         $error = false;
@@ -293,12 +294,17 @@ class RequestUserBetController extends ZimzimController
             $error = true;
         }
 
+        $access = false;
         foreach ($userTournaments as $userTournament) {
 
-            if (false === $security->isGranted('access', $userTournament)) {
-                $this->displayErorException('flashbag.errors.noaccess');
-                $error = true;
+            if (true === $security->isGranted('access', $userTournament)) {
+                $access = true;
             }
+        }
+
+        if($access === false){
+            $this->displayErorException('flashbag.errors.noaccess');
+            $error = true;
         }
 
         if ($error) {

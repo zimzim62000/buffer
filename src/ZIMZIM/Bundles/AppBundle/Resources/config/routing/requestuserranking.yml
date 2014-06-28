@@ -1,0 +1,4 @@
+zimzim_bundles_app_requestuserranking:
+    pattern:  /{id}/
+    defaults: { _controller: "ZIMZIMBundlesAppBundle:RequestUserRanking:indexuser" }
+    requirements: { _method: get }

@@ -3,3 +3,5 @@ services:
         class: ZIMZIM\Bundles\AppBundle\Entity\RequestUser
     zimzim_bundles_app.entity.score:
         class: ZIMZIM\Bundles\AppBundle\Entity\Score
+    zimzim_bundles_app.entity.requestuserranking:
+        class: ZIMZIM\Bundles\AppBundle\Entity\RequestUserRanking

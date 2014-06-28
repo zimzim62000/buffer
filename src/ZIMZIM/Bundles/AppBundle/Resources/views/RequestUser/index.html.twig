@@ -32,10 +32,10 @@
                     </div>
                     <div class="small-6 columns">
                         <h5 class="text-center">
-                            <a href="#" class="tiny button round">
+                            <a href="{{ path('zimzim_bundles_app_requestuserranking', {'id': entity.userTournament.id }) }}" class="tiny button round">
                                 {{ 'button.ranking'|trans }}
                             </a>
-                            <small>{{ 'button.commingsoon'|trans }}</small>
+
                         </h5>
                     </div>
                 </div>
@@ -86,7 +86,17 @@
                     </h5>
                 </div>
             </div>
-            <div class="row zimzim-panel">
+            <div class="row">
+                <div class="small-12 columns">
+                    <h5 class="text-center">
+                        <a href="javascript:void(0);" class="tiny button round"
+                                onClick="$('#toogle_info_{{ entity.userTournament.id }}').fadeToggle();" >
+                            {{ 'button.moreinfo'|trans }}
+                        </a>
+                    </h5>
+                </div>
+            </div>
+            <div class="row zimzim-panel" id="toogle_info_{{ entity.userTournament.id }}" style="display:none;">
                 <div class="medium-6 columns">
                     <h5 class="text-center darkgreencolor">
                         {{ 'views.bundles.app.requestuser.index.text'|trans }}

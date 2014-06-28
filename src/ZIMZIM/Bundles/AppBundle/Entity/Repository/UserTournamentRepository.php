@@ -20,7 +20,7 @@ class UserTournamentRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function findByUserAndTournament(SecurityContext $securityContext, Tournament $tournament)
+    public function findByUserAndTournament(SecurityContext $securityContext, Tournament $tournament, $active = false)
     {
         $query = $this->createQueryBuilder('ut');
         $query->join('ut.tournament', 't')
@@ -29,6 +29,13 @@ class UserTournamentRepository extends EntityRepository
             ->andWhere('t.id = :id_tournament')
             ->setParameter('user', $securityContext->getToken()->getUser())
             ->setParameter('id_tournament', $tournament->getId());
+
+        if($active){
+            $query->andWhere('t.enabled = 1')
+                ->andWhere('ut.enabled = 1')
+                ->andWhere('ru.enabled = 1')
+                ->andWhere('ru.validate = 1');
+        }
 
         return $query->getQuery()->getResult();
 

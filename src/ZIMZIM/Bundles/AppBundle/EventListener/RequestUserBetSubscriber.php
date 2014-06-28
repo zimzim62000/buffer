@@ -37,7 +37,8 @@ class RequestUserBetSubscriber implements EventSubscriberInterface
 
         $requestsUser = $this->em->getRepository('ZIMZIMBundlesAppBundle:RequestUser')->getByUserAndTournament(
             $requestUserBet->getRequestUser()->getUser(),
-            $requestUserBet->getRequestUser()->getUserTournament()->getTournament()
+            $requestUserBet->getRequestUser()->getUserTournament()->getTournament(),
+            true
         );
 
         foreach ($requestsUser as $requestUser) {

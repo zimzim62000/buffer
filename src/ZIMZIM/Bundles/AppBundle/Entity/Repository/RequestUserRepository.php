@@ -15,7 +15,7 @@ use ZIMZIM\Bundles\AppBundle\Entity\Game;
 class RequestUserRepository extends EntityRepository
 {
 
-    public function getByUserAndTournament($user, $tournament){
+    public function getByUserAndTournament($user, $tournament, $active = false){
 
         $query = $this->createQueryBuilder('ru');
         $query->join('ru.user', 'u')
@@ -25,6 +25,13 @@ class RequestUserRepository extends EntityRepository
             ->andWhere('u.id = :user')
             ->setParameter('tournament', $tournament->getId())
             ->setParameter('user', $user->getId());
+
+        if($active){
+            $query->andWhere('t.enabled = 1')
+                ->andWhere('ut.enabled = 1')
+                ->andWhere('ru.enabled = 1')
+                ->andWhere('ru.validate = 1');
+        }
 
         return $query->getQuery()->getResult();
 
