@@ -28,6 +28,7 @@ class UserTournamentType extends AbstractType
         $builder
             ->add('name', null, array('label' => 'entity.app.usertournament.name'))
             ->add('text', null, array('label' => 'entity.app.usertournament.text'))
+            ->add('bet', null, array('label' => 'entity.app.usertournament.bet'))
             ->add(
                 'dateStart',
                 'zimzim_bundles_appbundle_type_datetype',

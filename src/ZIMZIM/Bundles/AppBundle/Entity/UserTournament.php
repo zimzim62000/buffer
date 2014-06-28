@@ -68,6 +68,15 @@ class UserTournament
     private $text;
 
     /**
+     * @Assert\NotBlank()
+     * @var string
+     * @GRID\Column(title="entity.app.usertournament.bet",operatorsVisible=false, visible=false, filterable=false)
+     *
+     * @ORM\Column(name="bet", type="text", nullable=true)
+     */
+    private $bet;
+
+    /**
      * @var \DateTime
      *
      * @Assert\NotBlank()
@@ -211,6 +220,29 @@ class UserTournament
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     * @return UserTournament
+     */
+    public function setBet($bet)
+    {
+        $this->bet = $bet;
+
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string
+     */
+    public function getBet()
+    {
+        return $this->bet;
     }
 
     /**

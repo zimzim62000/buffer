@@ -59,6 +59,15 @@ class RequestUser
      */
     private $email;
 
+
+    /**
+     * @var string
+     * @GRID\Column(title="entity.app.requestuser.text",operatorsVisible=false, visible=false, filterable=false)
+     *
+     * @ORM\Column(name="text", type="text", nullable=true)
+     */
+    private $text;
+
     /**
      * @var \DateTime
      * @GRID\Column(operatorsVisible=false, visible=false)
@@ -322,5 +331,25 @@ class RequestUser
     {
         return $this->scores;
     }
+
+    /**
+     * @param string $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+
 
 }

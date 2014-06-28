@@ -495,7 +495,7 @@ class RequestUserController extends ZimzimController
             )
         );
 
-        $form->add('submit', 'submit', array('label' => 'button.update'));
+        $form->add('submit', 'submit', array('label' => 'button.submitemail'));
 
         return $form;
     }

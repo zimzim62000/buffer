@@ -22,7 +22,8 @@ class RequestUserEmailType extends AbstractType
             'email',
             null,
             array('label' => 'entity.app.requestuser.email')
-        );
+        )
+        ->add('text', null, array('label' => 'entity.app.requestuser.text'));
     }
 
     /**

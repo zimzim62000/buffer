@@ -1,22 +1,30 @@
 {% block body %}
-<h3>Bonjour {{ requestUser.email }},</h3>
+    <h3>Bonjour {{ requestUser.email }},</h3>
 
-<h3>{{ requestUser.getUserTournament.user.username }} viens de vous inviter pour un pari sur parierentreamis.fr.</h3>
+    <h3>{{ requestUser.getUserTournament.user.username }} viens de vous inviter pour un pari sur
+        parierentreamis.fr.</h3>
 
-<p>
-Pari organisé sur le tournoi global : <strong>{{ requestUser.userTournament.tournament }}</strong><br /><br />
+    <h4>Message perso de l'administrateur du tournoi</h4>
+    <p>
+        {{ requestUser.text }}
+    </p>
 
-Hé, j'ai créé le tournoi <strong>{{ requestUser.userTournament.getName }}</strong> vient me rejoindre si tu l'oses ... :)
-</p>
-<p>
-    Quelques présisions sur le tournoi :<br />
-    {{ requestUser.userTournament.text }}
-</p>
-<br />
-<h4>Accéder à htttp://www.parierentreamis.fr, créer un compte ou connecté vous et rejoigné le tournoi de votre ami.</h4>
-<br />
-<p>
-Bon pari et bonne chance...<br />
-Toute l'équipe de parierentreamis.fr
-</p>
+    <p>
+        Pari organisé sur le tournoi global : <strong>{{ requestUser.userTournament.tournament }}</strong><br/><br/>
+
+        Hé, j'ai créé le tournoi <strong>{{ requestUser.userTournament.getName }}</strong> vient me rejoindre si tu
+        l'oses ... :)
+    </p>
+    <p>
+        Quelques présisions sur le tournoi :<br/>
+        {{ requestUser.userTournament.text }}
+    </p>
+    <br/>
+    <h4>Accéder à htttp://www.parierentreamis.fr, créer un compte ou connecté vous et rejoigné le tournoi de votre
+        ami.</h4>
+    <br/>
+    <p>
+        Bon pari et bonne chance...<br/>
+        Toute l'équipe de parierentreamis.fr
+    </p>
 {% endblock body %}

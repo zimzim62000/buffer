@@ -86,6 +86,24 @@
                     </h5>
                 </div>
             </div>
+            <div class="row zimzim-panel">
+                <div class="medium-6 columns">
+                    <h5 class="text-center darkgreencolor">
+                        {{ 'views.bundles.app.requestuser.index.text'|trans }}
+                    </h5>
+                    <p class="text-justify">
+                        {{ entity.userTournament.text }}
+                    </p>
+                </div>
+                <div class="medium-6 columns">
+                    <h5 class="text-center darkgreencolor">
+                        {{ 'views.bundles.app.requestuser.index.bet'|trans }}
+                    </h5>
+                    <p class="text-justify">
+                        {{ entity.userTournament.bet }}
+                    </p>
+                </div>
+            </div>
         </div>
     {% endfor %}
 

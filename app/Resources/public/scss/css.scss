@@ -69,10 +69,6 @@ table.width-100 {
     color: $body-bg !important;
 }
 
-.bgcolor {
-    color: $body-bg !important;
-}
-
 .primarycolor {
     color: $primary-color !important;
 }
@@ -90,6 +86,9 @@ table.width-100 {
 }
 .secondarycolor{
     color: $secondary-color !important;
+}
+.darkgreencolor{
+    color: $darkgreen !important;
 }
 h1.headerpagehome {
     font-size: 1.85rem;

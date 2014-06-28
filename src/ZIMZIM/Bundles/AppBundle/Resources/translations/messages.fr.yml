@@ -16,6 +16,8 @@ views:
                     title: "Mes tournois"
                     noenabled: "Votre inscription est désactivé !"
                     noanswer: "Votre demande d'inscription est toujours en cours !"
+                    text: "Informations sur le tournoi"
+                    bet: "Informations sur le pari"
                 update:
                     title: "Modification des demandes d'inscriptions"
                     who: "Demandes éffectué par %user% le %date%"
@@ -92,13 +94,15 @@ entity:
             enabled: "Active"
             user: "User"
             tournament: "Tournoi"
-            text: "Régle du tournoi et du pari"
+            text: "information sur le tournoi ( public ) "
+            bet: "Régle du pari ( privé )"
         requestuser:
             user: "User"
             usertournament: "Tournoi"
             email: "Email"
             enabled: "Active"
             validate: "Validé"
+            text: "Message pour l'invité"
         game:
             id: id
             teamhome: "eguipe"
