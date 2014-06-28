@@ -32,7 +32,8 @@
                     </div>
                     <div class="small-6 columns">
                         <h5 class="text-center">
-                            <a href="{{ path('zimzim_bundles_app_requestuserranking', {'id': entity.userTournament.id }) }}" class="tiny button round">
+                            <a href="{{ path('zimzim_bundles_app_requestuserranking', {'id': entity.userTournament.id }) }}"
+                               class="tiny button round">
                                 {{ 'button.ranking'|trans }}
                             </a>
 
@@ -90,30 +91,46 @@
                 <div class="small-12 columns">
                     <h5 class="text-center">
                         <a href="javascript:void(0);" class="tiny button round"
-                                onClick="$('#toogle_info_{{ entity.userTournament.id }}').fadeToggle();" >
+                           onClick="$('#toogle_info_{{ entity.userTournament.id }}').fadeToggle();">
                             {{ 'button.moreinfo'|trans }}
                         </a>
                     </h5>
                 </div>
             </div>
-            <div class="row zimzim-panel" id="toogle_info_{{ entity.userTournament.id }}" style="display:none;">
-                <div class="medium-6 columns">
-                    <h5 class="text-center darkgreencolor">
-                        {{ 'views.bundles.app.requestuser.index.text'|trans }}
-                    </h5>
-                    <p class="text-justify">
-                        {{ entity.userTournament.text }}
-                    </p>
+            {% if entity.enabled and entity.validate %}
+                <div class="row zimzim-panel" id="toogle_info_{{ entity.userTournament.id }}" style="display:none;">
+                    <div class="medium-6 columns">
+                        <h5 class="text-center darkgreencolor">
+                            {{ 'views.bundles.app.requestuser.index.text'|trans }}
+                        </h5>
+
+                        <p class="text-justify">
+                            {{ entity.userTournament.text }}
+                        </p>
+                    </div>
+                    <div class="medium-6 columns">
+                        <h5 class="text-center darkgreencolor">
+                            {{ 'views.bundles.app.requestuser.index.bet'|trans }}
+                        </h5>
+
+                        <p class="text-justify">
+                            {{ entity.userTournament.bet }}
+                        </p>
+                    </div>
                 </div>
-                <div class="medium-6 columns">
-                    <h5 class="text-center darkgreencolor">
-                        {{ 'views.bundles.app.requestuser.index.bet'|trans }}
-                    </h5>
-                    <p class="text-justify">
-                        {{ entity.userTournament.bet }}
-                    </p>
+            {% else %}
+                <div class="row zimzim-panel" id="toogle_info_{{ entity.userTournament.id }}" style="display:none;">
+                    <div class="medium-12 columns">
+                        <h5 class="text-center darkgreencolor">
+                            {{ 'views.bundles.app.requestuser.index.text'|trans }}
+                        </h5>
+
+                        <p class="text-justify">
+                            {{ entity.userTournament.text }}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
     {% endfor %}
 
