@@ -796,12 +796,12 @@ $button-bg: $yellow;
 
 // We use these for the pagination anchor links
 // $pagination-link-pad: rem-calc(1 10 1);
-// $pagination-link-font-color: #999;
-// $pagination-link-active-bg: scale-color(#fff, $lightness: -10%);
+$pagination-link-font-color: $darkgreen;
+$pagination-link-active-bg: scale-color(#fff, $lightness: -10%);
 
 // We use these for disabled anchor links
 // $pagination-link-unavailable-cursor: default;
-// $pagination-link-unavailable-font-color: #999;
+$pagination-link-unavailable-font-color: $darkgreen;
 // $pagination-link-unavailable-bg-active: transparent;
 
 // We use these for currently selected anchor links
